@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SuggestedCompanies from './SuggestedCompanies';
 import SelectMajorSemester from './SelectMajorSemester';
 import ApplicationsList from './ApplicationsList';
+import CourseList from './CourseList';
 
 const StudentDashboard = () => {
   return (
@@ -35,7 +36,7 @@ const StudentDashboard = () => {
       <div style={{display:"flex",flexDirection:"column"}}>
         <h3>Internships</h3>
         <Link to="/internships">View Available Internships</Link>
-        <Link to="/past-internships">View Past Internships</Link>
+        <Link to="/past-present-internships">View your past and present Internships</Link>
       </div>
 
       <div>
@@ -43,6 +44,17 @@ const StudentDashboard = () => {
         <ApplicationsList/> 
       </div>
 
+
+      <div>
+      <h3>Courses</h3>
+      <Link to="/course-list">View courses</Link>
+      </div>
+
+
+      <div>
+      <h3>Final Report</h3>
+      <Link to="/submit-final-report">View Report</Link>
+      </div>
 
       {/*
       
