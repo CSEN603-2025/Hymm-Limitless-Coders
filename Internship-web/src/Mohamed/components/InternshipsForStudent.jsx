@@ -95,15 +95,9 @@
 //   );
 // };
 
-// export default InternshipsForStudent;
-
-
-
-
-
-
 import { useState, useEffect } from 'react';
 import pastAndPresentIntership from '../data/PastAndPresentInternships';
+import '../css/InternshipsForStudent.css';
 
 const InternshipsForStudent = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -172,59 +166,52 @@ const InternshipsForStudent = () => {
     setReports(rest);
   };
 
+  const handleExpandedClick = (e) => {
+    e.stopPropagation(); // Prevent the toggleExpand function from being triggered when clicking inside the expanded content
+  };
+
   return (
-    <div>
-      <h3>Past and Present Internships</h3>
+    <div className="internship-container">
+      <h3 className="title">Past and Present Internships</h3>
 
       {/* Search and Filter */}
-      <div style={{ marginBottom: '1rem' }}>
+      <div className="search-filter-container">
         <input
           type="text"
           placeholder="Search by title or company..."
           value={searchInput}
           onChange={handleSearchInputChange}
-          style={{ padding: '5px', marginRight: '10px' }}
+          className="search-input"
         />
         <select
           value={statusFilter}
           onChange={handleFilterChange}
-          style={{ padding: '5px', marginRight: '10px' }}
+          className="status-filter"
         >
           <option value="all">All</option>
           <option value="completed">Completed</option>
           <option value="in-progress">In Progress</option>
         </select>
-        <button onClick={handleSearchClick} style={{ padding: '5px 10px', marginRight: '5px' }}>
-          Search
-        </button>
-        <button onClick={handleClear} style={{ padding: '5px 10px' }}>
-          Clear
-        </button>
+        <button onClick={handleSearchClick} className="search-btn">Search</button>
+        <button onClick={handleClear} className="clear-btn">Clear</button>
       </div>
 
       {/* List Internships */}
-      <ul>
+      <ul className="internship-list">
         {filteredInternships.length === 0 ? (
           <p>No internships found.</p>
         ) : (
           filteredInternships.map((internship) => (
             <li
               key={internship.id}
+              className={`internship-item ${expandedId === internship.id ? 'expanded' : ''}`}
               onClick={() => toggleExpand(internship.id)}
-              style={{
-                marginBottom: '10px',
-                cursor: 'pointer',
-                border: '1px solid #ccc',
-                padding: '10px',
-                borderRadius: '5px',
-              }}
             >
-              <strong>{internship.title}</strong> — {internship.status}
+              <div className="internship-item-header">
+                <strong>{internship.title}</strong> — {internship.status}
+              </div>
               {expandedId === internship.id && (
-                <div
-                  style={{ marginTop: '10px' }}
-                  onClick={(e) => e.stopPropagation()} // Prevent collapse on inner clicks
-                >
+                <div className="internship-details" onClick={handleExpandedClick}>
                   <p><strong>Company:</strong> {internship.company}</p>
                   <p><strong>Description:</strong> {internship.description}</p>
                   <p><strong>Duration:</strong> {internship.duration}</p>
@@ -232,44 +219,33 @@ const InternshipsForStudent = () => {
                   <p><strong>Posted Date:</strong> {internship.postedDate}</p>
 
                   {internship.status?.toLowerCase() === 'completed' && (
-                    <div
-                      style={{
-                        marginTop: '10px',
-                        borderTop: '1px solid #ccc',
-                        paddingTop: '10px',
-                      }}
-                    >
+                    <div className="report-container">
                       <h4>Internship Report</h4>
                       <input
                         type="text"
                         placeholder="Title"
                         value={reports[internship.id]?.title || ''}
                         onChange={(e) => handleReportChange(internship.id, 'title', e.target.value)}
-                        style={{ width: '100%', marginBottom: '5px', padding: '5px' }}
-                        onClick={(e) => e.stopPropagation()}
+                        className="report-input"
                       />
                       <textarea
                         placeholder="Introduction"
                         value={reports[internship.id]?.intro || ''}
                         onChange={(e) => handleReportChange(internship.id, 'intro', e.target.value)}
-                        rows={2}
-                        style={{ width: '100%', marginBottom: '5px', padding: '5px' }}
-                        onClick={(e) => e.stopPropagation()}
+                        className="report-textarea"
                       />
                       <textarea
                         placeholder="Body"
                         value={reports[internship.id]?.body || ''}
                         onChange={(e) => handleReportChange(internship.id, 'body', e.target.value)}
-                        rows={4}
-                        style={{ width: '100%', marginBottom: '5px', padding: '5px' }}
-                        onClick={(e) => e.stopPropagation()}
+                        className="report-textarea"
                       />
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
                           handleDeleteReport(internship.id);
                         }}
-                        style={{ marginTop: '5px' }}
+                        className="delete-report-btn"
                       >
                         Delete Report
                       </button>

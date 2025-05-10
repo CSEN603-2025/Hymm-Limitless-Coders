@@ -45,15 +45,10 @@
 
 
 
-
-
-
-
-
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import companies from '../data/companies';
+import "../css/CompanyDetail.css";
 
 const LOCAL_STORAGE_KEY = 'companyEvaluations';
 
@@ -107,44 +102,48 @@ const CompanyDetail = () => {
   if (!company) return <div>Company not found.</div>;
 
   return (
-    <div>
+    <div className="company-detail-container">
       <h2>{company.name}</h2>
-      <p><strong>Industry:</strong> {company.industry}</p>
-      <p><strong>Location:</strong> {company.location}</p>
-      <p><strong>Founded:</strong> {company.founded}</p>
-      <p><strong>Employees:</strong> {company.employees}</p>
-      <p>
-        <strong>Website:</strong>{' '}
-        <a href={company.website} target="_blank" rel="noopener noreferrer">
-          {company.website}
-        </a>
-      </p>
+      <div className="company-info">
+        <p><strong>Industry:</strong> {company.industry}</p>
+        <p><strong>Location:</strong> {company.location}</p>
+        <p><strong>Founded:</strong> {company.founded}</p>
+        <p><strong>Employees:</strong> {company.employees}</p>
+        <p>
+          <strong>Website:</strong>{' '}
+          <a href={company.website} target="_blank" rel="noopener noreferrer">
+            {company.website}
+          </a>
+        </p>
+      </div>
 
       <hr />
-      <h3>Evaluation</h3>
+      <div className="evaluation-section">
+        <h3>Evaluation</h3>
 
-      {currentEvaluation && !editing ? (
-        <>
-          <p>{currentEvaluation}</p>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete} style={{ marginLeft: '8px' }}>Delete</button>
-        </>
-      ) : (
-        <>
-          <textarea
-            rows={4}
-            placeholder="Write your evaluation..."
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            style={{ width: '100%', marginBottom: '8px' }}
-          />
-          <br />
-          <button onClick={handleSubmit}>{editing ? 'Update' : 'Submit'}</button>
-        </>
-      )}
+        {currentEvaluation && !editing ? (
+          <>
+            <p>{currentEvaluation}</p>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete} className="delete-btn" style={{ marginLeft: '8px' }}>
+              Delete
+            </button>
+          </>
+        ) : (
+          <>
+            <textarea
+              rows={4}
+              placeholder="Write your evaluation..."
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+            <br />
+            <button onClick={handleSubmit}>{editing ? 'Update' : 'Submit'}</button>
+          </>
+        )}
+      </div>
     </div>
   );
 };
 
 export default CompanyDetail;
-
