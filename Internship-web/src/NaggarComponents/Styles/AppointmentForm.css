@@ -149,3 +149,10 @@
       padding: 1.5rem;
     }
   }
+  .appointment-wrapper {
+    padding-top: 20px; /* or margin-top if you prefer */
+  }
+  
+  .appointment-wrapper > .appointment-container {
+    margin-top: 20px; /* creates space between Nav and Form */
+  }

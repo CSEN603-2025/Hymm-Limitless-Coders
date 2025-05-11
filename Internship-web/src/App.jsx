@@ -11,7 +11,9 @@ import EvaluationReportDetails from './NaggarComponents/Pages/EvaluationReportDe
 import Statistics from './NaggarComponents/Pages/Statistics';
 import RequestAppointment from './NaggarComponents/Pages/RequestAppointment';
 import AppointmentRequests from './NaggarComponents/Pages/AppointmentRequests';
-
+import ManageAppointments from './NaggarComponents/Pages/ManageAppointments';
+import CallInterface from './NaggarComponents/Pages/CallInterface';
+import Notification from './NaggarComponents/Pages/Notification';
 function App() {
   return (
     <Routes>
@@ -27,6 +29,15 @@ function App() {
       <Route path="/Statistics" element={<Statistics />} />
       <Route path="/RequestAppointment" element={<RequestAppointment />} />
       <Route path="/AppointmentRequests" element={<AppointmentRequests />} />
+      <Route
+        path="/manage"
+        element={<ManageAppointments  />}
+      />
+      <Route
+        path="/call"
+        element={<CallInterface  />}
+      />
+      <Route path="/notifications" element={<Notification />} />
     </Routes>
    
   );

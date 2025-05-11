@@ -1,0 +1,306 @@
+/* Importing Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Root Styles */
+:root {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #1F2937;
+  background-color: #F9FAFB;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* General Layout */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  padding-top: 88px; /* Offset for fixed navbar (64px height + 24px extra) */
+  flex: 1;
+}
+
+/* Navigation Styles */
+.navbar {
+  background: #1E3A8A;
+  color: #FFFFFF;
+  padding: 16px 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px; /* Fixed height for nav */
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+  color: #FFFFFF;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.nav-link:hover {
+  background: #1E40AF;
+}
+
+.nav-link-active {
+  background: #1E40AF;
+  font-weight: 600;
+}
+
+/* Header Styles */
+.header {
+  margin-bottom: 24px;
+}
+
+.header-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+/* Form Section Styles */
+.form-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-subtitle {
+  font-size: 16px;
+  color: #6B7280;
+  margin-bottom: 24px;
+}
+
+.appointment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Form Group and Row Styles */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.form-row .form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Form Input and Label Styles */
+.label {
+  color: #1F2937;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.input {
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1E3A8A;
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+}
+
+.input-error {
+  border-color: #EF4444;
+}
+
+.select-input {
+  appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F2937" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat right 12px center;
+  background-size: 12px;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Checkbox Styles */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-input {
+  width: 16px;
+  height: 16px;
+  accent-color: #1E3A8A;
+}
+
+.checkbox-label {
+  font-size: 16px;
+  color: #1F2937;
+}
+
+/* Error Message Styles */
+.error-message {
+  color: #EF4444;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+/* Form Actions and Button Styles */
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+.btn-primary {
+  background: #1E3A8A;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #1E40AF;
+  transform: translateY(-1px);
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+}
+
+.btn-primary:disabled {
+  background: #E5E7EB;
+  color: #6B7280;
+  cursor: not-allowed;
+}
+
+/* Form Note Styles */
+.form-note {
+  font-size: 14px;
+  color: #6B7280;
+  margin-top: 16px;
+}
+
+/* Tooltip Styles */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1F2937;
+  color: #FFFFFF;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+  margin-bottom: 8px;
+}
+
+/* Loading State Styles */
+.loading-spinner {
+  text-align: center;
+  font-size: 16px;
+  color: #1E3A8A;
+  position: relative;
+}
+
+.loading-spinner::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 3px solid #1E3A8A;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 16px;
+    padding-top: 80px; /* Adjust for smaller navbar */
+  }
+
+  .navbar {
+    padding: 12px 16px;
+    height: 56px; /* Smaller height for mobile */
+  }
+
+  .nav-link {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .header-title {
+    font-size: 28px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-group {
+    min-width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .form-row {
+    flex-direction: row;
+  }
+
+  .form-group {
+    min-width: 200px;
+  }
+}

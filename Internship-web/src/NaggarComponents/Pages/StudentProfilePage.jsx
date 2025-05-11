@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import StudentProfile from '../Components /StudentProfile';
-
+import NaggarRoutes from '../NaggarRoutes';
 const dummyStudents = [
   { id: 1, name: 'Alice Johnson', status: 'Not Started', email: 'alice@example.com', major: 'Computer Science' },
   { id: 2, name: 'Bob Smith', status: 'In Progress', email: 'bob@example.com', major: 'Business' },
@@ -14,7 +14,12 @@ function StudentProfilePage() {
 
   if (!student) return <p>Student not found.</p>;
 
-  return <StudentProfile student={student} />;
+  return( 
+    <div>
+      <NaggarRoutes />
+      <StudentProfile student={student} />;
+    </div>
+  )
 }
 
 export default StudentProfilePage;
