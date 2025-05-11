@@ -1,0 +1,317 @@
+/* Root Theme & Typography */
+body, html {
+  font-family: 'Inter', sans-serif;
+  background-color: #F9FAFB;
+  color: #1F2937;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  padding: 24px;
+}
+
+/* Utility Container */
+.utilities-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Divider */
+.divider {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid #E5E7EB;
+}
+
+/* Card Component */
+.card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1F2937;
+  margin-bottom: 16px;
+}
+
+/* Button Styles */
+.btn-secondary {
+  background: #10B981;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background: #059669;
+}
+
+/* Video Styling */
+.video-container {
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.video {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-header {
+    font-size: 18px;
+  }
+
+  .btn-secondary {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .utilities-container {
+    padding: 16px;
+  }
+}
+
+/* === Form Styling === */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.label {
+  color: #1F2937;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.input {
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1E3A8A;
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+}
+
+/* === Primary Button === */
+.btn-primary {
+  background: #1E3A8A;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background: #1E40AF;
+}
+
+/* === Form Container === */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;         /* ✅ Added for vertical centering */
+  padding: 24px;
+  min-height: 80vh;            /* ✅ Added for vertical centering */
+}
+
+/* === Status Message === */
+.status-text {
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+.status-accepted {
+  color: #10B981;
+}
+
+.status-rejected {
+  color: #EF4444;
+}
+
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.table-header {
+  background: #1E3A8A;
+  color: #FFFFFF;
+}
+
+.table-cell {
+  padding: 8px 16px;
+  border: 1px solid #E5E7EB;
+  text-align: left;
+}
+
+.table-row:nth-child(even) {
+  background-color: #F9FAFB;
+}
+
+.table-row:hover {
+  background-color: #F3F4F6;
+}
+
+/* Filter Container */
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .filter-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .filter-container > * {
+    flex: 1;
+  }
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+/* Outline Button */
+.btn-outline {
+  border: 1px solid #1E3A8A;
+  color: #1E3A8A;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  transition: background 0.2s ease-in-out;
+}
+
+.btn-outline:hover {
+  background: rgba(30, 58, 138, 0.05);
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 24px;
+}
+
+/* Dashboard Links Grid */
+.dashboard-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Navigation Buttons */
+.nav-link {
+  text-decoration: none;
+}
+
+.error-text {
+  color: #EF4444;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+/* Intern List Styles */
+.intern-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+/* Individual Intern Card */
+.intern-card {
+  padding: 16px;
+}
+
+/* Status Selector Group */
+.status-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+/* Textarea style */
+textarea.input {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Navbar */
+.navbar {
+  background: #1E3A8A;
+  color: #FFFFFF;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  background: #1E40AF;
+}
+
+.nav-link-active {
+  background: #1E40AF;
+  font-weight: 600;
+}
