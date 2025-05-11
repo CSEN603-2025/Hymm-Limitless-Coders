@@ -97,24 +97,11 @@
 
 /* Incoming Call Card */
 .incoming-call {
-  background-color: var(--white);
-  border: 1px solid var(--border);
+  background-color: white;
   border-radius: 8px;
   padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(30, 58, 138, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(30, 58, 138, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(30, 58, 138, 0);
-  }
 }
 
 .caller-info {
@@ -125,8 +112,8 @@
 }
 
 .caller-avatar {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -136,40 +123,36 @@
 }
 
 .caller-name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  color: var(--text);
-  margin-bottom: 4px;
+  margin: 0;
 }
 
 .call-time {
-  font-size: 14px;
-  color: var(--text-light);
+  color: #6B7280;
+  margin: 4px 0 0;
 }
 
 .call-actions {
   display: flex;
   gap: 12px;
+  margin-top: 16px;
 }
 
 /* Button Styles */
 .btn-primary {
-  background: var(--primary);
-  color: var(--white);
-  padding: 12px 24px;
-  border-radius: 6px;
+  background-color: #10B981;
+  color: white;
   border: none;
-  cursor: pointer;
-  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 6px;
   font-weight: 500;
-  transition: background 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: var(--primary-hover);
+  background-color: #059669;
 }
 
 .btn-secondary {
@@ -192,22 +175,18 @@
 }
 
 .btn-danger {
-  background: var(--error);
-  color: var(--white);
-  padding: 12px 24px;
-  border-radius: 6px;
+  background-color: #EF4444;
+  color: white;
   border: none;
-  cursor: pointer;
-  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 6px;
   font-weight: 500;
-  transition: background 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .btn-danger:hover {
-  background: #DC2626;
+  background-color: #DC2626;
 }
 
 /* Call History */
@@ -261,16 +240,73 @@
 }
 
 .call-history-status {
+  padding: 4px 12px;
+  border-radius: 999px;
   font-size: 14px;
   font-weight: 500;
 }
 
-.status-accepted {
-  color: var(--success);
+.call-history-status.status-accepted {
+  background-color: #10B981;
+  color: white;
 }
 
-.status-rejected {
-  color: var(--error);
+.call-history-status.status-rejected {
+  background-color: #EF4444;
+  color: white;
+}
+
+/* Call Feedback Styles */
+.call-feedback {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease-out;
+  min-width: 300px;
+  max-width: 90%;
+}
+
+.call-feedback.accepted {
+  background-color: #10B981;
+  color: white;
+}
+
+.call-feedback.rejected {
+  background-color: #EF4444;
+  color: white;
+}
+
+.feedback-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.feedback-icon {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.feedback-message {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
 }
 
 /* Responsive adjustments */
@@ -292,6 +328,25 @@
   }
 
   .btn-primary, .btn-secondary, .btn-danger {
+    width: 100%;
+  }
+
+  .call-feedback {
+    top: 60px;
+    padding: 12px 20px;
+    min-width: 250px;
+  }
+
+  .feedback-message {
+    font-size: 14px;
+  }
+
+  .call-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-danger {
     width: 100%;
   }
 } 

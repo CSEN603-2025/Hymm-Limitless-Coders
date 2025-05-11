@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useReports } from '../Context/ReportContext';
 import NaggarRoutes from '../NaggarRoutes';
-import './report.css';
+import '../Styles/report.css';
 
 function InternshipReportDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { reports, evaluations, updateReportStatus } = useReports();
   const [loading, setLoading] = useState(true);
+  const [comment, setComment] = useState('');
+  const [showCommentInput, setShowCommentInput] = useState(false);
+  const [editingCommentId, setEditingCommentId] = useState(null);
+  const [comments, setComments] = useState([]); // Array to store multiple comments
   const report = reports.find(r => r.id === parseInt(id));
   const evaluation = evaluations[id];
 
@@ -17,6 +21,13 @@ function InternshipReportDetails() {
     const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
+
+  // Load existing comments (you'll need to implement this in your backend)
+  useEffect(() => {
+    if (report?.comments) {
+      setComments(report.comments);
+    }
+  }, [report]);
 
   if (loading) {
     return <div className="loading-spinner" role="status" aria-live="polite">Loading...</div>;
@@ -27,7 +38,59 @@ function InternshipReportDetails() {
   }
 
   const handleChangeStatus = (newStatus) => {
-    updateReportStatus(id, newStatus);
+    if (newStatus === 'Rejected' || newStatus === 'Flagged') {
+      setShowCommentInput(true);
+    } else {
+      updateReportStatus(id, newStatus);
+      setShowCommentInput(false);
+      setComment('');
+    }
+  };
+
+  const handleSubmitComment = () => {
+    if (comment.trim()) {
+      const newComment = {
+        id: Date.now(), // Temporary ID generation
+        text: comment.trim(),
+        status: report.status,
+        timestamp: new Date().toISOString(),
+        facultyName: 'Faculty Member' // Replace with actual faculty member name
+      };
+
+      setComments([...comments, newComment]);
+      updateReportStatus(id, report.status, newComment);
+      setShowCommentInput(false);
+      setComment('');
+    }
+  };
+
+  const handleUpdateComment = (commentId) => {
+    const commentToEdit = comments.find(c => c.id === commentId);
+    if (commentToEdit) {
+      setComment(commentToEdit.text);
+      setEditingCommentId(commentId);
+      setShowCommentInput(true);
+    }
+  };
+
+  const handleDeleteComment = (commentId) => {
+    setComments(comments.filter(c => c.id !== commentId));
+    // Update the backend to remove the comment
+    updateReportStatus(id, report.status, null, commentId);
+  };
+
+  const handleEditSubmit = () => {
+    if (comment.trim() && editingCommentId) {
+      const updatedComments = comments.map(c => 
+        c.id === editingCommentId ? { ...c, text: comment.trim() } : c
+      );
+      setComments(updatedComments);
+      // Update the backend with the edited comment
+      updateReportStatus(id, report.status, { id: editingCommentId, text: comment.trim() });
+      setShowCommentInput(false);
+      setComment('');
+      setEditingCommentId(null);
+    }
   };
 
   const handleBack = () => {
@@ -43,9 +106,8 @@ function InternshipReportDetails() {
       <main className="content-area" role="main">
         {/* Header Section */}
         <header className="page-header">
-          <h1 className="section-header">Internship Report Details</h1>
           <button
-            className="btn-outline btn-back"
+            className="btn-back"
             onClick={handleBack}
             title="Return to internship reports list"
             aria-label="Go back to internship reports"
@@ -70,6 +132,41 @@ function InternshipReportDetails() {
                 {report.status || 'Unknown'}
               </span>
             </p>
+
+            {/* Comments Section */}
+            {comments.length > 0 && (
+              <div className="comments-section">
+                <h3 className="comments-heading">Comments History</h3>
+                {comments.map((comment) => (
+                  <div key={comment.id} className="comment-card">
+                    <div className="comment-header">
+                      <span className="comment-status">{comment.status}</span>
+                      <span className="comment-date">
+                        {new Date(comment.timestamp).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <p className="comment-text">{comment.text}</p>
+                    <div className="comment-actions">
+                      <button
+                        className="btn-text"
+                        onClick={() => handleUpdateComment(comment.id)}
+                        title="Edit comment"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn-text btn-danger"
+                        onClick={() => handleDeleteComment(comment.id)}
+                        title="Delete comment"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div className="button-group">
               <button
                 className="btn-primary"
@@ -96,6 +193,39 @@ function InternshipReportDetails() {
                 Flag
               </button>
             </div>
+
+            {showCommentInput && (
+              <div className="comment-input-section">
+                <textarea
+                  className="comment-input"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  placeholder={editingCommentId ? 
+                    "Edit your comment..." : 
+                    `Please provide a reason for ${report.status === 'Rejected' ? 'rejecting' : 'flagging'} this report...`}
+                  rows="4"
+                />
+                <div className="comment-actions">
+                  <button
+                    className="btn-primary"
+                    onClick={editingCommentId ? handleEditSubmit : handleSubmitComment}
+                    disabled={!comment.trim()}
+                  >
+                    {editingCommentId ? 'Update Comment' : 'Submit Comment'}
+                  </button>
+                  <button
+                    className="btn-outline"
+                    onClick={() => {
+                      setShowCommentInput(false);
+                      setComment('');
+                      setEditingCommentId(null);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 

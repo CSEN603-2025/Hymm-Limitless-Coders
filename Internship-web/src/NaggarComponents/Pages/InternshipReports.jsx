@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ReportCard from '../Components /ReportCard';
 import { useReports } from '../Context/ReportContext';
 import NaggarRoutes from '../NaggarRoutes';
-import './internDetails.css';
+import '../Styles/internDetails.css';
 
 function InternshipReports() {
   const { reports } = useReports();

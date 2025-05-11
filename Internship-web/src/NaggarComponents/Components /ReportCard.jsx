@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Pages/report.css'
+import '../Styles/report.css'
 function ReportCard({ report, onClick }) {
   // Added classes for consistent styling with card design pattern
   return (

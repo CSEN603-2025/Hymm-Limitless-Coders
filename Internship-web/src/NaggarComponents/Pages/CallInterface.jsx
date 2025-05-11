@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import NaggarRoutes from '../NaggarRoutes';
-import './callInterface.css';
+import '../Styles/callInterface.css';
 
 // Dummy data for call history
 const dummyCallHistory = [
@@ -33,10 +33,11 @@ const dummyCallHistory = [
   }
 ];
 
-function CallInterface({ addNotification }) {
+function CallInterface() {
   const [incomingCall, setIncomingCall] = useState(null);
   const [callHistory, setCallHistory] = useState(dummyCallHistory);
   const [isOnline, setIsOnline] = useState(true);
+  const [callFeedback, setCallFeedback] = useState(null);
 
   useEffect(() => {
     // Simulate incoming call after 3 seconds
@@ -48,14 +49,19 @@ function CallInterface({ addNotification }) {
         time: new Date().toLocaleTimeString(),
         date: new Date().toLocaleDateString()
       });
-      addNotification('Incoming call from Dr. Smith');
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [addNotification]);
+  }, []);
 
   const handleAcceptCall = () => {
-    addNotification('Call accepted');
+    // Show feedback
+    setCallFeedback({
+      type: 'accepted',
+      message: 'Call accepted successfully'
+    });
+    
+    // Update call history
     setCallHistory(prev => [{
       id: incomingCall.id,
       caller: incomingCall.caller,
@@ -65,11 +71,24 @@ function CallInterface({ addNotification }) {
       status: 'accepted',
       duration: '0 minutes'
     }, ...prev]);
+    
+    // Clear incoming call
     setIncomingCall(null);
+
+    // Clear feedback after 3 seconds
+    setTimeout(() => {
+      setCallFeedback(null);
+    }, 3000);
   };
 
   const handleRejectCall = () => {
-    addNotification('Call rejected');
+    // Show feedback
+    setCallFeedback({
+      type: 'rejected',
+      message: 'Call rejected'
+    });
+    
+    // Update call history
     setCallHistory(prev => [{
       id: incomingCall.id,
       caller: incomingCall.caller,
@@ -79,12 +98,18 @@ function CallInterface({ addNotification }) {
       status: 'rejected',
       reason: 'User rejected'
     }, ...prev]);
+    
+    // Clear incoming call
     setIncomingCall(null);
+
+    // Clear feedback after 3 seconds
+    setTimeout(() => {
+      setCallFeedback(null);
+    }, 3000);
   };
 
   const toggleOnlineStatus = () => {
     setIsOnline(!isOnline);
-    addNotification(`Status changed to ${!isOnline ? 'online' : 'offline'}`);
   };
 
   return (
@@ -108,6 +133,18 @@ function CallInterface({ addNotification }) {
           </div>
         </section>
 
+        {/* Call Feedback Message */}
+        {callFeedback && (
+          <div className={`call-feedback ${callFeedback.type}`}>
+            <div className="feedback-content">
+              <span className="feedback-icon">
+                {callFeedback.type === 'accepted' ? '✓' : '✕'}
+              </span>
+              <span className="feedback-message">{callFeedback.message}</span>
+            </div>
+          </div>
+        )}
+
         <div className="call-interface">
           {incomingCall ? (
             <div className="incoming-call">
@@ -123,10 +160,16 @@ function CallInterface({ addNotification }) {
                 </div>
               </div>
               <div className="call-actions">
-                <button className="btn-primary" onClick={handleAcceptCall}>
+                <button 
+                  className="btn-primary" 
+                  onClick={handleAcceptCall}
+                >
                   <span>Accept Call</span>
                 </button>
-                <button className="btn-danger" onClick={handleRejectCall}>
+                <button 
+                  className="btn-danger" 
+                  onClick={handleRejectCall}
+                >
                   <span>Reject Call</span>
                 </button>
               </div>

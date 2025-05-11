@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
-import './navbar.css';
+import './Styles/navbar.css';
 
 function NaggarRoutes() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +15,7 @@ function NaggarRoutes() {
   return (
     <nav className="navbar" role="navigation" aria-label="Main navigation">
       <div className="navbar-brand">
-        <span className="navbar-logo">📚</span> Internship Hub
+        <span className="navbar-logo"></span> Internship Hub
       </div>
       <button
         className="navbar-toggle"

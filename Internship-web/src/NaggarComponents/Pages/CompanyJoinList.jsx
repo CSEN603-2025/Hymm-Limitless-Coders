@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { CompanyContext } from '../Context/CompanyContext';
 import NaggarRoutes from '../NaggarRoutes';
 import { useNavigate } from 'react-router-dom';
-import './report.css';
+import '../Styles/report.css';
 
 function CompanyJoinList() {
   const { companies } = useContext(CompanyContext);

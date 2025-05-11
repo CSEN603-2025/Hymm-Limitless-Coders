@@ -1,10 +1,10 @@
 import { useState } from "react";
 import NaggarRoutes from "../NaggarRoutes";
-import "./requestApp.css"; // Link to styles.css
+import "../Styles/requestApp.css"; // Link to styles.css
 
 export default function RequestAppointment({ setHasAppointment }) {
   const [formData, setFormData] = useState({
-    name: "",
+    name: "", 
     email: "",
     phone: "",
     date: "",

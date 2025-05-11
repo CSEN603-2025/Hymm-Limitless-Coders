@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CompanyContext } from '../Context/CompanyContext';
 import CompanyCard from '../Components /CompanyCard';
-import '../Pages/companylist.css';
+import '../Styles/companylist.css';
 
 function CompanyList({ industryFilter, statusFilter, searchQuery }) {
   const { companies } = useContext(CompanyContext);

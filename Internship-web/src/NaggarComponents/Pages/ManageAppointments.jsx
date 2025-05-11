@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import NaggarRoutes from '../NaggarRoutes';
-import './manageAppointment.css'; // Link to styles.css
+import '../Styles/manageAppointment.css'; // Link to styles.css
 
 const dummyAppointments = [
   { 

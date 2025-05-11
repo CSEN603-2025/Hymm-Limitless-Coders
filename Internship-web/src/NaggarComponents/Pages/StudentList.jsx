@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import StudentCard from '../Components/StudentCard';
+import StudentCard from '../Components /StudentCard';
 import NaggarRoutes from '../NaggarRoutes';
-import './report.css'; // Changed from studentList.css to report.css
+import '../Styles/studentList.css'; // Changed from studentList.css to report.css
 
 // Expanded dummy data
 const dummyStudents = [

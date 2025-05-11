@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import NaggarRoutes from '../NaggarRoutes';
 import { CompanyContext } from '../Context/CompanyContext';
-import './report.css';
+import '../Styles/report.css';
 
 function CompanyPage() {
   const { id } = useParams();

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NaggarRoutes from '../NaggarRoutes';
-import './InternshipCycle.css';
+import '../Styles/InternshipCycle.css';
 
 function InternshipCycle() {
   const [startDate, setStartDate] = useState('');

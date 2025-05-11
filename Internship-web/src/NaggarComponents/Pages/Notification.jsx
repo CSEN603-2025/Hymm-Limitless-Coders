@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NaggarRoutes from '../NaggarRoutes';
-import './notification.css';
+import '../Styles/notification.css';
 
 const NotificationPage = () => {
   // Dummy notifications data with appointment responses
