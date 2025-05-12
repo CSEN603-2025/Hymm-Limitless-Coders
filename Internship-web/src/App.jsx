@@ -35,15 +35,36 @@ import SuggestedCompanies from './Mohamed/components/SuggestedCompanies';
 import UploadDocs from './pages/company/UploadDocs';
 import Notifications from './pages/company/Notifications';
 import ApplicationAlerts from './pages/company/ApplicationAlerts';
-
 import CourseList from './Mohamed/components/CourseList';
-
 import SubmitFinalReport from './Mohamed/components/SubmitFinalReport';
 import NotificationM from './Mohamed/components/Notification';
 import StudentDashboard from './Mohamed/components/StudentDashboard'; // New Dashboard component
 import CompanyDetail from './Mohamed/components/CompanyDetail';
 import ApplicationsList from './Mohamed/components/ApplicationsList';
 import InternshipsForStudent from './Mohamed/components/InternshipsForStudent';
+import ProStudentExtras from './youssef/ProStudentExtras';
+import Meeting from './youssef/Meeting';
+import CompaniesViewed from './youssef/CompaniesViewed';
+import OnlineAssessments from './youssef/OnlineAssessments';
+import FlaggedReports from './youssef/FlaggedReports'
+import WorkshopPage from './youssef/WorkshopPage';
+import LiveWorkshopPage from './youssef/LiveWorkShopPage';
+import CompletedWorkshops from './youssef/CompletedWorkshops';
+import UpcomingWorkshopsPage from './youssef/UpcomingWorkshopsPage';
+import WorkshopRecordings from './youssef/WorkshopRecordings';
+
+
+//faculty member routes
+import FaculutyInternshipReports from './FaculutyMember/Pages/FaculutyInternshipReports';
+import FaculutyInternshipReportDetails from './FaculutyMember/Pages/FaculutyInternshipReportDetails';
+import FaculutyStatistics from './FaculutyMember/Pages/FaculutyStatistics';
+//end of faculty member routes
+
+
+
+
+
+
 function App() {
   return (
     <Routes>
@@ -113,17 +134,32 @@ function App() {
       <Route path="/company/upload-docs" element={<UploadDocs />} />
       <Route path="/company/notifications" element={<Notifications />} />
       <Route path="/company/app-alerts" element={<ApplicationAlerts />} />
+
+
+
+
+
+
+      <Route path="/prostudentextras"  element={<ProStudentExtras />}/>
+      <Route path="/flaggedreports"  element={<FlaggedReports />}/>
+      <Route path="/meeting" element={<Meeting />}/>
+      <Route path="/companiesviewed" element={<CompaniesViewed />}/>
+      <Route path="/onlineassessments" element={<OnlineAssessments />}/>
+      <Route path="/workshop" element={<WorkshopPage />} />
+      <Route path="/workshop/live" element={<LiveWorkshopPage />} />
+      <Route path="/workshop/completed" element={<CompletedWorkshops />} />
+      <Route path="/workshop/upcoming" element={<UpcomingWorkshopsPage />} />
+      <Route path="/workshop/recorded" element={<WorkshopRecordings />} />
+
+
+
+
+      <Route path="/faculty/internship-reports" element={<FaculutyInternshipReports />} />
+      <Route path="/faculty/internship-reports/:id" element={<FaculutyInternshipReportDetails />} />
+      <Route path="/faculty/statistics" element={<FaculutyStatistics />} />
+
     </Routes>
    
   );
 }
-
 export default App;
-
-
-
-
-
-
-
-
