@@ -1,0 +1,36 @@
+.internship-details-container {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 700px;
+    margin: 30px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .internship-title {
+    color: #1E3A8A;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .internship-info p {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #333;
+  }
+  
+  .internship-description {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .internship-not-found {
+    color: red;
+    text-align: center;
+    padding: 40px;
+    font-size: 20px;
+  }
+  

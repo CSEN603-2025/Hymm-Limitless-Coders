@@ -1,0 +1,149 @@
+/* InternshipList.css */
+
+/* Container for the Internship List */
+.internship-list-container {
+    background-color: #FFFFFF;
+    padding: 32px;
+    margin: 0 auto;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header for Internship List */
+  .internship-list-header {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1E3A8A; /* Main color */
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  /* Search and Filter Controls */
+  .search-container,
+  .filter-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+
+
+  .search-container,
+  input {
+    /* border: 1px solid #D1D5DB; */
+    border-radius: 6px;
+    padding: 8px 12px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-right: 5px;
+  }
+
+  .search-container,
+  input:focus
+   {
+    outline: none;
+    /* border-color: #1E3A8A;
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2); */
+  }
+
+
+
+  
+  
+  .search-input,
+  .filter-select,
+  .clear-button {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #D1D5DB;
+  }
+  
+  .clear-button {
+    background-color: #1E3A8A;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .clear-button:hover {
+    background-color: #155A8A;
+  }
+  
+  /* Internship List Styling */
+  .internship-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .internship-item {
+    border: 1px solid #D1D5DB;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .internship-item:hover {
+    border-color: #1E3A8A; /* Highlight on hover */
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.1);
+  }
+  
+  .internship-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .view-button,
+  .apply-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .view-button {
+    background-color: #1E3A8A;
+    color: white;
+  }
+  
+  .apply-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .view-button:hover {
+    background-color: #155A8A;
+  }
+  
+  .apply-button:hover {
+    background-color: #45A049;
+  }
+  
+  /* Responsive for smaller screens */
+  @media (max-width: 768px) {
+    .internship-list-container {
+      padding: 24px;
+    }
+  
+    .internship-list-header {
+      font-size: 26px;
+    }
+  
+    .search-input,
+    .filter-select,
+    .clear-button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .view-button,
+    .apply-button {
+      font-size: 12px;
+    }
+  }
+  
