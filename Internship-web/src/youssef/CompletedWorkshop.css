@@ -1,0 +1,198 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #1E3A8A;
+  --text-color: #1F2937;
+  --bg-color: #F9FAFB;
+  --card-bg: #FFFFFF;
+  --border-radius: 8px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Title */
+.dashboard-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 12px;
+  text-align: center;
+}
+
+/* Card for each Workshop */
+.dashboard-section {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  transition: transform 0.2s ease;
+}
+
+.dashboard-section:hover {
+  transform: translateY(-2px);
+}
+
+.card-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--primary-color);
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background: #1E40AF;
+}
+
+.btn-secondary {
+  background: #10B981;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-secondary:hover {
+  background: #059669;
+}
+
+.btn-outline {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.btn-outline:hover {
+  background: rgba(30, 58, 138, 0.05);
+}
+
+/* Feedback Section */
+.input {
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+}
+
+/* Stars Rating */
+.star {
+  cursor: pointer;
+  font-size: 20px;
+  color: #D1D5DB;
+}
+
+.star.rated {
+  color: var(--primary-color);
+}
+
+/* Notifications */
+.notification {
+  background-color: #D1F5D3;
+  color: #047857;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  font-weight: 600;
+}
+
+/* Certificate Section */
+.certificate-section {
+  margin-top: 20px;
+  padding: 16px;
+  background: #F0F4FF;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.certificate-section h2 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+/* Back Button */
+.back-button {
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background: var(--primary-color);
+  color: #FFFFFF;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 28px;
+  }
+
+  .card-header {
+    font-size: 18px;
+  }
+
+  .btn-primary, .btn-secondary, .btn-outline {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .dashboard-container {
+    padding: 16px;
+  }
+}
