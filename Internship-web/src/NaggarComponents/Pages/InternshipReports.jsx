@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReportCard from '../Components /ReportCard';
 import { useReports } from '../Context/ReportContext';
-import NaggarRoutes from '../NaggarRoutes';
+
 import '../Styles/internDetails.css';
 
 function InternshipReports() {
@@ -79,7 +79,7 @@ function InternshipReports() {
     <div className="page-container">
       {/* Navigation */}
       <header className="page-header">
-        <NaggarRoutes className="navbar" />
+        
       </header>
 
       <main className="content-area" role="main">

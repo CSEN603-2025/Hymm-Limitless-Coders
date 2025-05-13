@@ -3,7 +3,7 @@ import { useReports } from '../Context/ReportContext';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Download, Award, FileCheck, FileX, Flag, Clock, Book, Loader } from 'lucide-react';
 import '../Styles/Statistics.css';
-import NaggarRoutes from '../NaggarRoutes';
+
 
 function Statistics() {
   const [isGeneratingReport, setIsGeneratingReport] = useState(false);
@@ -417,7 +417,7 @@ ${topInternshipCompanies.map(c => `${c.company}: ${c.count} reports`).join('\n')
   return (
     <div className="page-container">
       <header className="page-header">
-        <NaggarRoutes className="navbar" />
+        
       </header>
 
       <main className="content-area" role="main">

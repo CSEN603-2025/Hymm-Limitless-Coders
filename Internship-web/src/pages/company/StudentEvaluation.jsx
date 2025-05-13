@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CompanyHome from './CompanyHome';  
+
 const StudentEvaluation = () => {
   const [formData, setFormData] = useState({
     studentName: '',
@@ -20,7 +20,7 @@ const StudentEvaluation = () => {
 
   return (
       <main className="form-container" style={{ paddingTop: '200px' }}>
-        <CompanyHome />
+        
       <form className="form card" onSubmit={handleSubmit}>
         <h2 className="card-header">Evaluate a Student</h2>
 

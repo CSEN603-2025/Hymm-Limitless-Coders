@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { CompanyContext } from '../Context/CompanyContext';
-import NaggarRoutes from '../NaggarRoutes';
+
 import { useNavigate } from 'react-router-dom';
 import '../Styles/report.css';
 
@@ -36,7 +36,7 @@ function CompanyJoinList() {
   return (
     <div className="page-container">
       <header className="page-header">
-        <NaggarRoutes className="navbar" />
+       
       </header>
 
       <main className="content-area" role="main">

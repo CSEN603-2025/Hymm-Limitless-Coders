@@ -1,10 +1,10 @@
 // src/pages/company/ApplicationAlerts.jsx
 import React from 'react';
-import CompanyHome from './CompanyHome';
+
 const ApplicationAlerts = () => {
   return (
     <main className="form-container"  style={{ paddingTop: '200px' }}>
-      <CompanyHome />
+      
       <section className="card">
         <h2 className="card-header">📢 Application Alerts</h2>
 

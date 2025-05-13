@@ -1,0 +1,378 @@
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #1e3a8a;
+  --text-color: #e5e7eb;
+  --text-active: #ffffff;
+  --bg-gradient: linear-gradient(135deg, rgba(22, 24, 27, 0.9), rgba(30, 58, 138, 0.9));
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --border-radius: 12px;
+  --transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+[data-theme="dark"] {
+  --primary-color: #1e40af;
+  --secondary-color: #172554;
+  --text-color: #d1d5db;
+  --text-active: #f3f4f6;
+  --bg-gradient: linear-gradient(135deg, rgba(30, 64, 175, 0.95), rgba(23, 37, 84, 0.95));
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-gradient);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  margin: 1rem;
+  position: sticky;
+  top: 1rem;
+  z-index: 1000;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: 'Inter', sans-serif;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-active);
+  letter-spacing: 0.03em;
+  min-width: max-content;
+  margin-right: 1rem;
+}
+
+.navbar-logo {
+  margin-right: 0.75rem;
+}
+
+.navbar-logo:hover {
+  opacity: 0.9;
+}
+
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-active);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.navbar-toggle:hover,
+.navbar-toggle:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.navbar-toggle:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Navbar scroll container to hold the menu and scroll arrows */
+.navbar-scroll-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  max-width: calc(100% - 250px); /* Adjust based on your brand and actions width */
+  overflow: hidden;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+  scrollbar-width: none;  /* Hide scrollbar for Firefox */
+  flex: 1;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.navbar-menu::-webkit-scrollbar {
+  display: none;
+}
+
+.navbar-menu li {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  white-space: nowrap;
+}
+
+.navbar-scroll-arrow {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--text-active);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-scroll-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-scroll-left {
+  left: 0;
+}
+
+.navbar-scroll-right {
+  right: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: var(--transition);
+  position: relative;
+  will-change: background-color, color;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--text-active);
+  background: rgba(255, 255, 255, 0.1);
+  outline: none; /* Remove outline on focus */
+}
+
+.nav-link:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link-active {
+  color: var(--text-active);
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+/* Remove focus outline completely */
+.nav-link:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.notification-container {
+  display: flex;
+  align-items: center;
+}
+
+.notification-bell-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.notification-bell {
+  color: var(--text-color);
+}
+
+.notification-bell-container:hover .notification-bell {
+  color: var(--text-active);
+  animation: shake 0.4s ease-in-out;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background-color: #dc2626;
+  color: var(--text-active);
+  font-size: 0.6rem;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 1.1rem;
+  height: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: 1rem;
+  min-width: max-content;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text-active);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  outline: none; /* Remove outline on focus */
+}
+
+.theme-toggle:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-toggle {
+  background: none;
+  border: none;
+  color: var(--text-active);
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.profile-toggle:hover,
+.profile-toggle:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  outline: none; /* Remove outline on focus */
+}
+
+.profile-toggle:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 2.5rem;
+  right: 0;
+  background: var(--bg-gradient);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 150px;
+  z-index: 1000;
+  transform: translateY(-10px);
+  opacity: 0;
+  animation: slideIn 0.3s forwards;
+}
+
+.profile-dropdown li {
+  margin: 0;
+}
+
+.profile-option {
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.profile-option:hover,
+.profile-option:focus {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-active);
+  outline: none; /* Remove outline on focus */
+}
+
+.profile-option:active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-scroll-container {
+    max-width: 100%;
+    order: 3;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .navbar-menu {
+    display: none;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    background: var(--bg-gradient);
+    padding: 1rem;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    box-shadow: var(--shadow);
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    overflow-y: auto;
+    max-height: 300px;
+  }
+
+  .navbar-menu-open {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .navbar-menu li {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+    padding: 0.75rem;
+    display: block;
+    width: 100%;
+  }
+
+  .navbar-actions {
+    margin-left: auto;
+  }
+  
+  .navbar-scroll-arrow {
+    display: none;
+  }
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes slideIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

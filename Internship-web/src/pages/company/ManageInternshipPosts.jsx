@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CompanyHome from './CompanyHome';
+
 const ManageInternshipPosts = () => {
   const [posts, setPosts] = useState([]);
   const [newPost, setNewPost] = useState({
@@ -34,7 +34,7 @@ const ManageInternshipPosts = () => {
 
   return (
     <main className="form-container" style={{ paddingTop: '200px' }}>
-        <CompanyHome />
+        
       <section className="card">
         <h2 className="card-header">Manage Internship Posts</h2>
 

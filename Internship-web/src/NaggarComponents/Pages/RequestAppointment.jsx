@@ -1,5 +1,4 @@
 import { useState } from "react";
-import NaggarRoutes from "../NaggarRoutes";
 import "../Styles/requestApp.css"; // Link to styles.css
 
 export default function RequestAppointment({ setHasAppointment }) {
@@ -76,7 +75,6 @@ export default function RequestAppointment({ setHasAppointment }) {
 
   return (
     <div className="page-wrapper"> {/* Same wrapper as StudentList */}
-      <NaggarRoutes className="navbar" role="navigation" aria-label="Main navigation" /> {/* Fixed nav */}
       <main className="main-container"> {/* Offset for nav */}
         <header className="header">
           <h1 className="header-title">Request an Appointment</h1>

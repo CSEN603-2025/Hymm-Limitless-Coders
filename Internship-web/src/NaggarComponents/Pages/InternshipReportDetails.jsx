@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useReports } from '../Context/ReportContext';
-import NaggarRoutes from '../NaggarRoutes';
+
 import '../Styles/report.css';
 
 // ...imports remain the same
@@ -62,7 +62,6 @@ function InternshipReportDetails() {
 
   return (
     <div className="page-container">
-      <NaggarRoutes />
       <main className="content-area">
         <header className="page-header">
           <button className="btn-back" onClick={handleBack}>Back to Reports</button>

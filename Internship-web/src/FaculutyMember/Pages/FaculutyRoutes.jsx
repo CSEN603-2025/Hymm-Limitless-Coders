@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../../NaggarComponents/Styles/navbar.css'; // Make sure this exists and is styled like NaggarRoutes
+
 
 const companyPages = [
   { path: '/faculty/internship-reports', label: 'Internship Reports' },

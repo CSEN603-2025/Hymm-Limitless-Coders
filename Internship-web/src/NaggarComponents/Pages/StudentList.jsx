@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StudentCard from '../Components /StudentCard';
-import NaggarRoutes from '../NaggarRoutes';
 import '../Styles/studentList.css'; // Changed from studentList.css to report.css
 
 // Expanded dummy data
@@ -139,7 +138,7 @@ function StudentList() {
   return (
     <div className="page-container">
       <header className="page-header">
-        <NaggarRoutes className="navbar" />
+        
       </header>
 
       <main className="content-area" role="main">

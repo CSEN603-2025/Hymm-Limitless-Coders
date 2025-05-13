@@ -1,55 +1,7 @@
-// // components/CompanyDetail.js
-// import React from 'react';
-// import { useParams } from 'react-router-dom';
-// import companies from '../data/companies';
-
-// const CompanyDetail = () => {
-//   const { id } = useParams();
-//   const company = companies.find(c => c.id === parseInt(id));
-
-//   if (!company) {
-//     return <div>Company not found.</div>;
-//   }
-
-//   return (
-//     <div>
-//       <h2>{company.name}</h2>
-//       <p><strong>Industry:</strong> {company.industry}</p>
-//       <p><strong>Location:</strong> {company.location}</p>
-//       <p><strong>Founded:</strong> {company.founded}</p>
-//       <p><strong>Employees:</strong> {company.employees}</p>
-//       <p>
-//         <strong>Website:</strong>{' '}
-//         <a href={company.website} target="_blank" rel="noopener noreferrer">
-//           {company.website}
-//         </a>
-//       </p>
-//     </div>
-//   );
-// };
-
-// export default CompanyDetail;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import companies from '../data/companies';
 import "../css/CompanyDetail.css";
-import Navbar from './Navbar';
 const LOCAL_STORAGE_KEY = 'companyEvaluations';
 
 const CompanyDetail = () => {
@@ -103,7 +55,6 @@ const CompanyDetail = () => {
 
   return (
     <div className="company-detail-container" style={{ paddingTop: '200px' }}>
-      <Navbar />
       <h2>{company.name}</h2>
       <div className="company-info">
         <p><strong>Industry:</strong> {company.industry}</p>

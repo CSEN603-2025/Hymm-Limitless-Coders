@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CompanyHome from './CompanyHome';
+
 const RegisterCompany = () => {
   const [formData, setFormData] = useState({
     name: '',

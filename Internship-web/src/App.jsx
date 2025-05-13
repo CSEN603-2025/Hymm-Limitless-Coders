@@ -21,7 +21,6 @@ import InternshipsList from './Mohamed/components/InternshipList';
 import InternshipDetails from './Mohamed/components/InternshipDetails';
 import ApplyInternship from './Mohamed/components/ApplyInternship';
 import ApplicationStatus from './Mohamed/components/ApplicationStatus';
-import CompanyHome from './pages/company/CompanyHome';
 import RegisterCompany from './pages/company/RegisterCompany';
 import ManageInternshipPosts from './pages/company/ManageInternshipPosts';
 import PostList from './pages/company/PostList';
@@ -68,59 +67,56 @@ import FaculutyStatistics from './FaculutyMember/Pages/FaculutyStatistics';
 function App() {
   return (
     <Routes>
-      
+      {/* SCAD routes */}
       <Route path="/SCAD" element={<Dashboard />} />
-      <Route path="/company/:id" element={<CompanyPage />} />
-      <Route path="/InternshipCycle" element={<InternshipCycle />} />
-      <Route path="/StudentList" element={<StudentList />} />
-      <Route path="/StudentProfilePage" element={<StudentProfilePage />} />
-      <Route path="/internship-reports" element={<InternshipReports />} />
-      <Route path="/internship-reports/:id" element={<InternshipReportDetails />} />
-      <Route path="/evaluation-reports/:id" element={<EvaluationReportDetails />} />
-      <Route path="/Statistics" element={<Statistics />} />
-      <Route path="/RequestAppointment" element={<RequestAppointment />} />
-      <Route path="/AppointmentRequests" element={<AppointmentRequests />} />
+      <Route path="SCAD/company/:id" element={<CompanyPage />} />
+      <Route path="SCAD/InternshipCycle" element={<InternshipCycle />} />
+      <Route path="SCAD/StudentList" element={<StudentList />} />
+      <Route path="SCAD/StudentProfilePage" element={<StudentProfilePage />} />
+      <Route path="SCAD/internship-reports" element={<InternshipReports />} />
+      <Route path="SCAD/internship-reports/:id" element={<InternshipReportDetails />} />
+      <Route path="SCAD/evaluation-reports/:id" element={<EvaluationReportDetails />} />
+      <Route path="SCAD/Statistics" element={<Statistics />} />
+      <Route path="SCAD/RequestAppointment" element={<RequestAppointment />} />
+      <Route path="SCAD/AppointmentRequests" element={<AppointmentRequests />} />
       <Route
-        path="/manage"
+        path="SCAD/manage"
         element={<ManageAppointments  />}
       />
       <Route
-        path="/call"
+        path="SCAD/call"
         element={<CallInterface  />}
       />
-      <Route path="/notifications" element={<Notification />} />
+      <Route path="SCAD/notifications" element={<Notification />} />
+      {/* end of SCAD routes */}
+
+
+
+
+
       {/* Dashboard */}
       <Route path="/Student" element={<StudentDashboard />} />
-
       {/* Other routes */}
-
       <Route path="/companies/:id" element={<CompanyDetail />} />
-
       <Route path="/edit-profile" element={<EditProfile />} />
       <Route path="/majors" element={<MajorsList />} />
       <Route path="/select-major-semester" element={<SelectMajorSemester />} />
       <Route path="/internships" element={<InternshipsList />} />
       <Route path="/internship/:id" element={<InternshipDetails />} />
-
       <Route path="/applications" element={<ApplicationsList />} />
       <Route path="/applications/:id" element={<ApplicationStatus />} />
       <Route path="internships/apply/:id" element={<ApplyInternship />} />
       <Route path="/suggested-companies" element={<SuggestedCompanies />} />
-
       <Route path="/past-present-internships" element={<InternshipsForStudent/>} />
-
-
-
       <Route path="/course-list" element={<CourseList />} />
-
-
       <Route path="/submit-final-report" element={<SubmitFinalReport />} />
 
 
 
 
       {/* Company routes */}
-      <Route path="/company" element={<CompanyHome />} />
+      <Route path="/" element={<Login />} />
+      
       <Route path="/company/register" element={<RegisterCompany />} />
       <Route path="/company/manage-posts" element={<ManageInternshipPosts />} />
       <Route path="/company/posts" element={<PostList />} />
@@ -129,8 +125,6 @@ function App() {
       <Route path="/company/intern/:id" element={<InternProfile />} />
       <Route path="/company/evaluations" element={<StudentEvaluation />} />
       <Route path="/reports" element={<ReportDownload />} />
-      <Route path="/" element={<Login />} />
-
       <Route path="/company/upload-docs" element={<UploadDocs />} />
       <Route path="/company/notifications" element={<Notifications />} />
       <Route path="/company/app-alerts" element={<ApplicationAlerts />} />
@@ -139,7 +133,7 @@ function App() {
 
 
 
-
+      
       <Route path="/prostudentextras"  element={<ProStudentExtras />}/>
       <Route path="/flaggedreports"  element={<FlaggedReports />}/>
       <Route path="/meeting" element={<Meeting />}/>

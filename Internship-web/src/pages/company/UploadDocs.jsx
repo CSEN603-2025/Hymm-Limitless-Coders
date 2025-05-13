@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CompanyHome from './CompanyHome';
+
 const UploadDocs = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [status, setStatus] = useState('');
@@ -24,7 +24,7 @@ const UploadDocs = () => {
    
   
     <main className="form-container" style={{ paddingTop: '200px' }}>
-         <CompanyHome />
+         
       <section className="card">
         <h2 className="card-header">Upload Company Documents</h2>
 

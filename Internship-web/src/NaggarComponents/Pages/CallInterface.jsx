@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import NaggarRoutes from '../NaggarRoutes';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import '../Styles/callInterface.css';
 
 // Dummy data for call history
@@ -34,6 +34,7 @@ const dummyCallHistory = [
 ];
 
 function CallInterface() {
+  const navigate = useNavigate(); // Initialize useNavigate hook
   const [incomingCall, setIncomingCall] = useState(null);
   const [callHistory, setCallHistory] = useState(dummyCallHistory);
   const [isOnline, setIsOnline] = useState(true);
@@ -75,10 +76,16 @@ function CallInterface() {
     // Clear incoming call
     setIncomingCall(null);
 
-    // Clear feedback after 3 seconds
+    // Briefly show feedback message before redirecting
     setTimeout(() => {
       setCallFeedback(null);
-    }, 3000);
+      // Redirect to join meeting page
+      navigate('/meeting', { 
+        state: { 
+          callerInfo: incomingCall 
+        }
+      });
+    }, 1500);
   };
 
   const handleRejectCall = () => {
@@ -115,7 +122,6 @@ function CallInterface() {
   return (
     <div className="page-container">
       <header className="page-header">
-        <NaggarRoutes className="navbar" />
       </header>
 
       <main className="content-area" role="main">

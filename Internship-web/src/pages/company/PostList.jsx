@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CompanyHome from './CompanyHome';
+
 const mockPosts = [
   { id: 1, title: 'Frontend Developer Intern', field: 'Tech', appCount: 4 },
   { id: 2, title: 'Pharma Research Intern', field: 'Pharma', appCount: 2 },
@@ -24,7 +24,7 @@ const PostList = () => {
 
   return (
     <main className="form-container" style={{ paddingTop: '200px' }}>
-        <CompanyHome />
+        
       <section className="card">
         <h2 className="card-header">Your Internship Posts</h2>
 

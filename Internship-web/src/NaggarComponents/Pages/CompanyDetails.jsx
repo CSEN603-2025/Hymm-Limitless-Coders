@@ -1,7 +1,6 @@
 // CompanyDetails.jsx
 import React, { useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import NaggarRoutes from '../NaggarRoutes';
 import { CompanyContext } from '../Context/CompanyContext';
 import '../Styles/report.css';
 
@@ -24,7 +23,7 @@ function CompanyPage() {
     return (
       <div className="page-container">
         <header className="page-header">
-          <NaggarRoutes className="navbar" />
+          
         </header>
         <main className="content-area">
           <div className="empty-state">

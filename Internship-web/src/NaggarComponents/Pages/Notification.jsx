@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import NaggarRoutes from '../NaggarRoutes';
 import '../Styles/notification.css';
 
 const NotificationPage = () => {
@@ -104,7 +103,6 @@ const NotificationPage = () => {
     <div className="page-container">
       {/* Navigation */}
       <header className="page-header">
-        <NaggarRoutes className="navbar" />
       </header>
 
       <main className="content-area" role="main">

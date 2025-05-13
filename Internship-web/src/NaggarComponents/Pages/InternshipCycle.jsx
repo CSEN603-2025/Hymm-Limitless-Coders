@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NaggarRoutes from '../NaggarRoutes';
+
 import '../Styles/InternshipCycle.css';
 
 function InternshipCycle() {
@@ -32,7 +32,7 @@ function InternshipCycle() {
 
   return (
     <div className="page-wrapper">
-      <NaggarRoutes />
+      
       <main className="main-container">
         <header className="header">
           <h1 className="header-title">Set Internship Cycle Dates</h1>

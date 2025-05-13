@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import CompanyHome from './CompanyHome';
+
 const mockProfiles = {
   1: { name: 'Sara Ali', field: 'Tech', projects: 'React frontend work' },
   2: { name: 'Omar Yehia', field: 'Pharma', projects: 'Lab analysis & research' },
@@ -25,7 +25,7 @@ const InternProfile = () => {
 
   return (
     <main className="form-container">
-      <CompanyHome />
+      
       <section className="card">
         <h2 className="card-header">Intern Profile</h2>
         <p><strong>Name:</strong> {intern.name}</p>

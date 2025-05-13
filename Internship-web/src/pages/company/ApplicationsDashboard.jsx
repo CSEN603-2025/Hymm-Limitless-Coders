@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CompanyHome from './CompanyHome';
 const mockApplications = [
   { id: 1, applicant: 'Sara Ali', postId: 1, postTitle: 'Frontend Developer Intern', status: 'Pending', email: 'sara@example.com' },
   { id: 2, applicant: 'Omar Yehia', postId: 2, postTitle: 'Pharma Research Intern', status: 'Pending', email: 'omar@example.com' },
@@ -34,7 +33,7 @@ const ApplicationsDashboard = () => {
 
   return (
     <main className="applications-dashboard" style={{ paddingTop: '200px' }}>
-        <CompanyHome />
+        
       <section className="card">
         <h2 className="card-header">Applications Dashboard</h2>
 

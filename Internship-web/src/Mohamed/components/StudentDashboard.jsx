@@ -146,18 +146,12 @@
 
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import SuggestedCompanies from './SuggestedCompanies';
 import SelectMajorSemester from './SelectMajorSemester';
-import ApplicationsList from './ApplicationsList';
-import CourseList from './CourseList';
-import Navbar from './Navbar';
 import '../css/StudentDashboard.css'; // Updated path to new styles file
 
 const StudentDashboard = () => {
   return (
     <div className="dashboard-container">
-      <Navbar />
       <h1 className="dashboard-title">Welcome to Your Dashboard</h1>
 
       <div className="dashboard-section card">

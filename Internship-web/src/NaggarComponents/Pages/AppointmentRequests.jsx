@@ -1,5 +1,4 @@
 import { useState } from "react";
-import NaggarRoutes from "../NaggarRoutes";
 export default function AppointmentRequests() {
   const [appointments, setAppointments] = useState([
     { id: 1, reason: "Career guidance", status: "pending" },
@@ -16,7 +15,6 @@ export default function AppointmentRequests() {
 
   return (
     <div>
-    <NaggarRoutes />
     <div>
       <h2>Incoming Appointment Requests</h2>
       {appointments.map((appt) => (

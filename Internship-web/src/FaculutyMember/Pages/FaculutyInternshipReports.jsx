@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ReportCard from '../Components/ReportCard';
 import { useReports } from '../Context/ReportContext';
 import '../Styles/internDetails.css';
-import FaculutyRoutes from './FaculutyRoutes';
+
 function FaculutyInternshipReports() {
   const { reports } = useReports();
   const [majorFilter, setMajorFilter] = useState('');
@@ -78,7 +78,7 @@ function FaculutyInternshipReports() {
     <div className="page-container">
       {/* Navigation */}
       <header className="page-header">
-        <FaculutyRoutes className="navbar" />
+        
       </header>
 
       <main className="content-area" role="main">
@@ -214,7 +214,7 @@ function FaculutyInternshipReports() {
               <ReportCard
                 key={report.id}
                 report={report}
-                onClick={() => navigate(`/faculty/internship-reports/${report.id}`)}
+                onClick={() => navigate(`/internship-reports/${report.id}`)}
               />
             ))
           ) : (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import NaggarRoutes from '../NaggarRoutes';
+
 const dummyEvaluations = {
   1: {
     id: 1,
@@ -22,7 +22,7 @@ function EvaluationReportDetails() {
 
   return (
     <div>
-      <NaggarRoutes />
+      
       <h1>Evaluation Report</h1>
       <p><strong>Student:</strong> {evalData.student}</p>
       <p><strong>Major:</strong> {evalData.major}</p>

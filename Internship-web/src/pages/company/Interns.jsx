@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CompanyHome from './CompanyHome';
+
 const mockInterns = [
   { id: 1, name: 'Sara Ali', field: 'Tech', status: 'Current' },
   { id: 2, name: 'Omar Yehia', field: 'Pharma', status: 'Complete' },
@@ -27,7 +27,7 @@ const Interns = () => {
 
   return (
     <main className="form-container" style={{ paddingTop: '200px' }}>
-        <CompanyHome />
+        
       <section className="card">
         <h2 className="card-header">Interns</h2>
 

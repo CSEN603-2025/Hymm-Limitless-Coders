@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import NaggarRoutes from '../NaggarRoutes';
+
 import '../Styles/manageAppointment.css'; // Link to styles.css
 
 const dummyAppointments = [
@@ -69,7 +69,6 @@ function ManageAppointments({ addNotification }) {
 
   return (
     <div className="page-wrapper">
-      <NaggarRoutes className="navbar" role="navigation" aria-label="Main navigation" />
       <main className="main-container">
         <header className="header">
           <h1 className="header-title">Manage Appointments</h1>

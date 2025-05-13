@@ -1,5 +1,5 @@
 import React from 'react';
-import CompanyHome from './CompanyHome';
+
 const StudentUtilities = () => {
   const handleCycleNotification = () => {
     alert('New internship cycle has begun! Check your dashboard. (simulated)');
@@ -7,7 +7,7 @@ const StudentUtilities = () => {
 
   return (
       <main className="utilities-container" style={{ paddingTop: '200px' }}>
-        <CompanyHome />
+        
       <section className="card">
         <h2 className="card-header">Student Utilities</h2>
 

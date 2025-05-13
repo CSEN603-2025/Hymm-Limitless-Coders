@@ -10,8 +10,8 @@ const Login = () => {
 
   const allowedUsers = {
     student: [
-      { email: 'student1@test.com', password: '123' },
-      { email: 'student2@test.com', password: '123' }
+      { email: 'student1@test.com', password: '123' }, // Regular
+      { email: 'student2@test.com', password: '123' }  // Pro
     ],
     company: [
       { email: 'company1@test.com', password: '123' },
@@ -20,19 +20,44 @@ const Login = () => {
     admin: [
       { email: 'admin1@test.com', password: '123' },
       { email: 'admin2@test.com', password: '123' }
+    ],
+    faculty: [
+      { email: 'faculty1@test.com', password: '123' },
+      { email: 'faculty2@test.com', password: '123' }
     ]
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const valid = allowedUsers[role].some(
       (user) => user.email === email && user.password === password
     );
+
     if (valid) {
+      // Store role in localStorage
+      localStorage.setItem('role', role);
+
+      // Store studentType if role is student
+      if (role === 'student') {
+        if (email === 'student2@test.com') {
+          localStorage.setItem('role', 'prostudent');
+        } else {
+          localStorage.setItem('role', 'student');
+        }
+        navigate('/Student');
+      } else if (role === 'company') {
+        localStorage.setItem('role', 'company');
+        navigate('/company');
+      } else if (role === 'admin') {
+        localStorage.setItem('role', 'scad');
+        navigate('/SCAD'); // Admin dashboard
+      } else if (role === 'faculty') {
+        localStorage.setItem('role', 'faculty');
+        navigate('/faculty/faculty/internship-reports'); // Faculty dashboard
+      }
+
       setError('');
-      if (role === 'company') navigate('/company');
-      else if (role === 'student') navigate('/Student');
-      else if (role === 'admin') navigate('/SCAD'); // Change if needed
     } else {
       setError('Invalid credentials for selected role.');
     }
@@ -81,11 +106,11 @@ const Login = () => {
           {error && <div className="error-text">{error}</div>}
 
           <button type="submit" className="btn-primary">Login</button>
-          
+
           {role === 'company' && (
-            <button 
-              type="button" 
-              className="btn-secondary" 
+            <button
+              type="button"
+              className="btn-secondary"
               onClick={handleRegister}
               style={{ marginTop: '10px' }}
             >
