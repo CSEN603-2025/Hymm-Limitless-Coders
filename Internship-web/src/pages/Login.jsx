@@ -38,6 +38,14 @@ const Login = () => {
       // Store role in localStorage
       localStorage.setItem('role', role);
 
+      console.log(e.target)
+      let loggedInUser={
+        "name":"",
+        "email":email
+      }
+      localStorage.setItem('userProfile',JSON.stringify(loggedInUser));
+
+
       // Store studentType if role is student
       if (role === 'student') {
         if (email === 'student2@test.com') {
@@ -61,6 +69,10 @@ const Login = () => {
     } else {
       setError('Invalid credentials for selected role.');
     }
+
+
+
+
   };
 
   const handleRegister = () => {

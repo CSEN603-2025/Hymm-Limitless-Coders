@@ -17,9 +17,9 @@ const InternshipsForStudent = () => {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(REPORT_STORAGE_KEY, JSON.stringify(reports));
-  }, [reports]);
+  // useEffect(() => {
+  //   localStorage.setItem(REPORT_STORAGE_KEY, JSON.stringify(reports));
+  // }, [reports]);
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -53,20 +53,44 @@ const InternshipsForStudent = () => {
     setFilteredInternships(pastAndPresentIntership);
   };
 
+  // const handleReportChange = (id, field, value) => {
+  //   setReports((prev) => ({
+  //     ...prev,
+  //     [id]: {
+  //       ...prev[id],
+  //       [field]: value,
+  //     },
+  //   }));
+  // };
+
+  // const handleDeleteReport = (id) => {
+  //   const { [id]: _, ...rest } = reports;
+  //   setReports(rest);
+  // };
+
+
   const handleReportChange = (id, field, value) => {
-    setReports((prev) => ({
-      ...prev,
+    const updatedReports = {
+      ...reports,
       [id]: {
-        ...prev[id],
+        ...reports[id],
         [field]: value,
       },
-    }));
+    };
+    setReports(updatedReports);
+    localStorage.setItem(REPORT_STORAGE_KEY, JSON.stringify(updatedReports)); // persist immediately
   };
-
+  
   const handleDeleteReport = (id) => {
     const { [id]: _, ...rest } = reports;
     setReports(rest);
+    localStorage.setItem(REPORT_STORAGE_KEY, JSON.stringify(rest)); // persist immediately
   };
+  
+
+
+
+
 
   const handleExpandedClick = (e) => {
     e.stopPropagation(); // Prevent the toggleExpand function from being triggered when clicking inside the expanded content
