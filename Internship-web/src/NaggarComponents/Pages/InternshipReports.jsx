@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReportCard from '../Components /ReportCard';
+import ReportCard from './ReportCard';
 import { useReports } from '../Context/ReportContext';
 
 import '../Styles/internDetails.css';

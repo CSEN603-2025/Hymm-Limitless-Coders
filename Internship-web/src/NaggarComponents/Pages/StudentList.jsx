@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import StudentCard from '../Components /StudentCard';
+import StudentCard from './StudentCard';
 import '../Styles/studentList.css'; // Changed from studentList.css to report.css
 
 // Expanded dummy data
