@@ -1,0 +1,120 @@
+/* Main Styles */
+.internship-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    color: #1E3A8A;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .search-filter-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .search-input, .status-filter {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .search-btn, .clear-btn {
+    padding: 10px 15px;
+    border: none;
+    background-color: #1E3A8A;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .search-btn:hover, .clear-btn:hover {
+    background-color: #1C3D74;
+  }
+  
+  .clear-btn {
+    background-color: #f44336;
+  }
+  
+  .clear-btn:hover {
+    background-color: #d32f2f;
+  }
+  
+  /* List of Internships */
+  .internship-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .internship-item {
+    background-color: white;
+    border: 1px solid #e1e1e1;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .internship-item:hover {
+    /* transform: translateY(-5px); */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .internship-item-header {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1E3A8A;
+  }
+  
+  .internship-details {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .report-container {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #e1e1e1;
+  }
+  
+  .report-input, .report-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .report-textarea {
+    resize: vertical;
+  }
+  
+  .delete-report-btn {
+    padding: 10px 15px;
+    border: none;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .delete-report-btn:hover {
+    background-color: #d32f2f;
+  }
+  
+  .expanded {
+    background-color: #f1f9fe;
+  }
+  

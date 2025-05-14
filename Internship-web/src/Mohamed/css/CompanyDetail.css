@@ -1,0 +1,135 @@
+/* CompanyDetail.css */
+
+/* General Container for Company Details */
+.company-detail-container {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+    margin: 0 auto;
+    max-width: 900px;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 24px;
+  }
+  
+  /* Header for Company Name */
+  .company-detail-container h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1E3A8A; /* Main color */
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  /* Company Info (Industry, Location, Founded, etc.) */
+  .company-info {
+    font-size: 16px;
+    color: #7F8C8D;
+    margin-bottom: 24px;
+  }
+  
+  .company-info p {
+    margin: 8px 0;
+  }
+  
+  .company-info strong {
+    font-weight: 600;
+    color: #34495E;
+  }
+  
+  /* Evaluation Section */
+  .evaluation-section {
+    margin-top: 40px;
+  }
+  
+  .evaluation-section h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1E3A8A; /* Main color */
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  
+  /* Textarea for writing evaluation */
+  textarea {
+    border: 1px solid #BDC3C7;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 20px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  
+  textarea:focus {
+    outline: none;
+    border-color: #1E3A8A; /* Main color */
+    box-shadow: 0 0 8px rgba(30, 58, 138, 0.2);
+  }
+  
+  /* Buttons */
+  button {
+    background-color: #1E3A8A; /* Main color */
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #264E9E; /* Slightly darker shade for hover effect */
+  }
+  
+  button:active {
+    background-color: #1E3A8A; /* Main color */
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Edit/Delete Buttons */
+  button + button {
+    margin-left: 12px;
+  }
+  
+  button.delete-btn {
+    background-color: #E74C3C;
+  }
+  
+  button.delete-btn:hover {
+    background-color: #C0392B;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .company-detail-container {
+      padding: 24px;
+    }
+  
+    .company-detail-container h2 {
+      font-size: 26px;
+    }
+  
+    .company-info {
+      font-size: 14px;
+    }
+  
+    .evaluation-section h3 {
+      font-size: 20px;
+    }
+  
+    textarea {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }
+  

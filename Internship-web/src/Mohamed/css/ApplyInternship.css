@@ -1,0 +1,63 @@
+.apply-container {
+    max-width: 700px;
+    margin: 30px auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .apply-title {
+    font-size: 24px;
+    color: #1E3A8A;
+    margin-bottom: 20px;
+  }
+  
+  .already-applied {
+    color: green;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+  
+  .apply-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .apply-textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    resize: vertical;
+  }
+  
+  .apply-file {
+    margin-bottom: 15px;
+  }
+  
+  .apply-button {
+    /* background-color: #1E3A8A; */
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .apply-button:hover {
+    background-color: #2a7a16;
+  }
+  
+  .not-found {
+    color: red;
+    text-align: center;
+    padding: 40px;
+  }
+  

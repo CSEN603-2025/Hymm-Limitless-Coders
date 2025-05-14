@@ -43,6 +43,22 @@ export default function ProStudentExtras() {
           <p className="pro-label">Workshops</p>
           <button onClick={() => navigate('/workshop')} className="pro-button">View</button>
         </div>
+        
+        <div className="pro-feature">
+          <p className="pro-label">Call Interface</p>
+          <button onClick={() => navigate('/SCAD/call')} className="pro-button">View</button>
+        </div>
+
+        <div className="pro-feature">
+          <p className="pro-label">Request Appointment</p>
+          <button onClick={() => navigate('/SCAD/RequestAppointment')} className="pro-button">View</button>
+        </div>
+
+
+        <div className="pro-feature">
+          <p className="pro-label">Manage Appointments</p>
+          <button onClick={() => navigate('/SCAD/manage')} className="pro-button">View</button>
+        </div>
       </div>
     </div>
   );
