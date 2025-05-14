@@ -102,8 +102,7 @@ const NotificationPage = () => {
   return (
     <div className="page-container">
       {/* Navigation */}
-      <header className="page-header">
-      </header>
+      
 
       <main className="content-area" role="main">
         <section className="section-header">

@@ -71,7 +71,6 @@ function App() {
       <Route path="SCAD/company/:id" element={<CompanyPage />} />
       <Route path="SCAD/InternshipCycle" element={<InternshipCycle />} />
       <Route path="SCAD/StudentList" element={<StudentList />} />
-      
       <Route path="SCAD/internship-reports" element={<InternshipReports />} />
       <Route path="SCAD/internship-reports/:id" element={<InternshipReportDetails />} />
       <Route path="SCAD/evaluation-reports/:id" element={<EvaluationReportDetails />} />

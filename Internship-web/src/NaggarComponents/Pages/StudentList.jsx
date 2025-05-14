@@ -137,9 +137,7 @@ function StudentList() {
 
   return (
     <div className="page-container">
-      <header className="page-header">
-        
-      </header>
+     
 
       <main className="content-area" role="main">
         <section className="section-header">

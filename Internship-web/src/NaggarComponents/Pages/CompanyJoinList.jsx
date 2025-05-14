@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { CompanyContext } from '../Context/CompanyContext';
 
 import { useNavigate } from 'react-router-dom';
-import '../Styles/report.css';
+import '../Styles/companylist.css';
 
 function CompanyJoinList() {
   const { companies } = useContext(CompanyContext);
@@ -35,9 +35,7 @@ function CompanyJoinList() {
 
   return (
     <div className="page-container">
-      <header className="page-header">
-       
-      </header>
+   
 
       <main className="content-area" role="main">
         <section className="section-header">
@@ -144,7 +142,7 @@ function CompanyJoinList() {
           <h2 className="reports-heading" id="companies-heading">Companies</h2>
           {currentCompanies.length > 0 ? (
             currentCompanies.map(company => (
-              <div key={company.id} className="card report-card" onClick={() => navigate(`/company/${company.id}`)}>
+              <div key={company.id} className="card report-card" onClick={() => navigate(`/SCAD/company/${company.id}`, { state: { company } })}>
                 <div className="card-content">
                   <h3 className="report-name">{company.name}</h3>
                   <div className="report-details">
