@@ -113,4 +113,10 @@ body {
   .dashboard-container {
     padding: 16px;
   }
+  
+.companies-list .description-text {
+  color: #000 !important;
+}
+
+
 }

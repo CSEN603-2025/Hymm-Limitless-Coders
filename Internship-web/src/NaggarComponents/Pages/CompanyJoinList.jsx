@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { CompanyContext } from '../Context/CompanyContext';
 
 import { useNavigate } from 'react-router-dom';
-import '../Styles/companylist.css';
+import '../Styles/companyList.css';
 
 function CompanyJoinList() {
   const { companies } = useContext(CompanyContext);

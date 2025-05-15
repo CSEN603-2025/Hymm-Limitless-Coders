@@ -17,7 +17,7 @@ function CompanyPage() {
   };
 
   const handleBack = () => {
-    navigate('/SCAD');
+    navigate('/SCAD/Dashboard');
   };
 
   if (!company) {

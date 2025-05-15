@@ -73,7 +73,7 @@ function App() {
   return (
     <Routes>
       {/* SCAD routes */}
-      <Route path="/SCAD" element={<Dashboard />} />
+      <Route path="/SCAD/Dashboard" element={<Dashboard />} />
       <Route path="SCAD/company/:id" element={<CompanyPage />} />
       <Route path="SCAD/InternshipCycle" element={<InternshipCycle />} />
       <Route path="SCAD/StudentList" element={<StudentList />} />

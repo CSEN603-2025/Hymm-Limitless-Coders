@@ -15,7 +15,7 @@ const companyPages = [
 ];
 
 const SCADPages = [
-  { path: '/SCAD', label: 'Company Join List' },
+  { path: '/SCAD/Dashboard', label: 'Company Join List' },
   { path: '/SCAD/InternshipCycle', label: 'Internship Cycle' },
   { path: '/SCAD/StudentList', label: 'Student List' },
   { path: '/SCAD/internship-reports', label: 'Internship Reports' },

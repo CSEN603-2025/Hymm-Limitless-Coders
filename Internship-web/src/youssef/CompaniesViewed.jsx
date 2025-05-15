@@ -47,7 +47,7 @@ const CompaniesViewed = () => {
           {companies.map((company) => (
             <li key={company.id} className="company-item">
               <h3 className="card-header">{company.name}</h3>
-              <p>{company.description}</p>
+              <p className="description-text">{company.description}</p>
               <span className="view-date">Viewed on: {company.viewDate}</span>
             </li>
           ))}

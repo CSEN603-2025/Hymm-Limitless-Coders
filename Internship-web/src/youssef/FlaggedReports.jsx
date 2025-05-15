@@ -44,7 +44,7 @@ export default function FlaggedReports() {
     <div className="dashboard-container">
       <div className="pro-badge">PRO Badge - Active After 3 Months</div>
 
-      <h2 className="dashboard-title">📄 Flagged / Rejected Reports</h2>
+      <h2 className="dashboard-title"> Flagged / Rejected Reports</h2>
 
       {dummyReports.map(report => (
         <div key={report.id} className="card dashboard-section">
@@ -55,7 +55,7 @@ export default function FlaggedReports() {
           <p>{report.description}</p>
 
           <div className="comments-section">
-            <h4 className="comments-title">📝 Comments</h4>
+            <h4 className="comments-title"> Comments</h4>
             <ul className="comments-list">
               {(comments[report.id] || []).map((c, idx) => (
                 <li key={idx}>{c}</li>

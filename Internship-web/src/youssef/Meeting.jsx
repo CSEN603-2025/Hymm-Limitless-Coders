@@ -55,11 +55,7 @@ export default function Meeting() {
 
   const leaveCall = () => {
     setNotification('You have left the call.');
-    if(localStorage.getItem('role') === 'prostudent'){
-      navigate('/prostudentextras');
-    }else{
-      navigate('/SCAD/call');
-    }
+    navigate('/prostudentextras');
   };
 
   return (
@@ -67,7 +63,7 @@ export default function Meeting() {
       <h2 className="dashboard-title">Meeting Room</h2>
 
       {notification && (
-        <div className="notification-banner card">
+        <div className="notification-banner1 card1">
           {notification}
         </div>
       )}
