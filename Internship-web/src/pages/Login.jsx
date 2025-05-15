@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import './login.css';
 const Login = () => {
   const [role, setRole] = useState('student');
   const [email, setEmail] = useState('');
@@ -69,10 +69,6 @@ const Login = () => {
     } else {
       setError('Invalid credentials for selected role.');
     }
-
-
-
-
   };
 
   const handleRegister = () => {
@@ -80,54 +76,69 @@ const Login = () => {
   };
 
   return (
-    <main className="form-container">
-      <section className="card" style={{ maxWidth: '400px', width: '100%' }}>
-        <h2 className="card-header">Login</h2>
-        <form onSubmit={handleSubmit} className="form">
-          <label className="label">Role</label>
-          <select
-            className="input"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="student">Student</option>
-            <option value="company">Company</option>
-            <option value="admin">Admin</option>
-          </select>
-
-          <label className="label">Email</label>
-          <input
-            type="email"
-            className="input"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <label className="label">Password</label>
-          <input
-            type="password"
-            className="input"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          {error && <div className="error-text">{error}</div>}
-
-          <button type="submit" className="btn-primary">Login</button>
-
-          {role === 'company' && (
-            <button
-              type="button"
-              className="btn-secondary"
-              onClick={handleRegister}
-              style={{ marginTop: '10px' }}
+    <main className="auth-page">
+      <section className="auth-card">
+        <h2 className="auth-title">Login</h2>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label className="form-label" htmlFor="role">Role</label>
+            <select
+              id="role"
+              className="form-select"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              aria-label="Select user role"
             >
-              Register as Company
-            </button>
+              <option value="student">Student</option>
+              <option value="company">Company</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label className="form-label" htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              className="form-input"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              aria-label="Email address"
+            />
+          </div>
+
+          <div className="form-group">
+            <label className="form-label" htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              className="form-input"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              aria-label="Password"
+            />
+          </div>
+
+          {error && <div className="form-error">{error}</div>}
+
+          <div className="form-actions">
+            <button type="submit" className="btn-primary">Login</button>
+          </div>
+            
+          {role === 'company' && (
+            <div className="register-link">
+              <button
+                type="button"
+                className="btn-outline"
+                onClick={handleRegister}
+              >
+                Register as Company
+              </button>
+            </div>
           )}
         </form>
       </section>

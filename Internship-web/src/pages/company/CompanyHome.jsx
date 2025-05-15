@@ -21,7 +21,7 @@ const CompanyHome = () => {
   return (
     <main className="dashboard-container">
       <section className="card">
-        <h2 className="card-header">Company Dashboard</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Company Dashboard</h2>
         <div className="dashboard-links">
           {companyPages.map((page, index) => (
             <Link to={page.path} key={index} className="nav-link" aria-label={`Go to ${page.label}`}>

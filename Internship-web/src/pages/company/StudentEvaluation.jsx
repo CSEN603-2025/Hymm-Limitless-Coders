@@ -1,28 +1,102 @@
 import React, { useState } from 'react';
 
 const StudentEvaluation = () => {
+  const [evaluations, setEvaluations] = useState([
+    {
+      id: 1,
+      studentName: 'Sara Ali',
+      performance: 4,
+      comment: 'Sara showed great commitment and teamwork during the internship.'
+    }
+  ]);
+
   const [formData, setFormData] = useState({
     studentName: '',
     performance: '',
-    comment: '',
+    comment: ''
   });
+
+  const [editingId, setEditingId] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Evaluation Submitted:', formData);
-    alert('Evaluation saved (simulated)');
+
+    if (editingId !== null) {
+      setEvaluations((prev) =>
+        prev.map((evalEntry) =>
+          evalEntry.id === editingId ? { ...evalEntry, ...formData } : evalEntry
+        )
+      );
+      alert('Evaluation updated!');
+    } else {
+      const newEntry = {
+        id: Date.now(),
+        ...formData
+      };
+      setEvaluations((prev) => [newEntry, ...prev]); // Put newest on top
+      alert('Evaluation submitted!');
+    }
+
+    setFormData({ studentName: '', performance: '', comment: '' });
+    setEditingId(null);
+  };
+
+  const handleEdit = (entry) => {
+    setFormData({
+      studentName: entry.studentName,
+      performance: entry.performance,
+      comment: entry.comment
+    });
+    setEditingId(entry.id);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll up to form when editing
+  };
+
+  const handleDelete = (id) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this evaluation?');
+    if (confirmDelete) {
+      setEvaluations((prev) => prev.filter((entry) => entry.id !== id));
+    }
   };
 
   return (
-      <main className="form-container" style={{ paddingTop: '200px' }}>
-        
+<main className="form-container" style={{ paddingTop: '200px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+      
+      {/* Evaluation List at the Top */}
+      <section className="card" style={{ marginBottom: '40px' }}>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Submitted Evaluations</h2>
+
+        {evaluations.length === 0 ? (
+          <p>No evaluations submitted yet.</p>
+        ) : (
+          <ul className="evaluation-list">
+            {evaluations.map((entry) => (
+              <li key={entry.id} className="card" style={{ marginTop: '10px' }}>
+                <p><strong>{entry.studentName}</strong> — Rated {entry.performance}/5</p>
+                <p style={{ fontStyle: 'italic' }}>{entry.comment}</p>
+                <button className="btn-outline" onClick={() => handleEdit(entry)}>Edit</button>
+                <button
+                  className="btn-outline"
+                  style={{ marginLeft: '8px' }}
+                  onClick={() => handleDelete(entry.id)}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      {/* Form for Add / Edit */}
       <form className="form card" onSubmit={handleSubmit}>
-        <h2 className="card-header">Evaluate a Student</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>
+          {editingId ? 'Edit Evaluation' : 'Evaluate a Student'}
+        </h2>
 
         <label htmlFor="studentName" className="label">Student Name</label>
         <input
@@ -60,7 +134,7 @@ const StudentEvaluation = () => {
         />
 
         <button type="submit" className="btn-primary" aria-label="Submit student evaluation">
-          Submit Evaluation
+          {editingId ? 'Update Evaluation' : 'Submit Evaluation'}
         </button>
       </form>
     </main>

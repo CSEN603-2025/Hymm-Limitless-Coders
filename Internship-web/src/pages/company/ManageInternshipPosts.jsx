@@ -36,7 +36,7 @@ const ManageInternshipPosts = () => {
     <main className="form-container" style={{ paddingTop: '200px' }}>
         
       <section className="card">
-        <h2 className="card-header">Manage Internship Posts</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Manage Internship Posts</h2>
 
         <label className="label" htmlFor="post-title">Title</label>
         <input
@@ -72,7 +72,7 @@ const ManageInternshipPosts = () => {
       </section>
 
       <section className="card" style={{ marginTop: '24px' }}>
-        <h3 className="card-header">Posted Internships</h3>
+        <h3 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Posted Internships today</h3>
         {posts.length === 0 && <p>No posts yet.</p>}
         <ul className="intern-list">
           {posts.map((post) => (

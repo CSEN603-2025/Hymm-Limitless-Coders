@@ -26,7 +26,7 @@ const PostList = () => {
     <main className="form-container" style={{ paddingTop: '200px' }}>
         
       <section className="card">
-        <h2 className="card-header">Your Internship Posts</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Your Internship Posts</h2>
 
         <div className="filter-container">
           <input
