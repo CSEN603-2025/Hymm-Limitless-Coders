@@ -1,0 +1,116 @@
+/* CompaniesViewed.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #1E3A8A;
+  --card-bg: #FFFFFF;
+  --text-color: #1F2937;
+  --bg-color: #F9FAFB;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.dashboard-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.dashboard-section {
+  background-color: var(--card-bg);
+  border-left: 5px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+.companies-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.company-item {
+  padding: 16px;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.company-item:last-child {
+  border-bottom: none;
+}
+
+.card-header {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+.view-date {
+  font-size: 14px;
+  color: #6B7280;
+  margin-top: 4px;
+  display: inline-block;
+}
+
+/* Buttons */
+.btn-outline {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.btn-outline:hover {
+  background: rgba(30, 58, 138, 0.05);
+}
+
+/* Link Group */
+.link-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 28px;
+  }
+
+  .card-header {
+    font-size: 18px;
+  }
+
+  .btn-outline {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .dashboard-container {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,38 @@
+.status-container {
+    padding: 25px;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    max-width: 700px;
+    margin: 30px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .status-title {
+    color: #1E3A8A;
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .status-detail p {
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  
+  .label {
+    font-weight: 600;
+    color: #1E3A8A;
+    display: inline-block;
+    min-width: 150px;
+  }
+  
+  .not-found {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 18px;
+    margin-top: 40px;
+  }
+  

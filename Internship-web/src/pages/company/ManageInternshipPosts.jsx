@@ -33,7 +33,8 @@ const ManageInternshipPosts = () => {
   };
 
   return (
-    <main className="form-container">
+    <main className="form-container" style={{ paddingTop: '200px' }}>
+        
       <section className="card">
         <h2 className="card-header">Manage Internship Posts</h2>
 

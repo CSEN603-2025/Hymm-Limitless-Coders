@@ -1,0 +1,71 @@
+/* Live Workshop Page */
+
+.live-notification {
+  background: #DBEAFE;
+  color: #1E3A8A;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.workshop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chat-box {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.chat-message strong {
+  color: #1E3A8A;
+}
+
+.chat-input-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.notes-section {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+textarea.input {
+  resize: vertical;
+  font-family: 'Inter', sans-serif;
+}
+
+.saved-notes {
+  margin-top: 16px;
+  background: #F3F4F6;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #E5E7EB;
+  font-size: 14px;
+}
+
+/* Dropdown selector */
+select.input {
+  appearance: none;
+  background: url("data:image/svg+xml,%3Csvg fill='none' stroke='%231E3A8A' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") no-repeat right 10px center;
+  background-size: 16px 16px;
+  padding-right: 36px;
+}

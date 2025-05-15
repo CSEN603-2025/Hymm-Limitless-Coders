@@ -3,7 +3,8 @@ import React from 'react';
 
 const ApplicationAlerts = () => {
   return (
-    <main className="form-container">
+    <main className="form-container"  style={{ paddingTop: '200px' }}>
+      
       <section className="card">
         <h2 className="card-header">📢 Application Alerts</h2>
 
@@ -12,7 +13,7 @@ const ApplicationAlerts = () => {
         </div>
 
         <div className="card" style={{ marginTop: '16px', backgroundColor: '#F9FAFB' }}>
-          <p style={{ marginBottom: '0' }}>📬 <strong>No new alerts.</strong> You’re all caught up!</p>
+          <p style={{ marginBottom: '0' }}>📬 <strong>No new alerts.</strong> You're all caught up!</p>
         </div>
       </section>
     </main>

@@ -14,7 +14,7 @@ const InternProfile = () => {
 
   if (!intern) {
     return (
-      <main className="form-container">
+      <main className="form-container" style={{ paddingTop: '200px' }}>
         <div className="card">
           <p className="error-text">Intern not found.</p>
           <button className="btn-outline" onClick={() => navigate(-1)}>← Back</button>
@@ -25,6 +25,7 @@ const InternProfile = () => {
 
   return (
     <main className="form-container">
+      
       <section className="card">
         <h2 className="card-header">Intern Profile</h2>
         <p><strong>Name:</strong> {intern.name}</p>

@@ -6,7 +6,8 @@ const Notifications = () => {
   };
 
   return (
-    <main className="form-container">
+    <main className="form-container" style={{ paddingTop: '200px' }}>
+        
       <section className="card">
         <h2 className="card-header">Send Application Decision</h2>
         <p>You can simulate sending an acceptance or rejection email to applicants.</p>

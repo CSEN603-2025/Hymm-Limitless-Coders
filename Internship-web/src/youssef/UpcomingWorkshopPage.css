@@ -1,0 +1,133 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #F9FAFB;
+  color: #1F2937;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard-container {
+  padding: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.dashboard-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1E3A8A;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.card h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.btn-primary {
+  background: #1E3A8A;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  background: #1E40AF;
+}
+
+.btn-secondary {
+  background: #FF5733;
+  color: #FFFFFF;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background: #D84B2A;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #1E3A8A;
+  color: #1E3A8A;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.btn-outline:hover {
+  background: rgba(30, 58, 138, 0.05);
+}
+
+.input {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+
+.notification {
+  margin-top: 10px;
+  background-color: #FF5733;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.description {
+  margin-top: 10px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.form {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 28px;
+  }
+
+  .card h4 {
+    font-size: 18px;
+  }
+
+  .btn-primary, .btn-secondary, .btn-outline {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .dashboard-container {
+    padding: 16px;
+  }
+}

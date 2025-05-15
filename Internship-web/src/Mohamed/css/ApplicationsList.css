@@ -1,0 +1,70 @@
+.applications-container {
+    padding: 20px;
+    background-color: #f9fafb;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 30px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .applications-title {
+    color: #1E3A8A;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .applications-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .application-item {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  
+ 
+  
+  .app-title {
+    font-weight: 600;
+    color: #1E3A8A;
+  }
+  
+  .app-status {
+    color: #4b5563;
+    font-size: 14px;
+    margin-left: 5px;
+  }
+  
+  .view-link {
+    text-decoration: none;
+    color: #1E3A8A;
+    font-weight: 500;
+    border: 1px solid #1E3A8A;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .view-link:hover {
+    background-color: #1E3A8A;
+    color: white;
+  }
+  
+  .no-apps {
+    text-align: center;
+    color: #6b7280;
+    font-size: 18px;
+    margin-top: 40px;
+  }
+  

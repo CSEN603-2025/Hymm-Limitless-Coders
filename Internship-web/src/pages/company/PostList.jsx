@@ -11,7 +11,7 @@ const PostList = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterField, setFilterField] = useState('');
-
+ 
   useEffect(() => {
     setPosts(mockPosts); // Simulate API call
   }, []);
@@ -23,7 +23,8 @@ const PostList = () => {
   });
 
   return (
-    <main className="form-container">
+    <main className="form-container" style={{ paddingTop: '200px' }}>
+        
       <section className="card">
         <h2 className="card-header">Your Internship Posts</h2>
 
