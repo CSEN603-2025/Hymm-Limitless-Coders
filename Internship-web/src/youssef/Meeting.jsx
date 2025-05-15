@@ -63,7 +63,7 @@ export default function Meeting() {
       <h2 className="dashboard-title">Meeting Room</h2>
 
       {notification && (
-        <div className="notification-banner card">
+        <div className="notification-banner1 card1">
           {notification}
         </div>
       )}

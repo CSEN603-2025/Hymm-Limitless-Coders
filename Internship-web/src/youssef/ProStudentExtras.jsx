@@ -8,7 +8,7 @@ export default function ProStudentExtras() {
   return (
     <div className="pro-container">
       {/* PRO Badge - Top Right */}
-      <div className="pro-badge">
+      <div className="pro-badge2">
         PRO Badge - Active After 3 Months
       </div>
 

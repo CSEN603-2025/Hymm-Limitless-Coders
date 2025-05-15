@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-// App.jsx
-import React, { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-=======
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Dashboard from './NaggarComponents/Pages/CompanyJoinList';
@@ -45,7 +40,6 @@ import StudentDashboard from './Mohamed/components/StudentDashboard'; // New Das
 import CompanyDetail from './Mohamed/components/CompanyDetail';
 import ApplicationsList from './Mohamed/components/ApplicationsList';
 import InternshipsForStudent from './Mohamed/components/InternshipsForStudent';
->>>>>>> MohammedElnaggar
 import ProStudentExtras from './youssef/ProStudentExtras';
 import Meeting from './youssef/Meeting';
 import CompaniesViewed from './youssef/CompaniesViewed';
@@ -55,35 +49,6 @@ import WorkshopPage from './youssef/WorkshopPage';
 import LiveWorkshopPage from './youssef/LiveWorkShopPage';
 import CompletedWorkshops from './youssef/CompletedWorkshops';
 import UpcomingWorkshopsPage from './youssef/UpcomingWorkshopsPage';
-<<<<<<< HEAD
-import WorkShopRecording  from './youssef/WorkshopRecordings';
-import WorkshopRecordings from './youssef/WorkshopRecordings';
-
-
-const App = () => {
-  
-
-
-
-  return (
-    <Routes>
-<Route path="/prostudentextras"  element={<ProStudentExtras />}/>
-<Route path="/flaggedreports"  element={<FlaggedReports />}/>
-<Route path="/meeting" element={<Meeting />}/>
-<Route path="/companiesviewed" element={<CompaniesViewed />}/>
-<Route path="/onlineassessments" element={<OnlineAssessments />}/>
- <Route path="/workshop" element={<WorkshopPage />} />
- <Route path="/workshop/live" element={<LiveWorkshopPage />} />
- <Route path="/workshop/completed" element={<CompletedWorkshops />} />
- <Route path="/workshop/upcoming" element={<UpcomingWorkshopsPage />} />
- <Route path="/workshop/recorded" element={<WorkshopRecordings />} />
-
- 
-
-    </Routes>
-  );
-};
-=======
 import WorkshopRecordings from './youssef/WorkshopRecordings';
 
 
@@ -123,7 +88,6 @@ function App() {
       />
       <Route path="SCAD/notifications" element={<Notification />} />
       {/* end of SCAD routes */}
->>>>>>> MohammedElnaggar
 
 
 
