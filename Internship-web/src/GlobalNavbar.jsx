@@ -18,7 +18,7 @@ const companyPages = [
 ];
 
 const SCADPages = [
-  { path: '/SCAD', label: 'Dashboard' },
+  { path: '/SCAD', label: 'Company Join List' },
   { path: '/SCAD/InternshipCycle', label: 'Internship Cycle' },
   { path: '/SCAD/StudentList', label: 'Student List' },
   { path: '/SCAD/internship-reports', label: 'Internship Reports' },
@@ -27,6 +27,7 @@ const SCADPages = [
   { path: '/SCAD/manage', label: 'Manage Appointments' },
   { path: '/SCAD/call', label: 'Call Interface' },
   { path: '/internships', label: 'Internships' },
+  { path: '/SCAD/online-workshop', label: 'Online Workshop' },
   { path: '/SCAD/notifications', label: 'Notifications' }
 ];
 
@@ -112,6 +113,8 @@ function GlobalNavbar() {
         return ProStudentPages;
       case 'student':
         return StudentPages;
+      case 'faculty':
+        return facultyPages;
       default:
         return [];
     }

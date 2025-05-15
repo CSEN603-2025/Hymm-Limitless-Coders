@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom';
 import internships from '../data/internships';
 import "../css/InternshipDetails.css"; // Be sure to create this file
 const InternshipDetails = () => {
+const role = localStorage.getItem('role');
+  const selectedInternships = role === 'prostudent' ? internships.pro : internships.regular;
+
   const { id } = useParams(); 
-  const internship = internships.find(i => i.id === parseInt(id));
+  const internship = selectedInternships.find(i => i.id === parseInt(id));
 
   if (!internship) {
     return <div className="internship-not-found">Internship not found.</div>;

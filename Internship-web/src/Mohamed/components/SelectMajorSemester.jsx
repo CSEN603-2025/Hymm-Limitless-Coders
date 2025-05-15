@@ -13,16 +13,20 @@ const SelectMajorSemester = () => {
     if (saved) setSelected(saved);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('selectedMajorSemester', JSON.stringify(selected));
-  }, [selected]);
+  // useEffect(() => {
+  //   localStorage.setItem('selectedMajorSemester', JSON.stringify(selected));
+  // }, [selected]);
 
   const handleMajorChange = (e) => {
     setSelected((prev) => ({ ...prev, major: e.target.value }));
+  let edited={...selected,major: e.target.value}
+     localStorage.setItem('selectedMajorSemester', JSON.stringify(edited));
   };
 
   const handleSemesterChange = (e) => {
     setSelected((prev) => ({ ...prev, semester: e.target.value }));
+      let edited={...selected,semester: e.target.value}
+     localStorage.setItem('selectedMajorSemester', JSON.stringify(edited));
   };
 
   return (

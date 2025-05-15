@@ -137,9 +137,7 @@ function StudentList() {
 
   return (
     <div className="page-container">
-      <header className="page-header">
-        
-      </header>
+     
 
       <main className="content-area" role="main">
         <section className="section-header">
@@ -249,7 +247,9 @@ function StudentList() {
               <StudentCard
                 key={student.id}
                 student={student}
-                onClick={() => navigate(`/student/${student.id}`)}
+                onClick={() =>
+                  navigate(`/SCAD/student/${student.id}`, { state: { student } })
+                }
               />
             ))
           ) : (

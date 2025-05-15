@@ -57,7 +57,7 @@ function InternshipReportDetails() {
   };
 
   const handleBack = () => {
-    navigate('/internship-reports');
+    navigate('/SCAD/internship-reports');
   };
 
   return (

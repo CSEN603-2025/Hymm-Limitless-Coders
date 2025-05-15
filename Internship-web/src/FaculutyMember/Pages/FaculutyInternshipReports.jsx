@@ -77,9 +77,6 @@ function FaculutyInternshipReports() {
   return (
     <div className="page-container">
       {/* Navigation */}
-      <header className="page-header">
-        
-      </header>
 
       <main className="content-area" role="main">
         <section className="section-header">
@@ -214,7 +211,7 @@ function FaculutyInternshipReports() {
               <ReportCard
                 key={report.id}
                 report={report}
-                onClick={() => navigate(`/internship-reports/${report.id}`)}
+                onClick={() => navigate(`/faculty/internship-reports/${report.id}`)}
               />
             ))
           ) : (
