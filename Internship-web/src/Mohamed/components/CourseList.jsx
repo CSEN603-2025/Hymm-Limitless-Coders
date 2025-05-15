@@ -58,7 +58,7 @@ let courses=selectedCourses.includes(courseId) ? selectedCourses.filter((id) => 
         ))}
       </ul>
 
-      <h4 className="selected-title">Helpful Selected Courses:</h4>
+      <h4 className="selected-title">Helpful Courses that helped me during my internships:</h4>
       {selectedCourses.length === 0 ? (
         <p className="no-selected">No courses selected.</p>
       ) : (

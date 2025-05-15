@@ -118,3 +118,69 @@
     background-color: #f1f9fe;
   }
   
+
+
+  .input-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.floating-label {
+  position: relative;
+  font-size: 12px;
+  color: #666;
+  display: block;
+}
+
+.floating-label input {
+  display: block;
+  margin-top: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.input-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+  height: 40px; /* Fix height to keep layout consistent */
+  vertical-align: middle; /* Align nicely with other inputs */
+}
+
+.floating-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  color: #666;
+  pointer-events: none;
+  user-select: none;
+}
+
+.floating-label + input {
+  padding-top: 18px; /* leave space for the label inside the input */
+  height: 40px; /* match wrapper height */
+  box-sizing: border-box;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

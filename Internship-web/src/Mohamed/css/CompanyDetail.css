@@ -133,3 +133,16 @@
     }
   }
   
+
+
+
+
+  .evaluation-section textarea {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.evaluation-section select {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}

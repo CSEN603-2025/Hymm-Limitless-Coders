@@ -141,6 +141,7 @@ import Login from './pages/Login';
 import FaculutyInternshipReports from './FaculutyMember/Pages/FaculutyInternshipReports';
 import FaculutyInternshipReportDetails from './FaculutyMember/Pages/FaculutyInternshipReportDetails';
 import FaculutyStatistics from './FaculutyMember/Pages/FaculutyStatistics';
+import AllCompanies from './Mohamed/components/AllCompanies';
 
 
 
@@ -188,6 +189,7 @@ function App() {
       <Route path="/applications/:id" element={<ApplicationStatus />} />
       <Route path="internships/apply/:id" element={<ApplyInternship />} />
       <Route path="/suggested-companies" element={<SuggestedCompanies />} />
+      <Route path="/companies" element={<AllCompanies />} />
       <Route path="/past-present-internships" element={<InternshipsForStudent/>} />
       <Route path="/course-list" element={<CourseList />} />
       <Route path="/submit-final-report" element={<SubmitFinalReport />} />

@@ -43,9 +43,6 @@
 
 // export default internships;
 
-
-
-
 // Regular internships (accessible to all users)
 export const regularInternships = [
   { 
@@ -56,7 +53,11 @@ export const regularInternships = [
     duration: '3 months',
     company: 'Tech Solutions Inc.',
     location: 'Remote',
-    postedDate: '2025-01-01'
+    postedDate: '2025-01-01',
+    industry: 'Software',
+    paid: true,
+    expectedSalary: '$1000/month',
+    skills: ['JavaScript', 'React', 'Node.js']
   },
   { 
     id: 2, 
@@ -66,7 +67,11 @@ export const regularInternships = [
     duration: '6 months',
     company: 'ElectroTech Ltd.',
     location: 'New York, USA',
-    postedDate: '2025-02-15'
+    postedDate: '2025-02-15',
+    industry: 'Hardware',
+    paid: true,
+    expectedSalary: '$1200/month',
+    skills: ['Circuit Design', 'PCB Layout', 'Lab Equipment']
   },
   { 
     id: 3, 
@@ -76,7 +81,10 @@ export const regularInternships = [
     duration: '4 months',
     company: 'Data Insights Corp.',
     location: 'Remote',
-    postedDate: '2025-03-01'
+    postedDate: '2025-03-01',
+    industry: 'Data Science',
+    paid: false,
+    skills: ['Python', 'Pandas', 'Machine Learning']
   },
   { 
     id: 4, 
@@ -86,11 +94,13 @@ export const regularInternships = [
     duration: '2 months',
     company: 'Marketing Masters',
     location: 'San Francisco, USA',
-    postedDate: '2025-04-01'
+    postedDate: '2025-04-01',
+    industry: 'Marketing',
+    paid: false,
+    skills: ['SEO', 'Market Research', 'Social Media']
   }
 ];
 
-// Pro-exclusive internships (in addition to regular ones)
 export const proInternships = [
   {
     id: 5,
@@ -100,7 +110,11 @@ export const proInternships = [
     duration: '5 months',
     company: 'FutureTech AI Labs',
     location: 'Boston, USA',
-    postedDate: '2025-05-01'
+    postedDate: '2025-05-01',
+    industry: 'Software',
+    paid: true,
+    expectedSalary: '$1500/month',
+    skills: ['Python', 'TensorFlow', 'Deep Learning']
   },
   {
     id: 6,
@@ -110,11 +124,13 @@ export const proInternships = [
     duration: '4 months',
     company: 'BlockForge Inc.',
     location: 'Remote',
-    postedDate: '2025-05-10'
+    postedDate: '2025-05-10',
+    industry: 'Software',
+    paid: false,
+    skills: ['Solidity', 'Ethereum', 'Web3.js']
   }
 ];
 
-// Combined export
 const internships = {
   regular: regularInternships,
   pro: [...regularInternships, ...proInternships]
