@@ -9,7 +9,7 @@ const StudentUtilities = () => {
       <main className="utilities-container" style={{ paddingTop: '200px' }}>
         
       <section className="card">
-        <h2 className="card-header">Student Utilities</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Student Utilities</h2>
 
         <button
           className="btn-secondary"
@@ -23,7 +23,7 @@ const StudentUtilities = () => {
       <hr className="divider" />
 
       <section className="card">
-        <h3 className="card-header">What Counts as an Internship? (M1-65)</h3>
+        <h3 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>What Counts as an Internship? (M1-65)</h3>
         <div className="video-container">
           <video className="video" width="100%" controls aria-label="Informational internship video">
             <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />

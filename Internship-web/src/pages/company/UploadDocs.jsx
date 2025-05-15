@@ -16,7 +16,7 @@ const UploadDocs = () => {
     }
 
     // Simulate upload
-    setStatus(`File "${selectedFile.name}" uploaded successfully (simulated).`);
+    setStatus(`File "${selectedFile.name}" uploaded successfully.`);
     setSelectedFile(null);
   };
 
@@ -26,7 +26,7 @@ const UploadDocs = () => {
     <main className="form-container" style={{ paddingTop: '200px' }}>
          
       <section className="card">
-        <h2 className="card-header">Upload Company Documents</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Upload Company Documents</h2>
 
         <div className="form">
           <label className="label" htmlFor="docUpload">Select PDF or Image:</label>

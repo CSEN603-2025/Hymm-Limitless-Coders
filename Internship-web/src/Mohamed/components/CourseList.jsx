@@ -3,16 +3,21 @@ import dummyCourses from '../data/coursesList';
 import '../css/CourseList.css'; // 👈 Add this CSS file
 
 const CourseList = () => {
+const role = localStorage.getItem('role');
+  const cousesToUse = role === 'prostudent' ? dummyCourses.pro : dummyCourses.regular;
+
+
   const [selectedCourses, setSelectedCourses] = useState([]);
 
+  
   useEffect(() => {
     const storedCourses = JSON.parse(localStorage.getItem('helpfulCourses')) || [];
     setSelectedCourses(storedCourses);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('helpfulCourses', JSON.stringify(selectedCourses));
-  }, [selectedCourses]);
+  // useEffect(() => {
+  //   localStorage.setItem('helpfulCourses', JSON.stringify(selectedCourses));
+  // }, [selectedCourses]);
 
   const handleCourseSelect = (courseId) => {
     setSelectedCourses((prevSelected) =>
@@ -20,13 +25,23 @@ const CourseList = () => {
         ? prevSelected.filter((id) => id !== courseId)
         : [...prevSelected, courseId]
     );
+let courses=selectedCourses.includes(courseId) ? selectedCourses.filter((id) => id !== courseId) : [...selectedCourses,courseId]
+ localStorage.setItem('helpfulCourses', JSON.stringify(courses));
+
   };
+
+
+
+
+
+
+
 
   return (
     <div className="course-container" style={{ paddingTop: '200px' }}>
       <h3 className="course-title">Course List</h3>
       <ul className="course-list">
-        {dummyCourses.map((course) => (
+        {cousesToUse.map((course) => (
           <li key={course.id} className="course-item">
             <label>
               <input
@@ -49,8 +64,8 @@ const CourseList = () => {
       ) : (
         <ul className="selected-courses">
           {selectedCourses.map((courseId) => {
-            const course = dummyCourses.find((c) => c.id === courseId);
-            return <li key={courseId}>{course.name}</li>;
+            const course = cousesToUse.find((c) => c.id === courseId);
+            return course ? <li key={courseId}>{course?.name}</li>:"";
           })}
         </ul>
       )}

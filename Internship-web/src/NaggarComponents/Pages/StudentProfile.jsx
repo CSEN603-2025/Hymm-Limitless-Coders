@@ -1,6 +1,14 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-function StudentProfile({ student }) {
+function StudentProfile() {
+  const location = useLocation();
+  const student = location.state?.student;
+
+  if (!student) {
+    return <p>No student data available.</p>;
+  }
+
   return (
     <div>
       <h2>{student.name}</h2>

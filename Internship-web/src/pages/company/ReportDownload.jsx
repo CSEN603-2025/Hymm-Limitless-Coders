@@ -1,22 +1,67 @@
 import React from 'react';
 
 const ReportDownload = () => {
-  const handleDownload = () => {
-    // Simulate PDF download
-    alert('Download started (simulated). In a real app, this would fetch a PDF file.');
+  const handleDownloadPDF = () => {
+    alert('Internship report PDF download started (simulated).');
+  };
+
+  const handleDownloadDocument = () => {
+    alert('Uploaded document download started (simulated).');
+  };
+
+  const handleDownloadEvaluations = () => {
+    alert('All evaluations document download started (simulated).');
   };
 
   return (
-    <main className="form-container" style={{ paddingTop: '200px' }}>
-        
+    <main
+      className="form-container"
+      style={{
+        paddingTop: '200px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+      }}
+    >
+      {/* Section 1: Internship Report PDF */}
       <section className="card">
-        <h2 className="card-header">Download Internship Report (PDF)</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>
+          Download Internship Report (PDF)
+        </h2>
         <button
           className="btn-primary"
-          onClick={handleDownload}
+          onClick={handleDownloadPDF}
           aria-label="Download internship report PDF"
         >
-          Download PDF
+          Download report
+        </button>
+      </section>
+
+      {/* Section 2: Uploaded Document */}
+      <section className="card">
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>
+          Download Uploaded Document
+        </h2>
+        <button
+          className="btn-primary"
+          onClick={handleDownloadDocument}
+          aria-label="Download uploaded document"
+        >
+          Download the Uploaded Document used for verification
+        </button>
+      </section>
+
+      {/* Section 3: All Evaluations */}
+      <section className="card">
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>
+          Download All Evaluations Document
+        </h2>
+        <button
+          className="btn-primary"
+          onClick={handleDownloadEvaluations}
+          aria-label="Download all evaluations document"
+        >
+          Download All Evaluations Submitted
         </button>
       </section>
     </main>

@@ -416,10 +416,7 @@ ${topInternshipCompanies.map(c => `${c.company}: ${c.count} reports`).join('\n')
 
   return (
     <div className="page-container">
-      <header className="page-header">
-        
-      </header>
-
+     
       <main className="content-area" role="main">
         <div className="statistics-container">
           <div className="statistics-header">

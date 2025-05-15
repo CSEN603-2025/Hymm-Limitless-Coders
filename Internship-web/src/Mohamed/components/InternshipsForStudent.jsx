@@ -2,10 +2,16 @@ import { useState, useEffect } from 'react';
 import pastAndPresentIntership from '../data/PastAndPresentInternships';
 import '../css/InternshipsForStudent.css';
 const InternshipsForStudent = () => {
+
+const role = localStorage.getItem('role');
+const selectedInternships = role === 'prostudent' ? pastAndPresentIntership.pro : pastAndPresentIntership.regular;
+
+
+
   const [searchInput, setSearchInput] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [expandedId, setExpandedId] = useState(null);
-  const [filteredInternships, setFilteredInternships] = useState(pastAndPresentIntership);
+  const [filteredInternships, setFilteredInternships] = useState(selectedInternships);
 
   const REPORT_STORAGE_KEY = 'internshipReports';
   const [reports, setReports] = useState({});
@@ -34,7 +40,7 @@ const InternshipsForStudent = () => {
   };
 
   const handleSearchClick = () => {
-    const results = pastAndPresentIntership.filter((internship) => {
+    const results = selectedInternships.filter((internship) => {
       const matchesSearch =
         internship.title?.toLowerCase().includes(searchInput.toLowerCase()) ||
         internship.company?.toLowerCase().includes(searchInput.toLowerCase());
@@ -50,7 +56,7 @@ const InternshipsForStudent = () => {
   const handleClear = () => {
     setSearchInput('');
     setStatusFilter('all');
-    setFilteredInternships(pastAndPresentIntership);
+    setFilteredInternships(selectedInternships);
   };
 
   // const handleReportChange = (id, field, value) => {

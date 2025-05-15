@@ -27,7 +27,7 @@ const InternProfile = () => {
     <main className="form-container">
       
       <section className="card">
-        <h2 className="card-header">Intern Profile</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Intern Profile</h2>
         <p><strong>Name:</strong> {intern.name}</p>
         <p><strong>Field:</strong> {intern.field}</p>
         <p><strong>Projects:</strong> {intern.projects}</p>

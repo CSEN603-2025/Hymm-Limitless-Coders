@@ -247,7 +247,9 @@ function StudentList() {
               <StudentCard
                 key={student.id}
                 student={student}
-                onClick={() => navigate(`/student/${student.id}`)}
+                onClick={() =>
+                  navigate(`/SCAD/student/${student.id}`, { state: { student } })
+                }
               />
             ))
           ) : (

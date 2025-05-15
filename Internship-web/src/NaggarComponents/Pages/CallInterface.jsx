@@ -121,9 +121,6 @@ function CallInterface() {
 
   return (
     <div className="page-container">
-      <header className="page-header">
-      </header>
-
       <main className="content-area" role="main">
         <section className="section-header">
           <h1 className="page-title">Call Interface</h1>
@@ -176,7 +173,7 @@ function CallInterface() {
                   className="btn-danger" 
                   onClick={handleRejectCall}
                 >
-                  <span>Reject Call</span>
+                  <span className="btn-danger-text">Reject Call</span>
                 </button>
               </div>
             </div>

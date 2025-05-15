@@ -35,7 +35,7 @@ const ApplicationsDashboard = () => {
     <main className="applications-dashboard" style={{ paddingTop: '200px' }}>
         
       <section className="card">
-        <h2 className="card-header">Applications Dashboard</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Applications Dashboard</h2>
 
         <div className="filter-container">
           <label htmlFor="filter" className="label">Filter by Internship Post:</label>
@@ -64,7 +64,18 @@ const ApplicationsDashboard = () => {
           <tbody>
             {filteredApps.map(app => (
               <tr key={app.id} className="table-row">
-                <td className="table-cell">{app.applicant}</td>
+                <td className="table-cell">
+  {app.applicant}
+  <button
+    className="btn-outline"
+    style={{ marginLeft: '8px', padding: '4px 8px', fontSize: '0.85rem' }}
+    onClick={() => navigate(`/company/intern/${app.id}`)}
+    aria-label={`View profile of ${app.applicant}`}
+  >
+    View Profile
+  </button>
+</td>
+
                 <td className="table-cell">{app.email}</td>
                 <td className="table-cell">{app.postTitle}</td>
                 <td className="table-cell">
@@ -86,7 +97,7 @@ const ApplicationsDashboard = () => {
         </table>
 
         <div className="pagination" style={{ marginTop: '16px' }}>
-          <button className="btn-outline" onClick={() => navigate('/')}>← Back to Dashboard</button>
+          <button className="btn-outline" onClick={() => navigate('/company')}>← Back to Dashboard</button>
         </div>
       </section>
     </main>
