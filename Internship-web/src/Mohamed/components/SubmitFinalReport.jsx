@@ -1,20 +1,31 @@
 // import React, { useState, useEffect } from 'react';
-
-// // (FR 47, 59, 61)
+// import '../css/SubmitFinalReport.css'; // 👈 Add this CSS file
 
 // const SubmitFinalReport = () => {
 //   const [reportFile, setReportFile] = useState(null);
-//   const [reportStatus, setReportStatus] = useState(null); // null by default
+//   const [reportStatus, setReportStatus] = useState(null);
 //   const [appealMessage, setAppealMessage] = useState('');
 //   const [appealSubmitted, setAppealSubmitted] = useState(false);
 
-//   // Load saved status from localStorage
 //   useEffect(() => {
 //     const savedStatus = localStorage.getItem('reportStatus');
 //     if (savedStatus) {
 //       setReportStatus(savedStatus);
 //     }
 //   }, []);
+
+
+//   useEffect(() => {
+//     if (reportStatus === 'Pending') {
+//       const timer = setTimeout(() => {
+//         localStorage.setItem('reportStatus', 'Rejected');
+//         setReportStatus('Rejected');
+//       }, 3000); // 4 seconds
+  
+//       return () => clearTimeout(timer); // cleanup in case component unmounts
+//     }
+//   }, [reportStatus]);
+  
 
 //   const handleReportSubmit = (e) => {
 //     e.preventDefault();
@@ -23,12 +34,10 @@
 //       return;
 //     }
 
-//     // Simulate setting initial status as "Pending"
 //     const initialStatus = 'Pending';
 //     localStorage.setItem('reportStatus', initialStatus);
 //     setReportStatus(initialStatus);
-
-//     alert('Final report submitted successfully and is now pending review.'); // (FR 47)
+//     alert('Final report submitted successfully and is now pending review.');
 //   };
 
 //   const handleAppealSubmit = (e) => {
@@ -38,45 +47,41 @@
 //       return;
 //     }
 
-//     // Simulate sending appeal
 //     setAppealSubmitted(true);
-//     alert('Your appeal has been submitted successfully.'); // (FR 61)
+//     alert('Your appeal has been submitted successfully.');
+//     localStorage.setItem('reportStatus', 'Pending');
+//     setReportStatus("Pending");
 //   };
 
 //   return (
-//     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-//       <h2>Final Internship Report Submission</h2>
+//     <div className="report-container" style={{ paddingTop: '200px' }}>
+//       <h2 className="report-title">Final Internship Report Submission</h2>
 
 //       {!reportStatus && (
-//   <form onSubmit={handleReportSubmit}>
-//     <label htmlFor="reportFile">Upload Final Report (PDF/DOC):</label>
-//     <input
-//       type="file"
-//       id="reportFile"
-//       accept=".pdf,.doc,.docx"
-//       onChange={(e) => setReportFile(e.target.files[0])}
-//     />
-//     <br />
-//     <button type="submit" style={{ marginTop: '10px' }}>
-//       Submit Report
-//     </button>
-//   </form>
-// )}
-
+//         <form className="report-form" onSubmit={handleReportSubmit}>
+//           <label htmlFor="reportFile">Upload Final Report (PDF/DOC):</label>
+//           <input
+//             type="file"
+//             id="reportFile"
+//             accept=".pdf,.doc,.docx"
+//             onChange={(e) => setReportFile(e.target.files[0])}
+//           />
+//           <button type="submit" className="submit-btn">Submit Report</button>
+//         </form>
+//       )}
 
 //       {reportStatus && (
-//         <div style={{ marginTop: '20px' }}>
+//         <div className="status-section">
 //           <h4>
 //             Report Status:{' '}
 //             <span
-//               style={{
-//                 color:
-//                   reportStatus === 'Accepted'
-//                     ? 'green'
-//                     : reportStatus === 'Pending'
-//                     ? 'orange'
-//                     : 'red',
-//               }}
+//               className={`status-text ${
+//                 reportStatus === 'Accepted'
+//                   ? 'accepted'
+//                   : reportStatus === 'Pending'
+//                   ? 'pending'
+//                   : 'rejected'
+//               }`}
 //             >
 //               {reportStatus}
 //             </span>
@@ -85,23 +90,19 @@
 //       )}
 
 //       {(reportStatus === 'Rejected' || reportStatus === 'Flagged') && (
-//         <div style={{ marginTop: '20px' }}>
+//         <div className="appeal-section">
 //           <h4>Appeal Rejected/Flagged Report</h4>
 //           <form onSubmit={handleAppealSubmit}>
 //             <textarea
 //               rows="4"
-//               cols="50"
 //               placeholder="Write your appeal here..."
 //               value={appealMessage}
 //               onChange={(e) => setAppealMessage(e.target.value)}
 //             />
-//             <br />
-//             <button type="submit">Submit Appeal</button>
+//             <button type="submit" className="submit-btn">Submit Appeal</button>
 //           </form>
 //           {appealSubmitted && (
-//             <p style={{ color: 'blue' }}>
-//               Appeal submitted. Please wait for admin response.
-//             </p>
+//             <p className="appeal-msg">Appeal submitted. Please wait for admin response.</p>
 //           )}
 //         </div>
 //       )}
@@ -114,29 +115,15 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
-import '../css/SubmitFinalReport.css'; // 👈 Add this CSS file
+import '../css/SubmitFinalReport.css';
 
 const SubmitFinalReport = () => {
   const [reportFile, setReportFile] = useState(null);
   const [reportStatus, setReportStatus] = useState(null);
   const [appealMessage, setAppealMessage] = useState('');
   const [appealSubmitted, setAppealSubmitted] = useState(false);
+  const [notification, setNotification] = useState('');
 
   useEffect(() => {
     const savedStatus = localStorage.getItem('reportStatus');
@@ -144,6 +131,33 @@ const SubmitFinalReport = () => {
       setReportStatus(savedStatus);
     }
   }, []);
+
+  // Show notification on any status change
+  useEffect(() => {
+    if (reportStatus) {
+      const message = `Report status : ${reportStatus}`;
+      setNotification(message);
+
+      const timer = setTimeout(() => {
+        setNotification('');
+      }, 4000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [reportStatus]);
+
+  // Simulate status change from Pending to Rejected
+  useEffect(() => {
+    if (reportStatus === 'Pending') {
+      const timer = setTimeout(() => {
+        const newStatus = 'Rejected';
+        localStorage.setItem('reportStatus', newStatus);
+        setReportStatus(newStatus);
+      }, 4000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [reportStatus]);
 
   const handleReportSubmit = (e) => {
     e.preventDefault();
@@ -167,10 +181,21 @@ const SubmitFinalReport = () => {
 
     setAppealSubmitted(true);
     alert('Your appeal has been submitted successfully.');
+    localStorage.setItem('reportStatus', 'Pending');
+    setReportStatus('Pending');
+    setAppealMessage('');
   };
 
   return (
-    <div className="report-container">
+    <div className="report-container" style={{ paddingTop: '200px' }}>
+      {/* {notification && <div className="custom-notification">{notification}</div>} */}
+      {notification && (
+  <div className={`custom-notification ${reportStatus?.toLowerCase()}`}>
+    {notification}
+  </div>
+)}
+
+
       <h2 className="report-title">Final Internship Report Submission</h2>
 
       {!reportStatus && (

@@ -146,11 +146,7 @@
 
 
 import React from 'react';
-import { Link } from 'react-router-dom';
-import SuggestedCompanies from './SuggestedCompanies';
 import SelectMajorSemester from './SelectMajorSemester';
-import ApplicationsList from './ApplicationsList';
-import CourseList from './CourseList';
 import '../css/StudentDashboard.css'; // Updated path to new styles file
 
 const StudentDashboard = () => {
@@ -160,43 +156,6 @@ const StudentDashboard = () => {
 
       <div className="dashboard-section card">
         <SelectMajorSemester />
-      </div>
-
-      <div className="dashboard-section card">
-        <SuggestedCompanies />
-      </div>
-
-      <div className="dashboard-section card">
-        <h3 className="card-header">Your Profile</h3>
-        <Link to="/edit-profile" className="dashboard-link btn-outline">Edit Profile</Link>
-      </div>
-
-      <div className="dashboard-section card">
-        <h3 className="card-header">Majors</h3>
-        <Link to="/majors" className="dashboard-link btn-outline">View Majors</Link>
-      </div>
-
-      <div className="dashboard-section card">
-        <h3 className="card-header">Internships</h3>
-        <div className="link-group">
-          <Link to="/internships" className="dashboard-link btn-outline">Available Internships</Link>
-          <Link to="/past-present-internships" className="dashboard-link btn-outline">Your Past & Present Internships</Link>
-        </div>
-      </div>
-
-      <div className="dashboard-section card">
-        <h3 className="card-header">Applications</h3>
-        <ApplicationsList />
-      </div>
-
-      <div className="dashboard-section card">
-        <h3 className="card-header">Courses</h3>
-        <Link to="/course-list" className="dashboard-link btn-outline">View Courses</Link>
-      </div>
-
-      <div className="dashboard-section card">
-        <h3 className="card-header">Final Report</h3>
-        <Link to="/submit-final-report" className="dashboard-link btn-outline">View Report</Link>
       </div>
     </div>
   );

@@ -1,104 +1,6 @@
-// import { useState } from 'react';
-// import pastAndPresentIntership from '../data/PastAndPresentInternships';
-
-// const InternshipsForStudent = () => {
-//   const [searchInput, setSearchInput] = useState('');
-//   const [statusFilter, setStatusFilter] = useState('all');
-//   const [expandedId, setExpandedId] = useState(null);
-//   const [filteredInternships, setFilteredInternships] = useState(pastAndPresentIntership);
-
-//   const handleSearchInputChange = (e) => {
-//     setSearchInput(e.target.value);
-//   };
-
-//   const handleFilterChange = (e) => {
-//     setStatusFilter(e.target.value);
-//   };
-
-//   const toggleExpand = (id) => {
-//     setExpandedId(expandedId === id ? null : id);
-//   };
-
-//   const handleSearchClick = () => {
-//     const results = pastAndPresentIntership.filter((internship) => {
-//       const matchesSearch = internship.title?.toLowerCase().includes(searchInput.toLowerCase()) ||
-//                             internship.company?.toLowerCase().includes(searchInput.toLowerCase());
-
-//       const normalizedStatus = internship.status?.toLowerCase().trim() || 'unknown';
-//       const matchesFilter = statusFilter === 'all' || normalizedStatus === statusFilter;
-
-//       return matchesSearch && matchesFilter;
-//     });
-//     setFilteredInternships(results);
-//   };
-
-//   const handleClear = () => {
-//     setSearchInput('');
-//     setStatusFilter('all');
-//     setFilteredInternships(pastAndPresentIntership);
-//   };
-
-//   return (
-//     <div>
-//       <h3>Past and Present Internships</h3>
-
-//       {/* Search and Filter */}
-//       <div style={{ marginBottom: '1rem' }}>
-//         <input 
-//           type="text" 
-//           placeholder="Search by title or company..." 
-//           value={searchInput} 
-//           onChange={handleSearchInputChange} 
-//           style={{ padding: '5px', marginRight: '10px' }}
-//         />
-//         <select value={statusFilter} onChange={handleFilterChange} style={{ padding: '5px', marginRight: '10px' }}>
-//           <option value="all">All</option>
-//           <option value="completed">Completed</option>
-//           <option value="in-progress">In Progress</option>
-//         </select>
-//         <button onClick={handleSearchClick} style={{ padding: '5px 10px', marginRight: '5px' }}>Search</button>
-//         <button onClick={handleClear} style={{ padding: '5px 10px' }}>Clear</button>
-//       </div>
-
-//       {/* List Internships */}
-//       <ul>
-//         {filteredInternships.length === 0 ? (
-//           <p>No internships found.</p>
-//         ) : (
-//           filteredInternships.map((internship) => (
-//             <li 
-//               key={internship.id} 
-//               onClick={() => toggleExpand(internship.id)}
-//               style={{ 
-//                 marginBottom: '10px', 
-//                 cursor: 'pointer', 
-//                 border: '1px solid #ccc', 
-//                 padding: '10px', 
-//                 borderRadius: '5px' 
-//               }}
-//             >
-//               <strong>{internship.title}</strong> — {internship.status}
-//               {expandedId === internship.id && (
-//                 <div style={{ marginTop: '10px' }}>
-//                   <p><strong>Company:</strong> {internship.company}</p>
-//                   <p><strong>Description:</strong> {internship.description}</p>
-//                   <p><strong>Duration:</strong> {internship.duration}</p>
-//                   <p><strong>Location:</strong> {internship.location}</p>
-//                   <p><strong>Posted Date:</strong> {internship.postedDate}</p>
-//                 </div>
-//               )}
-//             </li>
-//           ))
-//         )}
-//       </ul>
-//     </div>
-//   );
-// };
-
 import { useState, useEffect } from 'react';
 import pastAndPresentIntership from '../data/PastAndPresentInternships';
 import '../css/InternshipsForStudent.css';
-
 const InternshipsForStudent = () => {
   const [searchInput, setSearchInput] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -115,9 +17,9 @@ const InternshipsForStudent = () => {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(REPORT_STORAGE_KEY, JSON.stringify(reports));
-  }, [reports]);
+  // useEffect(() => {
+  //   localStorage.setItem(REPORT_STORAGE_KEY, JSON.stringify(reports));
+  // }, [reports]);
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -151,27 +53,51 @@ const InternshipsForStudent = () => {
     setFilteredInternships(pastAndPresentIntership);
   };
 
+  // const handleReportChange = (id, field, value) => {
+  //   setReports((prev) => ({
+  //     ...prev,
+  //     [id]: {
+  //       ...prev[id],
+  //       [field]: value,
+  //     },
+  //   }));
+  // };
+
+  // const handleDeleteReport = (id) => {
+  //   const { [id]: _, ...rest } = reports;
+  //   setReports(rest);
+  // };
+
+
   const handleReportChange = (id, field, value) => {
-    setReports((prev) => ({
-      ...prev,
+    const updatedReports = {
+      ...reports,
       [id]: {
-        ...prev[id],
+        ...reports[id],
         [field]: value,
       },
-    }));
+    };
+    setReports(updatedReports);
+    localStorage.setItem(REPORT_STORAGE_KEY, JSON.stringify(updatedReports)); // persist immediately
   };
-
+  
   const handleDeleteReport = (id) => {
     const { [id]: _, ...rest } = reports;
     setReports(rest);
+    localStorage.setItem(REPORT_STORAGE_KEY, JSON.stringify(rest)); // persist immediately
   };
+  
+
+
+
+
 
   const handleExpandedClick = (e) => {
     e.stopPropagation(); // Prevent the toggleExpand function from being triggered when clicking inside the expanded content
   };
 
   return (
-    <div className="internship-container">
+      <div className="internship-container" style={{ paddingTop: '200px' }}>
       <h3 className="title">Past and Present Internships</h3>
 
       {/* Search and Filter */}
