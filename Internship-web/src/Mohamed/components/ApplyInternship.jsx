@@ -3,8 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import internships from '../data/internships';
 import '../css/ApplyInternship.css'; // Create this CSS file
 const ApplyInternship = () => {
+ const role = localStorage.getItem('role');
+  const selectedInternships = role === 'prostudent' ? internships.pro : internships.regular;
+
   const { id } = useParams();
-  const internship = internships.find((i) => i.id.toString() === id);
+  const internship = selectedInternships.find((i) => i.id.toString() === id);
   const [statement, setStatement] = useState('');
   const [file, setFile] = useState(null);
   const [alreadyApplied, setAlreadyApplied] = useState(false);

@@ -1,5 +1,83 @@
+// import React from 'react';
+// import { Routes, Route, Navigate } from 'react-router-dom';
+// import Dashboard from './NaggarComponents/Pages/CompanyJoinList';
+// import CompanyPage from './NaggarComponents/Pages/CompanyDetails';
+// import InternshipCycle from './NaggarComponents/Pages/InternshipCycle';
+// import StudentList from './NaggarComponents/Pages/StudentList';
+// import InternshipReportDetails from './NaggarComponents/Pages/InternshipReportDetails';
+// import InternshipReports from './NaggarComponents/Pages/InternshipReports';
+// import EvaluationReportDetails from './NaggarComponents/Pages/EvaluationReportDetails';
+// import Statistics from './NaggarComponents/Pages/Statistics';
+// import RequestAppointment from './NaggarComponents/Pages/RequestAppointment';
+// import AppointmentRequests from './NaggarComponents/Pages/AppointmentRequests';
+// import ManageAppointments from './NaggarComponents/Pages/ManageAppointments';
+// import CallInterface from './NaggarComponents/Pages/CallInterface';
+// import Notification from './NaggarComponents/Pages/Notification';
+// import MajorsList from './Mohamed/components/MajorsList';
+// import SelectMajorSemester from './Mohamed/components/SelectMajorSemester';
+// import InternshipsList from './Mohamed/components/InternshipList';
+// import InternshipDetails from './Mohamed/components/InternshipDetails';
+// import ApplyInternship from './Mohamed/components/ApplyInternship';
+// import ApplicationStatus from './Mohamed/components/ApplicationStatus';
+// import RegisterCompany from './pages/company/RegisterCompany';
+// import ManageInternshipPosts from './pages/company/ManageInternshipPosts';
+// import PostList from './pages/company/PostList';
+// import ApplicationsDashboard from './pages/company/ApplicationsDashboard';
+// import Interns from './pages/company/Interns';
+// import InternProfile from './pages/company/InternProfile';
+// import StudentEvaluation from './pages/company/StudentEvaluation';
+// import ReportDownload from './pages/company/ReportDownload';
+// import Login from './pages/Login';
+// import SuggestedCompanies from './Mohamed/components/SuggestedCompanies';
+// import UploadDocs from './pages/company/UploadDocs';
+// import Notifications from './pages/company/Notifications';
+// import ApplicationAlerts from './pages/company/ApplicationAlerts';
+// import CourseList from './Mohamed/components/CourseList';
+// import SubmitFinalReport from './Mohamed/components/SubmitFinalReport';
+// import NotificationM from './Mohamed/components/Notification';
+// import StudentDashboard from './Mohamed/components/StudentDashboard'; // New Dashboard component
+// import CompanyDetail from './Mohamed/components/CompanyDetail';
+// import ApplicationsList from './Mohamed/components/ApplicationsList';
+// import InternshipsForStudent from './Mohamed/components/InternshipsForStudent';
+// import ProStudentExtras from './youssef/ProStudentExtras';
+// import Meeting from './youssef/Meeting';
+// import CompaniesViewed from './youssef/CompaniesViewed';
+// import OnlineAssessments from './youssef/OnlineAssessments';
+// import FlaggedReports from './youssef/FlaggedReports'
+// import WorkshopPage from './youssef/WorkshopPage';
+// import LiveWorkshopPage from './youssef/LiveWorkShopPage';
+// import CompletedWorkshops from './youssef/CompletedWorkshops';
+// import UpcomingWorkshopsPage from './youssef/UpcomingWorkshopsPage';
+// import WorkshopRecordings from './youssef/WorkshopRecordings';
+
+// // Import individual feature components
+// import EditProfile from './Mohamed/components/EditProfile';
+// import SelectMajorSemester from './Mohamed/components/SelectMajorSemester';
+
+// import InternshipDetails from './Mohamed/components/InternshipDetails';
+// import ApplyInternship from './Mohamed/components/ApplyInternship';
+// import ApplicationStatus from './Mohamed/components/ApplicationStatus';
+
+// import CourseList from './Mohamed/components/CourseList';
+
+// import SubmitFinalReport from './Mohamed/components/SubmitFinalReport';
+// import Notification from './Mohamed/components/Notification';
+// import StudentDashboard from './Mohamed/components/StudentDashboard'; // New Dashboard component
+// import CompanyDetail from './Mohamed/components/CompanyDetail';
+// import ApplicationsList from './Mohamed/components/ApplicationsList';
+// import InternshipsForStudent from './Mohamed/components/InternshipsForStudent';
+
+// //faculty member routes
+// import FaculutyInternshipReports from './FaculutyMember/Pages/FaculutyInternshipReports';
+// import FaculutyInternshipReportDetails from './FaculutyMember/Pages/FaculutyInternshipReportDetails';
+// import FaculutyStatistics from './FaculutyMember/Pages/FaculutyStatistics';
+// //end of faculty member routes
+
+
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+
+// === Naggar Components ===
 import Dashboard from './NaggarComponents/Pages/CompanyJoinList';
 import CompanyPage from './NaggarComponents/Pages/CompanyDetails';
 import InternshipCycle from './NaggarComponents/Pages/InternshipCycle';
@@ -13,13 +91,37 @@ import AppointmentRequests from './NaggarComponents/Pages/AppointmentRequests';
 import ManageAppointments from './NaggarComponents/Pages/ManageAppointments';
 import CallInterface from './NaggarComponents/Pages/CallInterface';
 import Notification from './NaggarComponents/Pages/Notification';
-import EditProfile from './Mohamed/components/EditProfile';
+
+// === Mohamed Components ===
 import MajorsList from './Mohamed/components/MajorsList';
 import SelectMajorSemester from './Mohamed/components/SelectMajorSemester';
 import InternshipsList from './Mohamed/components/InternshipList';
 import InternshipDetails from './Mohamed/components/InternshipDetails';
 import ApplyInternship from './Mohamed/components/ApplyInternship';
 import ApplicationStatus from './Mohamed/components/ApplicationStatus';
+import SuggestedCompanies from './Mohamed/components/SuggestedCompanies';
+import CourseList from './Mohamed/components/CourseList';
+import SubmitFinalReport from './Mohamed/components/SubmitFinalReport';
+import NotificationM from './Mohamed/components/Notification';
+import StudentDashboard from './Mohamed/components/StudentDashboard';
+import CompanyDetail from './Mohamed/components/CompanyDetail';
+import ApplicationsList from './Mohamed/components/ApplicationsList';
+import InternshipsForStudent from './Mohamed/components/InternshipsForStudent';
+import EditProfile from './Mohamed/components/EditProfile';
+
+// === Youssef Components ===
+import ProStudentExtras from './youssef/ProStudentExtras';
+import Meeting from './youssef/Meeting';
+import CompaniesViewed from './youssef/CompaniesViewed';
+import OnlineAssessments from './youssef/OnlineAssessments';
+import FlaggedReports from './youssef/FlaggedReports';
+import WorkshopPage from './youssef/WorkshopPage';
+import LiveWorkshopPage from './youssef/LiveWorkShopPage';
+import CompletedWorkshops from './youssef/CompletedWorkshops';
+import UpcomingWorkshopsPage from './youssef/UpcomingWorkshopsPage';
+import WorkshopRecordings from './youssef/WorkshopRecordings';
+
+// === Company Pages ===
 import RegisterCompany from './pages/company/RegisterCompany';
 import ManageInternshipPosts from './pages/company/ManageInternshipPosts';
 import PostList from './pages/company/PostList';
@@ -28,54 +130,17 @@ import Interns from './pages/company/Interns';
 import InternProfile from './pages/company/InternProfile';
 import StudentEvaluation from './pages/company/StudentEvaluation';
 import ReportDownload from './pages/company/ReportDownload';
-import Login from './pages/Login';
-import SuggestedCompanies from './Mohamed/components/SuggestedCompanies';
 import UploadDocs from './pages/company/UploadDocs';
 import Notifications from './pages/company/Notifications';
 import ApplicationAlerts from './pages/company/ApplicationAlerts';
-import CourseList from './Mohamed/components/CourseList';
-import SubmitFinalReport from './Mohamed/components/SubmitFinalReport';
-import NotificationM from './Mohamed/components/Notification';
-import StudentDashboard from './Mohamed/components/StudentDashboard'; // New Dashboard component
-import CompanyDetail from './Mohamed/components/CompanyDetail';
-import ApplicationsList from './Mohamed/components/ApplicationsList';
-import InternshipsForStudent from './Mohamed/components/InternshipsForStudent';
-import ProStudentExtras from './youssef/ProStudentExtras';
-import Meeting from './youssef/Meeting';
-import CompaniesViewed from './youssef/CompaniesViewed';
-import OnlineAssessments from './youssef/OnlineAssessments';
-import FlaggedReports from './youssef/FlaggedReports'
-import WorkshopPage from './youssef/WorkshopPage';
-import LiveWorkshopPage from './youssef/LiveWorkShopPage';
-import CompletedWorkshops from './youssef/CompletedWorkshops';
-import UpcomingWorkshopsPage from './youssef/UpcomingWorkshopsPage';
-import WorkshopRecordings from './youssef/WorkshopRecordings';
 
-// Import individual feature components
-import EditProfile from './Mohamed/components/EditProfile';
-import MajorsList from './Mohamed/components/MajorsList';
-import SelectMajorSemester from './Mohamed/components/SelectMajorSemester';
-import InternshipsList from './Mohamed/components/InternshipList';
-import InternshipDetails from './Mohamed/components/InternshipDetails';
-import ApplyInternship from './Mohamed/components/ApplyInternship';
-import ApplicationStatus from './Mohamed/components/ApplicationStatus';
+// === Common Pages ===
+import Login from './pages/Login';
 
-import CourseList from './Mohamed/components/CourseList';
-
-import SubmitFinalReport from './Mohamed/components/SubmitFinalReport';
-import Notification from './Mohamed/components/Notification';
-import StudentDashboard from './Mohamed/components/StudentDashboard'; // New Dashboard component
-import CompanyDetail from './Mohamed/components/CompanyDetail';
-import ApplicationsList from './Mohamed/components/ApplicationsList';
-import InternshipsForStudent from './Mohamed/components/InternshipsForStudent';
-
-//faculty member routes
+// === Faculty Member Routes ===
 import FaculutyInternshipReports from './FaculutyMember/Pages/FaculutyInternshipReports';
 import FaculutyInternshipReportDetails from './FaculutyMember/Pages/FaculutyInternshipReportDetails';
 import FaculutyStatistics from './FaculutyMember/Pages/FaculutyStatistics';
-//end of faculty member routes
-
-
 
 
 

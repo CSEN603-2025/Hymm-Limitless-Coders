@@ -118,8 +118,14 @@ import "../css/CompanyDetail.css";
 const LOCAL_STORAGE_KEY = 'companyEvaluations';
 
 const CompanyDetail = () => {
+
+const role = localStorage.getItem('role');
+ const selectedCompanies = role === 'prostudent' ? companies.pro : companies.regular;
+
+
+
   const { id } = useParams();
-  const company = companies.find(c => c.id === parseInt(id));
+  const company = selectedCompanies.find(c => c.id === parseInt(id));
   const companyId = company?.id;
 
   const [evaluations, setEvaluations] = useState({});
