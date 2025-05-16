@@ -238,22 +238,16 @@ function GlobalNavbar() {
             </li>
           ))}
         </ul>
-        
         {showRightArrow && (
-          <button 
-            className="navbar-scroll-arrow navbar-scroll-right" 
-            onClick={() => {
-  setIsMenuOpen(false);
-  if (page.label === 'Notifications') {
-    handleNotificationClick();
-  }
-}}
+  <button 
+    className="navbar-scroll-arrow navbar-scroll-right" 
+    onClick={() => scrollMenu('right')}
+    aria-label="Scroll menu right"
+  >
+    ▶
+  </button>
+)}
 
-            aria-label="Scroll menu right"
-          >
-            ▶
-          </button>
-        )}
       </div>
       
       <div className="navbar-actions">

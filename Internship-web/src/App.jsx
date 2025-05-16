@@ -17,7 +17,7 @@ import CallInterface from './NaggarComponents/Pages/CallInterface';
 import Notification from './NaggarComponents/Pages/Notification';
 import OnlineWorkshop from './NaggarComponents/Pages/OnlineWorkshop';
 import ScadAppointmentPage from './NaggarComponents/Pages/SCADAppPage';
-import StudentProfile from './NaggarComponents/Pages/StudentProfile'
+import StudentProfile from './NaggarComponents/Pages/StudentProfile';
 
 // === Mohamed Components ===
 import MajorsList from './Mohamed/components/MajorsList';
@@ -29,12 +29,19 @@ import ApplicationStatus from './Mohamed/components/ApplicationStatus';
 import SuggestedCompanies from './Mohamed/components/SuggestedCompanies';
 import CourseList from './Mohamed/components/CourseList';
 import SubmitFinalReport from './Mohamed/components/SubmitFinalReport';
-import NotificationM from './Mohamed/components/Notification';
+import NotificationM from './Mohamed/components/Notification'; // Consider renaming this to avoid confusion
 import StudentDashboard from './Mohamed/components/StudentDashboard';
 import CompanyDetail from './Mohamed/components/CompanyDetail';
 import ApplicationsList from './Mohamed/components/ApplicationsList';
 import InternshipsForStudent from './Mohamed/components/InternshipsForStudent';
 import EditProfile from './Mohamed/components/EditProfile';
+import UploadDocs from './Mohamed/components/UploadDocument';
+import PastInternships from './Mohamed/components/PastInternships';
+import FilterPastInternships from './Mohamed/components/FilterPastInternships';
+import CompanyEvaluation from './Mohamed/components/CompanyEvaluation';
+import InternshipReport from './Mohamed/components/InternshipReport';
+import SelectHelpfulCourses from './Mohamed/components/SelectHelpfulCourses';
+import AllCompanies from './Mohamed/components/AllCompanies';
 
 // === Youssef Components ===
 import ProStudentExtras from './youssef/ProStudentExtras';
@@ -57,7 +64,6 @@ import Interns from './pages/company/Interns';
 import InternProfile from './pages/company/InternProfile';
 import StudentEvaluation from './pages/company/StudentEvaluation';
 import ReportDownload from './pages/company/ReportDownload';
-import UploadDocs from './pages/company/UploadDocs';
 import Notifications from './pages/company/Notifications';
 import ApplicationAlerts from './pages/company/ApplicationAlerts';
 
@@ -69,28 +75,6 @@ import FaculutyInternshipReports from './FaculutyMember/Pages/FaculutyInternship
 import FaculutyInternshipReportDetails from './FaculutyMember/Pages/FaculutyInternshipReportDetails';
 import FaculutyStatistics from './FaculutyMember/Pages/FaculutyStatistics';
 
-import AllCompanies from './Mohamed/components/AllCompanies';
-
-// Import individual feature components
-import EditProfile from './Mohamed/components/EditProfile';
-import MajorsList from './Mohamed/components/MajorsList';
-import SelectMajorSemester from './Mohamed/components/SelectMajorSemester';
-import InternshipsList from './Mohamed/components/InternshipList';
-import InternshipDetails from './Mohamed/components/InternshipDetails';
-import ApplyInternship from './Mohamed/components/ApplyInternship';
-import UploadDocs from './Mohamed/components/UploadDocument';
-import ApplicationStatus from './Mohamed/components/ApplicationStatus';
-import PastInternships from './Mohamed/components/PastInternships';
-import FilterPastInternships from './Mohamed/components/FilterPastInternships';
-import CompanyEvaluation from './Mohamed/components/CompanyEvaluation';
-import InternshipReport from './Mohamed/components/InternshipReport';
-import CourseList from './Mohamed/components/CourseList';
-import SelectHelpfulCourses from './Mohamed/components/SelectHelpfulCourses';
-import SubmitFinalReport from './Mohamed/components/SubmitFinalReport';
-import Notification from './Mohamed/components/Notification';
-import StudentDashboard from './Mohamed/components/StudentDashboard'; // New Dashboard component
-import CompanyDetail from './Mohamed/components/CompanyDetail';
-import ApplicationsList from './Mohamed/components/ApplicationsList';
 
 
 function App() {
