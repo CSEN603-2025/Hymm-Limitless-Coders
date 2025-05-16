@@ -30,13 +30,16 @@ const SCADPages = [
 const StudentPages = [
   { path: '/Student', label: 'Dashboard' },
   { path: '/suggested-companies', label: 'Suggested Companies' },
+  { path: '/companies', label: 'All Companies' },
   { path: '/edit-profile', label: 'Edit Profile' },
   { path: '/majors', label: 'Majors' },
   { path: '/internships', label: 'Internships' },
   { path: '/past-present-internships', label: 'Past & Present Internships' },
   { path: '/applications', label: 'Applications' },
   { path: '/course-list', label: 'Courses' },
-  { path: '/submit-final-report', label: 'Submit Final Report' }
+  { path: '/submit-final-report', label: 'Submit Final Report' },
+  
+
 ];
 
 const facultyPages = [
