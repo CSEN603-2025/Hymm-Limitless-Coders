@@ -8,7 +8,7 @@ import './navbar.css';
 const companyPages = [
   { path: '/company/upload-docs', label: 'Upload Docs' },
   { path: '/company/notifications', label: 'Notifications' },
-  { path: '/company/manage-posts', label: 'Internship Post' },
+  { path: '/company/manage-posts', label: 'Internship Post(s)' },
   { path: '/company/app-alerts', label: 'Notification(s)' },
   { path: '/company/posts', label: 'Posts' },
   { path: '/company/applications', label: 'Applications' },

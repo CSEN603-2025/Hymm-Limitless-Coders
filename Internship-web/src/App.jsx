@@ -69,6 +69,7 @@ import FaculutyStatistics from './FaculutyMember/Pages/FaculutyStatistics';
 
 
 
+
 function App() {
   return (
     <Routes>
@@ -125,6 +126,9 @@ function App() {
       
       <Route path="/company/register" element={<RegisterCompany />} />
       <Route path="/company/manage-posts" element={<ManageInternshipPosts />} />
+      {/* added sth here       */}
+      <Route path="/company/manage-posts/:id" element={<ManageInternshipPosts />} />
+
       <Route path="/company/posts" element={<PostList />} />
       <Route path="/company/applications" element={<ApplicationsDashboard />} />
       <Route path="/company/interns" element={<Interns />} />
@@ -158,7 +162,12 @@ function App() {
       <Route path="/faculty/internship-reports/:id" element={<FaculutyInternshipReportDetails />} />
       <Route path="/faculty/statistics" element={<FaculutyStatistics />} />
 
+
+
+
     </Routes>
+
+    
    
   );
 }
