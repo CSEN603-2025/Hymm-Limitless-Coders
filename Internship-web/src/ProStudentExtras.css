@@ -314,10 +314,10 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-.pro-badge {
+.pro-badge2 {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 140px;
+  right: 190px;
   background-color: #10B981;
   color: white;
   padding: 8px 16px;
@@ -392,7 +392,7 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .pro-badge {
+  .pro-badge2 {
     position: static;
     margin-bottom: 16px;
     text-align: center;

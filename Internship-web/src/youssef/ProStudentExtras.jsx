@@ -24,10 +24,7 @@ export default function ProStudentExtras() {
           <button onClick={() => navigate('/flaggedreports')} className="pro-button">View</button>
         </div>
 
-        <div className="pro-feature">
-          <p className="pro-label">Join Meeting</p>
-          <button onClick={() => navigate('/meeting')} className="pro-button">View</button>
-        </div>
+       
 
         <div className="pro-feature">
           <p className="pro-label">Companies That Viewed My Profile</p>

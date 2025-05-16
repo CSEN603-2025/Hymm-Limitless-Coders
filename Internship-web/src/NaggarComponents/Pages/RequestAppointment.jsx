@@ -1,224 +1,303 @@
-import { useState } from "react";
-import "../Styles/requestApp.css"; // Link to styles.css
-
-export default function RequestAppointment({ setHasAppointment }) {
+import React, { useState } from 'react';
+import "../Styles/RequestApp.css";
+/**
+ * Appointment Request Page for PRO Students to schedule video calls
+ * with SCAD Office for career guidance and report clarifications
+ */
+const RequestAppointment = () => {
+  // State for form fields
   const [formData, setFormData] = useState({
-    name: "", 
-    email: "",
-    phone: "",
-    date: "",
-    time: "",
-    reason: "",
-    urgent: false
+    studentName: '',
+    studentId: '',
+    email: '',
+    contactNumber: '',
+    appointmentDate: '',
+    appointmentTime: '',
+    appointmentType: 'career-guidance',
+    description: '',
   });
-  const [loading, setLoading] = useState(false);
+
+  // State for form errors
   const [errors, setErrors] = useState({});
+  
+  // State for form submission status
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const validateForm = () => {
-    const newErrors = {};
-    
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
-    }
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
-    if (!formData.date) newErrors.date = "Date is required";
-    if (!formData.time) newErrors.time = "Time is required";
-    if (!formData.reason.trim()) newErrors.reason = "Reason is required";
-    
-    return newErrors;
-  };
+  // Available time slots
+  const timeSlots = [
+    '09:00 AM', '10:00 AM', '11:00 AM', 
+    '12:00 PM', '02:00 PM', '03:00 PM', '04:00 PM'
+  ];
 
+  // Handle input changes
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value
+      [name]: value
     });
     
     // Clear error for this field when user starts typing
     if (errors[name]) {
       setErrors({
         ...errors,
-        [name]: ""
+        [name]: ''
       });
     }
   };
 
-  const handleSubmit = async (e) => {
+  // Form validation
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.studentName.trim()) newErrors.studentName = 'Student name is required';
+    if (!formData.studentId.trim()) newErrors.studentId = 'Student ID is required';
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+    
+    if (!formData.contactNumber.trim()) {
+      newErrors.contactNumber = 'Contact number is required';
+    } else if (!/^\d{10}$/.test(formData.contactNumber.replace(/[- ]/g, ''))) {
+      newErrors.contactNumber = 'Contact number must be 10 digits';
+    }
+    
+    if (!formData.appointmentDate) newErrors.appointmentDate = 'Appointment date is required';
+    if (!formData.appointmentTime) newErrors.appointmentTime = 'Appointment time is required';
+    if (!formData.description.trim()) newErrors.description = 'Brief description is required';
+    
+    return newErrors;
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Validate form
     const formErrors = validateForm();
+    
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
       return;
     }
     
-    // Simulate API call
-    setLoading(true);
-    try {
-      // Simulate network delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setHasAppointment(true);
-      alert("Your appointment request has been submitted successfully! We'll contact you shortly.");
-    } catch (error) {
-      alert("There was an error submitting your request. Please try again.");
-    } finally {
-      setLoading(false);
-    }
+    // Submit form data to backend (simulated)
+    console.log('Form submitted:', formData);
+    setIsSubmitted(true);
   };
 
-  const today = new Date().toISOString().split("T")[0];
+  // Get minimum date (tomorrow)
+  const getMinDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
+  };
+
+  // Reset form to submit another appointment
+  const handleReset = () => {
+    setFormData({
+      studentName: '',
+      studentId: '',
+      email: '',
+      contactNumber: '',
+      appointmentDate: '',
+      appointmentTime: '',
+      appointmentType: 'career-guidance',
+      description: '',
+    });
+    setIsSubmitted(false);
+  };
 
   return (
-    <div className="page-wrapper"> {/* Same wrapper as StudentList */}
-      <main className="main-container"> {/* Offset for nav */}
-        <header className="header">
-          <h1 className="header-title">Request an Appointment</h1>
-        </header>
-        <section className="form-section">
-          <p className="form-subtitle">Please fill out the form below and we'll get back to you soon.</p>
-          <form onSubmit={handleSubmit} className="appointment-form">
-            <div className="form-group">
-              <label htmlFor="name" className="label">Full Name:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className={`input ${errors.name ? "input-error" : ""}`}
-                placeholder="Enter your full name"
-                aria-invalid={!!errors.name}
-                aria-describedby={errors.name ? "name-error" : undefined}
-              />
-              {errors.name && <span id="name-error" className="error-message">{errors.name}</span>}
-            </div>
-            
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="email" className="label">Email Address:</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className={`input ${errors.email ? "input-error" : ""}`}
-                  placeholder="example@email.com"
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? "email-error" : undefined}
-                />
-                {errors.email && <span id="email-error" className="error-message">{errors.email}</span>}
+    <div className="page-container">
+      <main className="main-content">
+        <section className="card appointment-card">
+          <div className="card-header">
+            <h2>Request an Appointment</h2>
+            <p className="subtitle">Schedule a video call with SCAD Office for career guidance or report clarifications</p>
+          </div>
+
+          {!isSubmitted ? (
+            <form className="form appointment-form" onSubmit={handleSubmit}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="studentName" className="label">Full Name</label>
+                  <input 
+                    type="text" 
+                    id="studentName" 
+                    name="studentName" 
+                    className={`input ${errors.studentName ? 'input-error' : ''}`}
+                    value={formData.studentName}
+                    onChange={handleChange}
+                    placeholder="Enter your full name"
+                  />
+                  {errors.studentName && <p className="error-text">{errors.studentName}</p>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="studentId" className="label">Student ID</label>
+                  <input 
+                    type="text" 
+                    id="studentId" 
+                    name="studentId" 
+                    className={`input ${errors.studentId ? 'input-error' : ''}`}
+                    value={formData.studentId}
+                    onChange={handleChange}
+                    placeholder="Enter your student ID"
+                  />
+                  {errors.studentId && <p className="error-text">{errors.studentId}</p>}
+                </div>
               </div>
-              
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="email" className="label">Email Address</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    className={`input ${errors.email ? 'input-error' : ''}`}
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email address"
+                  />
+                  {errors.email && <p className="error-text">{errors.email}</p>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="contactNumber" className="label">Contact Number</label>
+                  <input 
+                    type="tel" 
+                    id="contactNumber" 
+                    name="contactNumber" 
+                    className={`input ${errors.contactNumber ? 'input-error' : ''}`}
+                    value={formData.contactNumber}
+                    onChange={handleChange}
+                    placeholder="Enter your contact number"
+                  />
+                  {errors.contactNumber && <p className="error-text">{errors.contactNumber}</p>}
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="appointmentDate" className="label">Preferred Date</label>
+                  <input 
+                    type="date" 
+                    id="appointmentDate" 
+                    name="appointmentDate" 
+                    className={`input ${errors.appointmentDate ? 'input-error' : ''}`}
+                    value={formData.appointmentDate}
+                    onChange={handleChange}
+                    min={getMinDate()}
+                  />
+                  {errors.appointmentDate && <p className="error-text">{errors.appointmentDate}</p>}
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="appointmentTime" className="label">Preferred Time</label>
+                  <select 
+                    id="appointmentTime" 
+                    name="appointmentTime" 
+                    className={`input ${errors.appointmentTime ? 'input-error' : ''}`}
+                    value={formData.appointmentTime}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select a time slot</option>
+                    {timeSlots.map((time) => (
+                      <option key={time} value={time}>{time}</option>
+                    ))}
+                  </select>
+                  {errors.appointmentTime && <p className="error-text">{errors.appointmentTime}</p>}
+                </div>
+              </div>
+
               <div className="form-group">
-                <label htmlFor="phone" className="label">Phone Number:</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
+                <label className="label">Appointment Type</label>
+                <div className="radio-group">
+                  <div className="radio-option">
+                    <input 
+                      type="radio" 
+                      id="career-guidance" 
+                      name="appointmentType" 
+                      value="career-guidance"
+                      checked={formData.appointmentType === 'career-guidance'}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor="career-guidance">Career Guidance</label>
+                  </div>
+                  <div className="radio-option">
+                    <input 
+                      type="radio" 
+                      id="report-clarifications" 
+                      name="appointmentType" 
+                      value="report-clarifications"
+                      checked={formData.appointmentType === 'report-clarifications'}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor="report-clarifications">Report Clarifications</label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="description" className="label">Brief Description</label>
+                <textarea 
+                  id="description" 
+                  name="description" 
+                  className={`input textarea ${errors.description ? 'input-error' : ''}`}
+                  value={formData.description}
                   onChange={handleChange}
-                  className={`input ${errors.phone ? "input-error" : ""}`}
-                  placeholder="(123) 456-7890"
-                  aria-invalid={!!errors.phone}
-                  aria-describedby={errors.phone ? "phone-error" : undefined}
-                />
-                {errors.phone && <span id="phone-error" className="error-message">{errors.phone}</span>}
+                  placeholder="Please provide a brief description of your query"
+                  rows="4"
+                ></textarea>
+                {errors.description && <p className="error-text">{errors.description}</p>}
+              </div>
+
+              <div className="form-actions">
+                <button type="submit" className="btn-primary">Request Appointment</button>
+              </div>
+            </form>
+          ) : (
+            <div className="success-message">
+              <div className="success-icon">✓</div>
+              <h3>Appointment Request Submitted!</h3>
+              <p>Your appointment request has been successfully submitted. You will receive a confirmation email with the video call link once your appointment is confirmed.</p>
+              <p className="appointment-details">
+                <strong>Appointment Details:</strong><br />
+                Date: {formData.appointmentDate}<br />
+                Time: {formData.appointmentTime}<br />
+                Type: {formData.appointmentType === 'career-guidance' ? 'Career Guidance' : 'Report Clarifications'}
+              </p>
+              <div className="form-actions">
+                <button type="button" className="btn-primary" onClick={handleReset}>Request Another Appointment</button>
               </div>
             </div>
-            
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="date" className="label">Preferred Date:</label>
-                <input
-                  type="date"
-                  id="date"
-                  name="date"
-                  min={today}
-                  value={formData.date}
-                  onChange={handleChange}
-                  className={`input ${errors.date ? "input-error" : ""}`}
-                  aria-invalid={!!errors.date}
-                  aria-describedby={errors.date ? "date-error" : undefined}
-                />
-                {errors.date && <span id="date-error" className="error-message">{errors.date}</span>}
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="time" className="label">Preferred Time:</label>
-                <select
-                  id="time"
-                  name="time"
-                  value={formData.time}
-                  onChange={handleChange}
-                  className={`input select-input ${errors.time ? "input-error" : ""}`}
-                  aria-invalid={!!errors.time}
-                  aria-describedby={errors.time ? "time-error" : undefined}
-                >
-                  <option value="">Select a time</option>
-                  <option value="morning">Morning (9am - 12pm)</option>
-                  <option value="afternoon">Afternoon (12pm - 4pm)</option>
-                  <option value="evening">Evening (4pm - 7pm)</option>
-                </select>
-                {errors.time && <span id="time-error" className="error-message">{errors.time}</span>}
-              </div>
-            </div>
-            
-            <div className="form-group">
-              <label htmlFor="reason" className="label">Reason for Appointment:</label>
-              <textarea
-                id="reason"
-                name="reason"
-                value={formData.reason}
-                onChange={handleChange}
-                rows="4"
-                className={`input textarea ${errors.reason ? "input-error" : ""}`}
-                placeholder="Please describe your reason for the appointment..."
-                aria-invalid={!!errors.reason}
-                aria-describedby={errors.reason ? "reason-error" : undefined}
-              ></textarea>
-              {errors.reason && <span id="reason-error" className="error-message">{errors.reason}</span>}
-            </div>
-            
-            <div className="form-group checkbox-group">
-              <input
-                type="checkbox"
-                id="urgent"
-                name="urgent"
-                checked={formData.urgent}
-                onChange={handleChange}
-                className="checkbox-input"
-                data-tooltip="Mark as urgent for priority scheduling"
-              />
-              <label htmlFor="urgent" className="checkbox-label">This is an urgent matter</label>
-            </div>
-            
-            <div className="form-actions">
-              <button 
-                type="submit" 
-                className="btn-primary" 
-                disabled={loading}
-                data-tooltip="Submit your appointment request"
-              >
-                {loading ? (
-                  <span className="loading-spinner">Submitting...</span>
-                ) : (
-                  "Request Appointment"
-                )}
-              </button>
-            </div>
-            
-            <p className="form-note">
-              * We will confirm your appointment via email or phone within 24 hours.
-            </p>
-          </form>
+          )}
+        </section>
+
+        <section className="card info-card">
+          <div className="card-header">
+            <h3>Appointment Guidelines</h3>
+          </div>
+          <div className="card-content">
+            <ul className="guideline-list">
+              <li>Appointments must be requested at least 24 hours in advance.</li>
+              <li>Video calls are available only for students with confirmed appointments.</li>
+              <li>Please be on time for your scheduled appointment.</li>
+              <li>If you need to cancel or reschedule, please do so at least 4 hours before your appointment.</li>
+              <li>Prepare specific questions or concerns you would like to discuss during the call.</li>
+              <li>Technical issues should be reported to the IT helpdesk.</li>
+            </ul>
+          </div>
         </section>
       </main>
+
+     
     </div>
   );
-}
+};
+
+export default RequestAppointment;

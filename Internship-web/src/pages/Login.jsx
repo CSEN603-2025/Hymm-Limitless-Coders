@@ -59,10 +59,10 @@ const Login = () => {
         navigate('/company');
       } else if (role === 'admin') {
         localStorage.setItem('role', 'scad');
-        navigate('/SCAD'); // Admin dashboard
+        navigate('/SCAD/Dashboard'); // Admin dashboard
       } else if (role === 'faculty') {
         localStorage.setItem('role', 'faculty');
-        navigate('/faculty/faculty/internship-reports'); // Faculty dashboard
+        navigate('/faculty/internship-reports'); // Faculty dashboard
       }
 
       setError('');
@@ -92,6 +92,7 @@ const Login = () => {
               <option value="student">Student</option>
               <option value="company">Company</option>
               <option value="admin">Admin</option>
+              <option value="faculty">Faculty</option>
             </select>
           </div>
 

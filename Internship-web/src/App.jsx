@@ -16,6 +16,8 @@ import ManageAppointments from './NaggarComponents/Pages/ManageAppointments';
 import CallInterface from './NaggarComponents/Pages/CallInterface';
 import Notification from './NaggarComponents/Pages/Notification';
 import OnlineWorkshop from './NaggarComponents/Pages/OnlineWorkshop';
+import ScadAppointmentPage from './NaggarComponents/Pages/SCADAppPage';
+import StudentProfile from './NaggarComponents/Pages/StudentProfile'
 // === Mohamed Components ===
 import MajorsList from './Mohamed/components/MajorsList';
 import SelectMajorSemester from './Mohamed/components/SelectMajorSemester';
@@ -66,6 +68,7 @@ import FaculutyInternshipReports from './FaculutyMember/Pages/FaculutyInternship
 import FaculutyInternshipReportDetails from './FaculutyMember/Pages/FaculutyInternshipReportDetails';
 import FaculutyStatistics from './FaculutyMember/Pages/FaculutyStatistics';
 
+import AllCompanies from './Mohamed/components/AllCompanies';
 
 
 
@@ -94,6 +97,8 @@ function App() {
       />
       <Route path="SCAD/notifications" element={<Notification />} />
       <Route path="SCAD/online-workshop" element={<OnlineWorkshop />} />
+      <Route path="SCAD/appointment" element={<ScadAppointmentPage />} />
+      <Route path="SCAD/student/:id" element={<StudentProfile />} />
       {/* end of SCAD routes */}
 
 
@@ -116,6 +121,7 @@ function App() {
       <Route path="/past-present-internships" element={<InternshipsForStudent/>} />
       <Route path="/course-list" element={<CourseList />} />
       <Route path="/submit-final-report" element={<SubmitFinalReport />} />
+      <Route path="/companies" element={<AllCompanies />} />
 
 
 

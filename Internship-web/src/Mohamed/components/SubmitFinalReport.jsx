@@ -1,11 +1,15 @@
+
+
+
 // import React, { useState, useEffect } from 'react';
-// import '../css/SubmitFinalReport.css'; // 👈 Add this CSS file
+// import '../css/SubmitFinalReport.css';
 
 // const SubmitFinalReport = () => {
 //   const [reportFile, setReportFile] = useState(null);
 //   const [reportStatus, setReportStatus] = useState(null);
 //   const [appealMessage, setAppealMessage] = useState('');
 //   const [appealSubmitted, setAppealSubmitted] = useState(false);
+//   const [notification, setNotification] = useState('');
 
 //   useEffect(() => {
 //     const savedStatus = localStorage.getItem('reportStatus');
@@ -14,18 +18,32 @@
 //     }
 //   }, []);
 
+//   // Show notification on any status change
+//   useEffect(() => {
+//     if (reportStatus) {
+//       const message = `Report status : ${reportStatus}`;
+//       setNotification(message);
 
+//       const timer = setTimeout(() => {
+//         setNotification('');
+//       }, 4000);
+
+//       return () => clearTimeout(timer);
+//     }
+//   }, [reportStatus]);
+
+//   // Simulate status change from Pending to Rejected
 //   useEffect(() => {
 //     if (reportStatus === 'Pending') {
 //       const timer = setTimeout(() => {
-//         localStorage.setItem('reportStatus', 'Rejected');
-//         setReportStatus('Rejected');
-//       }, 3000); // 4 seconds
-  
-//       return () => clearTimeout(timer); // cleanup in case component unmounts
+//         const newStatus = 'Rejected';
+//         localStorage.setItem('reportStatus', newStatus);
+//         setReportStatus(newStatus);
+//       }, 4000);
+
+//       return () => clearTimeout(timer);
 //     }
 //   }, [reportStatus]);
-  
 
 //   const handleReportSubmit = (e) => {
 //     e.preventDefault();
@@ -50,11 +68,20 @@
 //     setAppealSubmitted(true);
 //     alert('Your appeal has been submitted successfully.');
 //     localStorage.setItem('reportStatus', 'Pending');
-//     setReportStatus("Pending");
+//     setReportStatus('Pending');
+//     setAppealMessage('');
 //   };
 
 //   return (
 //     <div className="report-container" style={{ paddingTop: '200px' }}>
+//       {/* {notification && <div className="custom-notification">{notification}</div>} */}
+//       {notification && (
+//   <div className={`custom-notification ${reportStatus?.toLowerCase()}`}>
+//     {notification}
+//   </div>
+// )}
+
+
 //       <h2 className="report-title">Final Internship Report Submission</h2>
 
 //       {!reportStatus && (
@@ -115,6 +142,9 @@
 
 
 
+
+
+
 import React, { useState, useEffect } from 'react';
 import '../css/SubmitFinalReport.css';
 
@@ -135,7 +165,7 @@ const SubmitFinalReport = () => {
   // Show notification on any status change
   useEffect(() => {
     if (reportStatus) {
-      const message = `Report status : ${reportStatus}`;
+      const message = `Report status: ${reportStatus}`;
       setNotification(message);
 
       const timer = setTimeout(() => {
@@ -146,11 +176,15 @@ const SubmitFinalReport = () => {
     }
   }, [reportStatus]);
 
-  // Simulate status change from Pending to Rejected
+  // Simulate status change from Pending to Rejected (1st) or Accepted (2nd)
   useEffect(() => {
     if (reportStatus === 'Pending') {
       const timer = setTimeout(() => {
-        const newStatus = 'Rejected';
+        const reviewCount = parseInt(localStorage.getItem('reportReviewCount') || '0', 10);
+        const newReviewCount = reviewCount + 1;
+        localStorage.setItem('reportReviewCount', newReviewCount);
+
+        const newStatus = newReviewCount === 1 ? 'Rejected' : 'Accepted';
         localStorage.setItem('reportStatus', newStatus);
         setReportStatus(newStatus);
       }, 4000);
@@ -166,9 +200,8 @@ const SubmitFinalReport = () => {
       return;
     }
 
-    const initialStatus = 'Pending';
-    localStorage.setItem('reportStatus', initialStatus);
-    setReportStatus(initialStatus);
+    localStorage.setItem('reportStatus', 'Pending');
+    setReportStatus('Pending');
     alert('Final report submitted successfully and is now pending review.');
   };
 
@@ -186,15 +219,23 @@ const SubmitFinalReport = () => {
     setAppealMessage('');
   };
 
+  // Dev-only reset for testing
+  // const resetSubmission = () => {
+  //   localStorage.removeItem('reportStatus');
+  //   localStorage.removeItem('reportReviewCount');
+  //   setReportStatus(null);
+  //   setReportFile(null);
+  //   setAppealMessage('');
+  //   setAppealSubmitted(false);
+  // };
+
   return (
     <div className="report-container" style={{ paddingTop: '200px' }}>
-      {/* {notification && <div className="custom-notification">{notification}</div>} */}
       {notification && (
-  <div className={`custom-notification ${reportStatus?.toLowerCase()}`}>
-    {notification}
-  </div>
-)}
-
+        <div className={`custom-notification ${reportStatus?.toLowerCase()}`}>
+          {notification}
+        </div>
+      )}
 
       <h2 className="report-title">Final Internship Report Submission</h2>
 
@@ -247,6 +288,10 @@ const SubmitFinalReport = () => {
           )}
         </div>
       )}
+
+      {/* <button onClick={resetSubmission} className="submit-btn" style={{ marginTop: '20px' }}>
+        Reset Submission (Dev Only)
+      </button> */}
     </div>
   );
 };

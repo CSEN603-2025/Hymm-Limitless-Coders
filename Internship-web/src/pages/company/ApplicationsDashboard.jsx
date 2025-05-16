@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 const mockApplications = [
   { id: 1, applicant: 'Sara Ali', postId: 1, postTitle: 'Frontend Developer Intern', status: 'Pending', email: 'sara@example.com' },
   { id: 2, applicant: 'Omar Yehia', postId: 2, postTitle: 'Pharma Research Intern', status: 'Pending', email: 'omar@example.com' },
-  { id: 3, applicant: 'Lina Nasser', postId: 1, postTitle: 'Frontend Developer Intern', status: 'Pending', email: 'lina@example.com' },
+  { id: 3, applicant: 'Lina Nasser', postId: 1, postTitle: 'Marketing Intern', status: 'Pending', email: 'lina@example.com' },
 ];
 
 const ApplicationsDashboard = () => {

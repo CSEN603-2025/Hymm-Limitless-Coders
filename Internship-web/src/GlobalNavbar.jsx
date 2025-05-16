@@ -2,11 +2,14 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './navbar.css';
 
+
+
+
 const companyPages = [
   { path: '/company/upload-docs', label: 'Upload Docs' },
   { path: '/company/notifications', label: 'Notifications' },
   { path: '/company/manage-posts', label: 'Internship Post' },
-  { path: '/company/app-alerts', label: 'Notify' },
+  { path: '/company/app-alerts', label: 'Notification(s)' },
   { path: '/company/posts', label: 'Posts' },
   { path: '/company/applications', label: 'Applications' },
   { path: '/company/interns', label: 'Interns Profile' },
@@ -15,22 +18,22 @@ const companyPages = [
 ];
 
 const SCADPages = [
-  { path: '/SCAD/Dashboard', label: 'Company Join List' },
+  { path: '/SCAD/Dashboard', label: 'Dashboard' },
   { path: '/SCAD/InternshipCycle', label: 'Internship Cycle' },
   { path: '/SCAD/StudentList', label: 'Student List' },
   { path: '/SCAD/internship-reports', label: 'Internship Reports' },
   { path: '/SCAD/Statistics', label: 'Statistics' },
-  { path: '/SCAD/RequestAppointment', label: 'Request Appointment' },
+  { path: '/SCAD/appointment', label: 'Appointments' },
   { path: '/SCAD/manage', label: 'Manage Appointments' },
   { path: '/SCAD/call', label: 'Call Interface' },
   { path: '/internships', label: 'Internships' },
-  { path: '/SCAD/online-workshop', label: 'Online Workshop' },
   { path: '/SCAD/notifications', label: 'Notifications' }
 ];
 
 const StudentPages = [
   { path: '/Student', label: 'Dashboard' },
   { path: '/suggested-companies', label: 'Suggested Companies' },
+  { path: '/companies', label: 'All Companies' },
   { path: '/edit-profile', label: 'Edit Profile' },
   { path: '/majors', label: 'Majors' },
   { path: '/internships', label: 'Internships' },
@@ -43,7 +46,6 @@ const StudentPages = [
 const facultyPages = [
   { path: '/faculty/internship-reports', label: 'Internship Reports' },
   { path: '/faculty/statistics', label: 'Statistics' },
-  
 ];
 
 const ProStudentPages = [
@@ -55,12 +57,19 @@ function GlobalNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [role, setRole] = useState('');
-  const [notificationCount] = useState(3); // Example: Dynamic notification count
+  const [notificationCount, setNotificationCount] = useState(1);
   const [theme, setTheme] = useState('light');
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);
   const menuRef = useRef(null);
   const navigate = useNavigate();
+
+
+
+  const handleNotificationClick = () => {
+  setNotificationCount(0);
+};
+
 
   useEffect(() => {
     const storedRole = localStorage.getItem('role');
@@ -101,8 +110,6 @@ function GlobalNavbar() {
         return SCADPages;
       case 'prostudent':
         return ProStudentPages;
-      case 'student':
-        return StudentPages;
       case 'faculty':
         return facultyPages;
       default:
@@ -183,30 +190,41 @@ function GlobalNavbar() {
               <NavLink
                 to={page.path}
                 className={({ isActive }) => `nav-link ${isActive ? 'nav-link-active' : ''}`}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+  setIsMenuOpen(false);
+  if (page.label === 'Notifications') {
+    handleNotificationClick();
+  }
+}}
+
                 aria-label={`Navigate to ${page.label}`}
+
+                
               >
                 <div className="notification-container">
-                  {page.label === 'Notifications' && notificationCount > 0 ? (
-                    <span className="notification-bell-container">
-                      <svg
-                        className="notification-bell"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22ZM18 16V11C18 7.93 16.37 5.36 13.5 4.68V4C13.5 3.17 12.83 2.5 12 2.5C11.17 2.5 10.5 3.17 10.5 4V4.68C7.63 5.36 6 7.92 6 11V16L4 18V19H20V18L18 16Z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                      <span className="notification-badge">{notificationCount}</span>
-                    </span>
-                  ) : (
-                    page.label
-                  )}
+                  {page.label === 'Notifications' ? (
+  <span className="notification-bell-container">
+    <svg
+      className="notification-bell"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22ZM18 16V11C18 7.93 16.37 5.36 13.5 4.68V4C13.5 3.17 12.83 2.5 12 2.5C11.17 2.5 10.5 3.17 10.5 4V4.68C7.63 5.36 6 7.92 6 11V16L4 18V19H20V18L18 16Z"
+        fill="currentColor"
+      />
+    </svg>
+    {notificationCount > 0 && (
+      <span className="notification-badge">{notificationCount}</span>
+    )}
+  </span>
+) : (
+  page.label
+)}
+
                 </div>
               </NavLink>
             </li>
@@ -216,7 +234,13 @@ function GlobalNavbar() {
         {showRightArrow && (
           <button 
             className="navbar-scroll-arrow navbar-scroll-right" 
-            onClick={() => scrollMenu('right')}
+            onClick={() => {
+  setIsMenuOpen(false);
+  if (page.label === 'Notifications') {
+    handleNotificationClick();
+  }
+}}
+
             aria-label="Scroll menu right"
           >
             ▶
