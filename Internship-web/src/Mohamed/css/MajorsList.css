@@ -1,0 +1,80 @@
+/* MajorsList.css */
+
+/* Container for the Majors List */
+.majors-list-container {
+    background-color: #FFFFFF;
+    padding: 32px;
+    margin: 0 auto;
+    max-width: 900px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header for Majors List */
+  .majors-header {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1E3A8A; /* Main color */
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  /* List of Majors */
+  .majors-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .major-item {
+    border: 1px solid #D1D5DB;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .major-item:hover {
+    border-color: #1E3A8A; /* Highlight on hover */
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.1);
+  }
+  
+  /* Major name styling */
+  .major-item h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1E3A8A; /* Main color */
+    margin-bottom: 8px;
+  }
+  
+  /* Text styling for the description */
+  .major-item p {
+    font-size: 16px;
+    color: #7F8C8D;
+    margin: 8px 0;
+  }
+  
+  /* Text styling for Strong text */
+  .major-item strong {
+    font-weight: 600;
+    color: #34495E;
+  }
+  
+  /* Responsive for smaller screens */
+  @media (max-width: 768px) {
+    .majors-list-container {
+      padding: 24px;
+    }
+  
+    .majors-header {
+      font-size: 26px;
+    }
+  
+    .major-item h3 {
+      font-size: 20px;
+    }
+  
+    .major-item p {
+      font-size: 14px;
+    }
+  }
+  

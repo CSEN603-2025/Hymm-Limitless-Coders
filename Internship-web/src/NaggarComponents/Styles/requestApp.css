@@ -1,0 +1,400 @@
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Root Styles */
+:root {
+  --primary: #1E3A8A;
+  --primary-hover: #1E40AF;
+  --secondary: #10B981;
+  --secondary-hover: #059669;
+  --background: #F9FAFB;
+  --text: #1F2937;
+  --accent: #F59E0B;
+  --error: #EF4444;
+  --light-gray: #E5E7EB;
+  --medium-gray: #D1D5DB;
+  --white: #FFFFFF;
+  --success: #10B981;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Navigation Styles */
+.navbar {
+  background: var(--primary);
+  color: var(--white);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-link {
+  color: var(--white);
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.nav-link:hover {
+  background: var(--primary-hover);
+}
+
+.nav-link-active {
+  background: var(--primary-hover);
+  font-weight: 600;
+}
+
+/* Main Content Styles */
+.main-content {
+  flex: 1;
+  max-width: 1200px;
+  width: 100%;
+  padding: 24px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+/* Card Styles */
+.card {
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.card-header {
+  margin-bottom: 16px;
+}
+
+.card-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.card-header h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.subtitle {
+  color: var(--text);
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.card-content {
+  color: var(--text);
+}
+
+/* Form Styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.label {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.input {
+  border: 1px solid var(--medium-gray);
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+}
+
+.input-error {
+  border-color: var(--error);
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.error-text {
+  color: var(--error);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Radio Button Styles */
+.radio-group {
+  display: flex;
+  gap: 16px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.radio-option input[type="radio"] {
+  accent-color: var(--primary);
+  width: 16px;
+  height: 16px;
+}
+
+.radio-option label {
+  font-size: 14px;
+}
+
+/* Button Styles */
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-outline {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.btn-outline:hover {
+  background: rgba(30, 58, 138, 0.05);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+/* Success Message Styles */
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--success);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.success-message h3 {
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.success-message p {
+  color: var(--text);
+  margin-bottom: 16px;
+  max-width: 600px;
+}
+
+.appointment-details {
+  background-color: var(--background);
+  border-radius: 6px;
+  padding: 16px;
+  margin: 16px 0;
+  text-align: left;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Guidelines List Styles */
+.guideline-list {
+  list-style-position: inside;
+  padding-left: 16px;
+}
+
+.guideline-list li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 8px;
+}
+
+.guideline-list li::marker {
+  color: var(--primary);
+}
+
+/* Footer Styles */
+.footer {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-link {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .navbar {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .navbar-links {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .card {
+    padding: 16px;
+  }
+  
+  .card-header h2 {
+    font-size: 22px;
+  }
+  
+  .footer {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .footer-links {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-content {
+    padding: 16px;
+  }
+
+  .form-row {
+    flex-wrap: wrap;
+  }
+}

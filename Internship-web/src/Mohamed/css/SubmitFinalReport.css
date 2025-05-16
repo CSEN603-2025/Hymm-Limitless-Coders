@@ -1,0 +1,118 @@
+.report-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .report-title {
+    color: #1E3A8A;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .report-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .report-form input[type='file'] {
+    padding: 6px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+  }
+  
+  .submit-btn {
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #334ac0;
+  }
+  
+  .status-section {
+    margin-top: 20px;
+  }
+  
+  .status-text {
+    font-weight: bold;
+  }
+  
+  .status-text.accepted {
+    color: green;
+  }
+  
+  .status-text.pending {
+    color: orange;
+  }
+  
+  .status-text.rejected {
+    color: red;
+  }
+  
+  .appeal-section {
+    margin-top: 30px;
+  }
+  
+  .appeal-section textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    resize: vertical;
+    font-size: 14px;
+  }
+  
+  .appeal-msg {
+    color: #2563eb;
+    font-style: italic;
+    margin-top: 10px;
+  }
+  
+
+
+  .custom-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 16px;
+    animation: fadeInOut 4s ease-in-out;
+  }
+  
+  .custom-notification.pending {
+    background-color: orange;
+  }
+  
+  .custom-notification.rejected {
+    background-color: red;
+  }
+  
+  .custom-notification.accepted {
+    background-color: green;
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+  }
+  

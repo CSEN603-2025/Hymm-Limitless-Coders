@@ -1,0 +1,68 @@
+.status-container {
+    padding: 25px;
+    background-color: #f9fafb;
+    border-radius: 12px;
+    max-width: 700px;
+    margin: 30px auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .status-title {
+    color: #1E3A8A;
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .status-detail p {
+    font-size: 16px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  
+  .label {
+    font-weight: 600;
+    color: #1E3A8A;
+    display: inline-block;
+    min-width: 150px;
+  }
+  
+  .not-found {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 18px;
+    margin-top: 40px;
+  }
+  
+
+  .status-detail ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.status-detail ul li {
+  background-color: #e0e7ff; /* soft blue */
+  color: #1e3a8a;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: default;
+  box-shadow: 0 2px 6px rgba(30, 58, 138, 0.15);
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-detail ul li:hover {
+  background-color: #c7d2fe;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+}
+

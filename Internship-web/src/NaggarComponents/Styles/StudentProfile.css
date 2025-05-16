@@ -1,0 +1,79 @@
+/* StudentProfile.css */
+.student-profile-container {
+    min-height: 100vh;
+    background-color: #f4f7fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .student-name {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a3c6d;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .student-detail {
+    font-size: 1.125rem;
+    color: #333333;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 600px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .student-detail:hover {
+    transform: translateY(-2px);
+  }
+  
+  .no-data {
+    font-size: 1.25rem;
+    color: #b91c1c;
+    text-align: center;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 600px) {
+    .student-name {
+      font-size: 1.5rem;
+      padding: 0.75rem;
+    }
+  
+    .student-detail {
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
+  
+    .no-data {
+      font-size: 1rem;
+      padding: 1.5rem;
+    }
+  }
+  
+  /* Accessibility */
+  .student-name:focus,
+  .student-detail:focus,
+  .no-data:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
