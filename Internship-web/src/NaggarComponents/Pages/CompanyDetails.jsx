@@ -13,7 +13,7 @@ function CompanyPage() {
 
   const handleDecision = (newStatus) => {
     updateCompanyStatus(parseInt(id), newStatus);
-    navigate('/SCAD');
+    navigate('/SCAD/Dashboard');
   };
 
   const handleBack = () => {

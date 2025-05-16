@@ -2,15 +2,15 @@ import React from 'react';
 
 const ReportDownload = () => {
   const handleDownloadPDF = () => {
-    alert('Internship report PDF download started (simulated).');
+    alert('Internship report PDF download started.');
   };
 
   const handleDownloadDocument = () => {
-    alert('Uploaded document download started (simulated).');
+    alert('Uploaded document download started.');
   };
 
   const handleDownloadEvaluations = () => {
-    alert('All evaluations document download started (simulated).');
+    alert('All evaluations document download started.');
   };
 
   return (

@@ -18,6 +18,7 @@ import Notification from './NaggarComponents/Pages/Notification';
 import OnlineWorkshop from './NaggarComponents/Pages/OnlineWorkshop';
 import ScadAppointmentPage from './NaggarComponents/Pages/SCADAppPage';
 import StudentProfile from './NaggarComponents/Pages/StudentProfile'
+
 // === Mohamed Components ===
 import MajorsList from './Mohamed/components/MajorsList';
 import SelectMajorSemester from './Mohamed/components/SelectMajorSemester';
@@ -99,6 +100,7 @@ function App() {
       <Route path="SCAD/online-workshop" element={<OnlineWorkshop />} />
       <Route path="SCAD/appointment" element={<ScadAppointmentPage />} />
       <Route path="SCAD/student/:id" element={<StudentProfile />} />
+     
       {/* end of SCAD routes */}
 
 
@@ -140,6 +142,8 @@ function App() {
       <Route path="/company/upload-docs" element={<UploadDocs />} />
       <Route path="/company/notifications" element={<Notifications />} />
       <Route path="/company/app-alerts" element={<ApplicationAlerts />} />
+       {/* added sth here       */}
+       <Route path="/company/manage-posts/:id" element={<ManageInternshipPosts />} />
 
 
 

@@ -22,11 +22,12 @@ export const initialReports = Array.from({ length: 50 }, (_, i) => {
     startDate: `2024-0${(i % 6) + 1}-01`,
     endDate: `2024-0${(i % 6) + 2}-30`,
     status: statuses[i % statuses.length],
+    comments: [], // Initialize comments array
   };
 });
 
-export const initialEvaluations = Array.from({ length: 100 }, (_, i) => {
-  const reportId = (i % 50) + 1;
+export const initialEvaluations = Array.from({ length: 50 }, (_, i) => {
+  const reportId = i + 1;
   const report = initialReports.find(r => r.id === reportId);
   const courses = ['CSEN703', 'CSEN707', 'CSEN701', 'CSEN704'];
 
@@ -49,9 +50,20 @@ export function ReportProvider({ children }) {
   const [reports, setReports] = useState(initialReports);
   const [evaluations] = useState(initialEvaluations);
 
-  const updateReportStatus = (id, newStatus) => {
+  const updateReportStatus = (id, newStatus, newComment = null, deleteCommentId = null) => {
     setReports(prev =>
-      prev.map(r => (r.id === parseInt(id) ? { ...r, status: newStatus } : r))
+      prev.map(r => {
+        if (r.id === parseInt(id)) {
+          let updatedComments = r.comments || [];
+          if (newComment) {
+            updatedComments = [...updatedComments, newComment];
+          } else if (deleteCommentId) {
+            updatedComments = updatedComments.filter(c => c.id !== deleteCommentId);
+          }
+          return { ...r, status: newStatus, comments: updatedComments };
+        }
+        return r;
+      })
     );
   };
 

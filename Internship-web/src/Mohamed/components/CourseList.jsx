@@ -34,9 +34,6 @@ let courses=selectedCourses.includes(courseId) ? selectedCourses.filter((id) => 
 
 
 
-
-
-
   return (
     <div className="course-container" style={{ paddingTop: '200px' }}>
       <h3 className="course-title">Course List</h3>

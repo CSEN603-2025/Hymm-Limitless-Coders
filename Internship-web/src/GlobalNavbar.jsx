@@ -8,7 +8,7 @@ import './navbar.css';
 const companyPages = [
   { path: '/company/upload-docs', label: 'Upload Docs' },
   { path: '/company/notifications', label: 'Notifications' },
-  { path: '/company/manage-posts', label: 'Internship Post' },
+  { path: '/company/manage-posts', label: 'Internship Post(s)' },
   { path: '/company/app-alerts', label: 'Notification(s)' },
   { path: '/company/posts', label: 'Posts' },
   { path: '/company/applications', label: 'Applications' },
@@ -27,7 +27,9 @@ const SCADPages = [
   { path: '/SCAD/manage', label: 'Manage Appointments' },
   { path: '/SCAD/call', label: 'Call Interface' },
   { path: '/internships', label: 'Internships' },
+  { path: '/SCAD/online-workshop', label: 'Workshops' },
   { path: '/SCAD/notifications', label: 'Notifications' }
+  
 ];
 
 const StudentPages = [
@@ -50,7 +52,8 @@ const facultyPages = [
 
 const ProStudentPages = [
   ...StudentPages,
-  { path: '/prostudentextras', label: 'Pro Student Dashboard' }
+  { path: '/prostudentextras', label: 'Pro Student Dashboard' },
+  { path: '/SCAD/notifications', label: 'Notifications' }
 ];
 
 function GlobalNavbar() {
@@ -112,6 +115,8 @@ function GlobalNavbar() {
         return ProStudentPages;
       case 'faculty':
         return facultyPages;
+      case 'student':
+        return StudentPages;
       default:
         return [];
     }

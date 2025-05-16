@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useReports } from '../Context/ReportContext';
-
 import '../Styles/report.css';
 
 function FaculutyInternshipReportDetails() {
@@ -10,58 +9,38 @@ function FaculutyInternshipReportDetails() {
   const { reports, evaluations, updateReportStatus } = useReports();
   const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState('');
-  const [showCommentInput, setShowCommentInput] = useState(false);
   const [editingCommentId, setEditingCommentId] = useState(null);
-  const [comments, setComments] = useState([]); // Array to store multiple comments
+  const [comments, setComments] = useState([]);
   const report = reports.find(r => r.id === parseInt(id));
-  const evaluation = evaluations[id];
+  const evaluation = evaluations.find(e => e.reportId === parseInt(id));
 
-  // Mock loading state
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Load existing comments (you'll need to implement this in your backend)
   useEffect(() => {
     if (report?.comments) {
       setComments(report.comments);
     }
   }, [report]);
 
-  if (loading) {
-    return <div className="loading-spinner" role="status" aria-live="polite">Loading...</div>;
-  }
+  if (loading) return <div className="loading-spinner">Loading...</div>;
+  if (!report) return <p className="error-text">Report not found.</p>;
 
-  if (!report) {
-    return <p className="error-text" role="alert">Report not found.</p>;
-  }
+  const isCommentSectionVisible = report?.status === 'Flagged' || report?.status === 'Rejected';
 
-  const handleChangeStatus = (newStatus) => {
-    if (newStatus === 'Rejected' || newStatus === 'Flagged') {
-      setShowCommentInput(true);
-    } else {
-      updateReportStatus(id, newStatus);
-      setShowCommentInput(false);
-      setComment('');
-    }
-  };
-
-  const handleSubmitComment = () => {
-    if (comment.trim()) {
-      const newComment = {
-        id: Date.now(), // Temporary ID generation
-        text: comment.trim(),
-        status: report.status,
-        timestamp: new Date().toISOString(),
-        facultyName: 'Faculty Member' // Replace with actual faculty member name
-      };
-
+  const handleStatusChange = (newStatus) => {
+    const newComment = (newStatus === 'Flagged' || newStatus === 'Rejected') && comment.trim() 
+      ? { id: Date.now(), text: comment.trim(), status: newStatus, timestamp: new Date().toISOString() } 
+      : null;
+    
+    if (newComment) {
       setComments([...comments, newComment]);
-      updateReportStatus(id, report.status, newComment);
-      setShowCommentInput(false);
       setComment('');
     }
+    
+    updateReportStatus(id, newStatus, newComment);
   };
 
   const handleUpdateComment = (commentId) => {
@@ -69,27 +48,38 @@ function FaculutyInternshipReportDetails() {
     if (commentToEdit) {
       setComment(commentToEdit.text);
       setEditingCommentId(commentId);
-      setShowCommentInput(true);
     }
   };
 
   const handleDeleteComment = (commentId) => {
     setComments(comments.filter(c => c.id !== commentId));
-    // Update the backend to remove the comment
     updateReportStatus(id, report.status, null, commentId);
   };
 
   const handleEditSubmit = () => {
     if (comment.trim() && editingCommentId) {
-      const updatedComments = comments.map(c => 
+      const updatedComments = comments.map(c =>
         c.id === editingCommentId ? { ...c, text: comment.trim() } : c
       );
       setComments(updatedComments);
-      // Update the backend with the edited comment
       updateReportStatus(id, report.status, { id: editingCommentId, text: comment.trim() });
-      setShowCommentInput(false);
       setComment('');
       setEditingCommentId(null);
+    }
+  };
+
+  const handleAddComment = () => {
+    if (comment.trim()) {
+      const newComment = {
+        id: Date.now(),
+        text: comment.trim(),
+        status: report.status,
+        timestamp: new Date().toISOString()
+      };
+      const updatedComments = [...comments, newComment];
+      setComments(updatedComments);
+      updateReportStatus(id, report.status, newComment);
+      setComment('');
     }
   };
 
@@ -97,165 +87,213 @@ function FaculutyInternshipReportDetails() {
     navigate('/faculty/internship-reports');
   };
 
+  const downloadReport = () => {
+    const reportContent = `
+      Internship Report
+      Student: ${report.studentName || 'N/A'}
+      Content: ${report.content || 'N/A'}
+      Status: ${report.status || 'Unknown'}
+    `;
+    const blob = new Blob([reportContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `report_${id}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const downloadEvaluation = () => {
+    if (!evaluation) return;
+    const evaluationContent = `
+      Evaluation Report
+      Student: ${evaluation.studentName || 'N/A'}
+      Company: ${evaluation.companyName || 'N/A'}
+      Supervisor: ${evaluation.supervisor || 'N/A'}
+      Start Date: ${evaluation.startDate || 'N/A'}
+      End Date: ${evaluation.endDate || 'N/A'}
+      Course: ${evaluation.course || 'N/A'}
+      Rating: ${evaluation.rating || 'N/A'}
+      Review Time (Days): ${evaluation.reviewTimeDays || 'N/A'}
+    `;
+    const blob = new Blob([evaluationContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `evaluation_${id}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="page-container">
-      {/* Navigation */}
-      
-
-      {/* Main Content */}
-      <main className="content-area" role="main">
-        {/* Header Section */}
+      <main className="content-area">
         <header className="page-header">
-          <button
-            className="btn-back"
-            onClick={handleBack}
-            title="Return to internship reports list"
-            aria-label="Go back to internship reports"
-          >
-            Back to Reports
+          <button className="btn-back" onClick={handleBack}>
+            <span className="back-icon">←</span> Back to Reports
           </button>
+          <h1 className="page-title">Internship Report Details</h1>
         </header>
 
-        {/* Report Section */}
-        <section className="report-section" role="region" aria-labelledby="report-heading">
-          <h2 className="section-subheader" id="report-heading">Report Information</h2>
-          <div className="card">
-            <p className="report-detail">
-              <strong className="report-label">Student:</strong> {report.studentName || 'N/A'}
-            </p>
-            <p className="report-detail">
-              <strong className="report-label">Content:</strong> {report.content || 'N/A'}
-            </p>
-            <p className="report-detail">
-              <strong className="report-label">Status:</strong>
-              <span className={`status-badge status-${report.status?.toLowerCase() || 'unknown'}`}>
-                {report.status || 'Unknown'}
-              </span>
-            </p>
-
-            {/* Comments Section */}
-            {comments.length > 0 && (
-              <div className="comments-section">
-                <h3 className="comments-heading">Comments History</h3>
-                {comments.map((comment) => (
-                  <div key={comment.id} className="comment-card">
-                    <div className="comment-header">
-                      <span className="comment-status">{comment.status}</span>
-                      <span className="comment-date">
-                        {new Date(comment.timestamp).toLocaleDateString()}
-                      </span>
-                    </div>
-                    <p className="comment-text">{comment.text}</p>
-                    <div className="comment-actions">
-                      <button
-                        className="btn-text"
-                        onClick={() => handleUpdateComment(comment.id)}
-                        title="Edit comment"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        className="btn-text btn-danger"
-                        onClick={() => handleDeleteComment(comment.id)}
-                        title="Delete comment"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </div>
-                ))}
+        <div className="details-container">
+          <section className="report-section" aria-labelledby="report-heading">
+            <h2 id="report-heading" className="section-title">Report Information</h2>
+            <div className="card report-card">
+              <div className="report-header">
+                <h3>{report.studentName || 'N/A'}</h3>
+                <span className={`status-badge status-${report.status?.toLowerCase() || 'unknown'}`}>
+                  {report.status || 'Unknown'}
+                </span>
               </div>
-            )}
-
-            <div className="button-group">
-              <button
-                className="btn-primary"
-                onClick={() => handleChangeStatus('Accepted')}
-                title="Accept this report"
-                aria-label="Accept report"
-              >
-                Accept
-              </button>
-              <button
-                className="btn-outline"
-                onClick={() => handleChangeStatus('Rejected')}
-                title="Reject this report"
-                aria-label="Reject report"
-              >
-                Reject
-              </button>
-              <button
-                className="btn-secondary"
-                onClick={() => handleChangeStatus('Flagged')}
-                title="Flag this report for review"
-                aria-label="Flag report"
-              >
-                Flag
-              </button>
-            </div>
-
-            {showCommentInput && (
-              <div className="comment-input-section">
-                <textarea
-                  className="comment-input"
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                  placeholder={editingCommentId ? 
-                    "Edit your comment..." : 
-                    `Please provide a reason for ${report.status === 'Rejected' ? 'rejecting' : 'flagging'} this report...`}
-                  rows="4"
-                />
-                <div className="comment-actions">
-                  <button
-                    className="btn-primary"
-                    onClick={editingCommentId ? handleEditSubmit : handleSubmitComment}
-                    disabled={!comment.trim()}
+              <div className="report-body">
+                <div className="info-row">
+                  <span className="info-label">Content:</span>
+                  <span className="info-value">{report.content || 'N/A'}</span>
+                </div>
+              </div>
+              <div className="card-actions">
+                <button className="btn-download" onClick={downloadReport}>
+                  <span className="download-icon">↓</span> Download Report
+                </button>
+                <div className="status-buttons">
+                  <button 
+                    className={`btn-status ${report.status === 'Accepted' ? 'active' : ''}`} 
+                    onClick={() => handleStatusChange('Accepted')}
                   >
-                    {editingCommentId ? 'Update Comment' : 'Submit Comment'}
+                    Accept
                   </button>
-                  <button
-                    className="btn-outline"
-                    onClick={() => {
-                      setShowCommentInput(false);
-                      setComment('');
-                      setEditingCommentId(null);
-                    }}
+                  <button 
+                    className={`btn-status ${report.status === 'Rejected' ? 'active' : ''}`} 
+                    onClick={() => handleStatusChange('Rejected')}
                   >
-                    Cancel
+                    Reject
+                  </button>
+                  <button 
+                    className={`btn-status ${report.status === 'Flagged' ? 'active' : ''}`} 
+                    onClick={() => handleStatusChange('Flagged')}
+                  >
+                    Flag
                   </button>
                 </div>
               </div>
-            )}
-          </div>
-        </section>
 
-        {/* Evaluation Section */}
-        <section className="evaluation-section" role="region" aria-labelledby="evaluation-heading">
-          <h2 className="section-subheader" id="evaluation-heading">Evaluation Report</h2>
-          <div className="card">
-            {evaluation ? (
-              <div className="evaluation-details">
-                <p className="report-detail">
-                  <strong className="report-label">Student:</strong> {evaluation.studentName || 'N/A'}
-                </p>
-                <p className="report-detail">
-                  <strong className="report-label">Company:</strong> {evaluation.companyName || 'N/A'}
-                </p>
-                <p className="report-detail">
-                  <strong className="report-label">Supervisor:</strong> {evaluation.supervisor || 'N/A'}
-                </p>
-                <p className="report-detail">
-                  <strong className="report-label">Start Date:</strong> {evaluation.startDate || 'N/A'}
-                </p>
-                <p className="report-detail">
-                  <strong className="report-label">End Date:</strong> {evaluation.endDate || 'N/A'}
-                </p>
-              </div>
-            ) : (
-              <p className="error-text" role="alert">No evaluation report found.</p>
-            )}
-          </div>
-        </section>
+              {isCommentSectionVisible && comments.length > 0 && (
+                <div className="comments-section">
+                  <h3 className="comments-title">Comment History</h3>
+                  <div className="comments-list">
+                    {comments.map((comment) => (
+                      <div key={comment.id} className="comment-card">
+                        <div className="comment-header">
+                          <span className={`comment-status status-${comment.status.toLowerCase()}`}>
+                            {comment.status}
+                          </span>
+                          <span className="comment-date">
+                            {new Date(comment.timestamp).toLocaleString()}
+                          </span>
+                        </div>
+                        <p className="comment-text">{comment.text}</p>
+                        <div className="comment-actions">
+                          <button className="btn-edit" onClick={() => handleUpdateComment(comment.id)}>
+                            Edit
+                          </button>
+                          <button className="btn-delete" onClick={() => handleDeleteComment(comment.id)}>
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {isCommentSectionVisible && (
+                <div className="comment-input-section">
+                  <h4 className="comment-input-title">
+                    {editingCommentId ? 'Edit Comment' : 'Add Comment'}
+                    <span className="required-note">* Required for {report.status} status</span>
+                  </h4>
+                  <textarea
+                    className="comment-input"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder={editingCommentId ? "Edit your comment..." : "Add a comment..."}
+                    rows="4"
+                  />
+                  <div className="comment-actions">
+                    <button
+                      className="btn-primary"
+                      onClick={editingCommentId ? handleEditSubmit : handleAddComment}
+                      disabled={!comment.trim()}
+                    >
+                      {editingCommentId ? 'Update Comment' : 'Add Comment'}
+                    </button>
+                    {(comment || editingCommentId) && (
+                      <button
+                        className="btn-outline"
+                        onClick={() => {
+                          setComment('');
+                          setEditingCommentId(null);
+                        }}
+                      >
+                        Cancel
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+
+          <section className="evaluation-section" aria-labelledby="evaluation-heading">
+            <h2 id="evaluation-heading" className="section-title">Evaluation Report</h2>
+            <div className="card evaluation-card">
+              {evaluation ? (
+                <>
+                  <div className="evaluation-header">
+                    <h3>{evaluation.studentName || 'N/A'}</h3>
+                  </div>
+                  <div className="evaluation-body">
+                    <div className="info-row">
+                      <span className="info-label">Company:</span>
+                      <span className="info-value">{evaluation.companyName || 'N/A'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="info-label">Supervisor:</span>
+                      <span className="info-value">{evaluation.supervisor || 'N/A'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="info-label">Start Date:</span>
+                      <span className="info-value">{evaluation.startDate || 'N/A'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="info-label">End Date:</span>
+                      <span className="info-value">{evaluation.endDate || 'N/A'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="info-label">Course:</span>
+                      <span className="info-value">{evaluation.course || 'N/A'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="info-label">Rating:</span>
+                      <span className="info-value">{evaluation.rating || 'N/A'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="info-label">Review Time (Days):</span>
+                      <span className="info-value">{evaluation.reviewTimeDays || 'N/A'}</span>
+                    </div>
+                  </div>
+                  <div className="card-actions">
+                    <button className="btn-download" onClick={downloadEvaluation}>
+                      <span className="download-icon">↓</span> Download Evaluation
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <p className="error-text">No evaluation report found.</p>
+              )}
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   );

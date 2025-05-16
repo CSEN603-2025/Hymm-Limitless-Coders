@@ -12,7 +12,8 @@ function InternshipReportDetails() {
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [comments, setComments] = useState([]);
   const report = reports.find(r => r.id === parseInt(id));
-  const evaluation = evaluations[id];
+  // Find evaluations where reportId matches the report's id
+  const reportEvaluations = evaluations.filter(e => e.reportId === parseInt(id));
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 500);
@@ -90,7 +91,7 @@ function InternshipReportDetails() {
     URL.revokeObjectURL(url);
   };
 
-  const downloadEvaluation = () => {
+  const downloadEvaluation = (evaluation) => {
     if (!evaluation) return;
     const evaluationContent = `
       Evaluation Report
@@ -104,7 +105,7 @@ function InternshipReportDetails() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `evaluation_${id}.txt`;
+    a.download = `evaluation_${evaluation.id}.txt`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -210,11 +211,11 @@ function InternshipReportDetails() {
 
           <section className="evaluation-section" aria-labelledby="evaluation-heading">
             <h2 id="evaluation-heading" className="section-title">Evaluation Report</h2>
-            <div className="card evaluation-card">
-              {evaluation ? (
-                <>
+            {reportEvaluations.length > 0 ? (
+              reportEvaluations.map((evaluation, index) => (
+                <div key={evaluation.id} className="card evaluation-card">
                   <div className="evaluation-header">
-                    <h3>{evaluation.studentName || 'N/A'}</h3>
+                    <h3>{evaluation.studentName || 'N/A'} (Evaluation {index + 1})</h3>
                   </div>
                   <div className="evaluation-body">
                     <div className="info-row">
@@ -233,17 +234,29 @@ function InternshipReportDetails() {
                       <span className="info-label">End Date:</span>
                       <span className="info-value">{evaluation.endDate || 'N/A'}</span>
                     </div>
+                    <div className="info-row">
+                      <span className="info-label">Course:</span>
+                      <span className="info-value">{evaluation.course || 'N/A'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="info-label">Rating:</span>
+                      <span className="info-value">{evaluation.rating || 'N/A'}</span>
+                    </div>
+                    <div className="info-row">
+                      <span className="info-label">Review Time (Days):</span>
+                      <span className="info-value">{evaluation.reviewTimeDays || 'N/A'}</span>
+                    </div>
                   </div>
                   <div className="card-actions">
-                    <button className="btn-download" onClick={downloadEvaluation}>
+                    <button className="btn-download" onClick={() => downloadEvaluation(evaluation)}>
                       <span className="download-icon">↓</span> Download Evaluation
                     </button>
                   </div>
-                </>
-              ) : (
-                <p className="error-text">No evaluation report found.</p>
-              )}
-            </div>
+                </div>
+              ))
+            ) : (
+              <p className="error-text">No evaluation report found.</p>
+            )}
           </section>
         </div>
       </main>

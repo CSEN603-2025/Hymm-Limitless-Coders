@@ -307,7 +307,7 @@ const EditProfile = () => {
         </div>
 
         {/* Assessments selection */}
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Add Completed Assessment:</label>
           <select
             value={selectedAssessmentId}
@@ -323,7 +323,31 @@ const EditProfile = () => {
           <button type="button" onClick={addAssessmentToProfile} disabled={!selectedAssessmentId}>
             Add Assessment
           </button>
-        </div>
+        </div> */}
+  {localStorage.getItem('role') === 'prostudent' && (
+    <>
+      <div className="form-group">
+        <label>Add Completed Assessment:</label>
+        <select
+          value={selectedAssessmentId}
+          onChange={(e) => setSelectedAssessmentId(e.target.value)}
+        >
+          <option value="">-- Select an assessment --</option>
+          {availableAssessments.map((a) => (
+            <option key={a.assessmentId} value={a.assessmentId}>
+              Assessment #{a.assessmentId} - Score: {a.score}
+            </option>
+          ))}
+        </select>
+        <button
+          type="button"
+          onClick={addAssessmentToProfile}
+          disabled={!selectedAssessmentId}
+        >
+          Add Assessment
+        </button>
+      </div>
+    
 
         {/* List of assessments added to profile */}
         <div className="form-group">
@@ -339,6 +363,8 @@ const EditProfile = () => {
             </div>
           ))}
         </div>
+        </>
+        )}
 
         <button type="submit" className="save-button">Save</button>
       </form>
