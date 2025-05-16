@@ -93,12 +93,12 @@
 export const regularCompanies = [
   {
     id: 1,
-    name: 'Company A',
+    name: 'Tech Solutions Inc.',
     industry: 'Software Development',
     location: 'San Francisco, CA',
     founded: 2010,
     employees: 250,
-    website: 'https://www.companya.com',
+    website: 'https://www.techcompanya.com',
     recommendedByColleagues:false
   },
   {
@@ -113,8 +113,8 @@ export const regularCompanies = [
   },
   {
     id: 3,
-    name: 'Company C',
-    industry: 'Education Tech',
+    name: 'Data Insights Corp.',
+    industry: 'Education Tech and data analysis',
     location: 'Austin, TX',
     founded: 2013,
     employees: 150,
@@ -156,12 +156,12 @@ export const proCompanies = [
   },
   {
     id: 7,
-    name: 'Company G',
+    name: 'SecureWave Labs',
     industry: 'Cybersecurity',
     location: 'Los Angeles, CA',
     founded: 2016,
     employees: 200,
-    website: 'https://www.companyg.com',
+    website: 'https://www.secureWave.com',
     recommendedFromPastInterns: false
   },
   {
@@ -176,6 +176,14 @@ export const proCompanies = [
   }
 ];
 
-const companies = { regular: regularCompanies, pro: proCompanies };
+// const companies = { regular: regularCompanies, pro: proCompanies };
+
+const companies = {
+  regular: regularCompanies,
+  pro: [...regularCompanies, ...proCompanies]
+};
+
 
 export default companies;
+
+

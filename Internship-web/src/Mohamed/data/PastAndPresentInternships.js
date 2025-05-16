@@ -101,7 +101,20 @@ const regularInternshipsData = [
     location: 'San Francisco, USA',
     postedDate: '2025-04-01',
     status: 'in-progress'
-  }
+  },
+ { 
+  id: 7,
+  title: 'Content Writer Intern - Hybrid',
+  type: 'hybrid',
+  description: 'Write blog posts, newsletters, and promotional content.',
+  duration: '4 months',
+  company: 'Company D',
+  location: 'Austin, USA',
+  postedDate: '2025-04-10',
+  status: 'in-progress'
+}
+
+
 ];
 
 // Pro-only internships (exclusive)

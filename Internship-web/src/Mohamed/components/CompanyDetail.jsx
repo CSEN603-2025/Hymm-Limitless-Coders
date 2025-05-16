@@ -229,6 +229,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import companies from '../data/companies';
 import "../css/CompanyDetail.css";
+import pastAndPresentIntership from '../data/PastAndPresentInternships';
 
 const LOCAL_STORAGE_KEY = 'companyEvaluations';
 
@@ -236,8 +237,18 @@ const CompanyDetail = () => {
   const role = localStorage.getItem('role');
   const selectedCompanies = role === 'prostudent' ? companies.pro : companies.regular;
   const { id } = useParams();
+ 
+ const selectedInternships = role === 'prostudent' ? pastAndPresentIntership.pro : pastAndPresentIntership.regular;
+
   const company = selectedCompanies.find(c => c.id === parseInt(id));
   const companyId = company?.id;
+
+const selectedInternshipsFiltered=selectedInternships.map((item)=>{
+  return item.company;
+})
+const canEvaluate=selectedInternshipsFiltered.includes(company.name)
+
+
 
   const [evaluations, setEvaluations] = useState({});
   const [text, setText] = useState('');
@@ -306,6 +317,8 @@ const CompanyDetail = () => {
       </div>
 
       <hr />
+
+      {canEvaluate && (
       <div className="evaluation-section">
         <h3>Evaluation</h3>
 
@@ -339,6 +352,9 @@ const CompanyDetail = () => {
           </>
         )}
       </div>
+      )}
+
+
     </div>
   );
 };
