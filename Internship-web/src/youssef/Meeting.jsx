@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import './Meeting.css';
 
 export default function Meeting() {
+  
   const [users, setUsers] = useState([
-    { id: 1, name: 'Alice', status: 'in meeting' },
-    { id: 2, name: 'Bob', status: 'in meeting' },
-    { id: 3, name: 'Charlie', status: 'in meeting' },
-    { id: 4, name: 'David', status: 'left' },
-    { id: 5, name: 'Eve', status: 'left' },
-  ]);
+  { id: 1, name: 'Dr. Sarah Johnson', status: 'in meeting' },
+  { id: 2, name: 'Prof. Michael Chen', status: 'left' },
+  { id: 3, name: 'Dr. Emily Brown', status: 'in meeting' }
+]);
+
 
   const [videoEnabled, setVideoEnabled] = useState(true);
   const [muted, setMuted] = useState(false);

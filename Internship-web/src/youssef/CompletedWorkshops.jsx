@@ -16,7 +16,6 @@ export default function CompletedWorkshopsPage() {
   const [feedbacks, setFeedbacks] = useState({});
   const [notification, setNotification] = useState('');
 
-  // Load saved ratings and feedbacks from localStorage
   useEffect(() => {
     const savedRatings = {};
     const savedFeedbacks = {};
@@ -24,7 +23,7 @@ export default function CompletedWorkshopsPage() {
     completedWorkshops.forEach((workshop) => {
       const savedRating = localStorage.getItem(`rating_${workshop.id}`);
       const savedFeedback = localStorage.getItem(`feedback_${workshop.id}`);
-    
+      
       if (savedRating) savedRatings[workshop.id] = parseInt(savedRating, 10);
       if (savedFeedback) savedFeedbacks[workshop.id] = savedFeedback;
     });
@@ -36,7 +35,7 @@ export default function CompletedWorkshopsPage() {
   const handleRate = (id, value) => {
     setRatings((prev) => {
       const newRatings = { ...prev, [id]: value };
-      localStorage.setItem(`rating_${id}`, value);  // Save rating to localStorage
+      localStorage.setItem(`rating_${id}`, value);
       return newRatings;
     });
   };
@@ -44,31 +43,26 @@ export default function CompletedWorkshopsPage() {
   const handleFeedbackChange = (id, text) => {
     setFeedbacks((prev) => {
       const newFeedbacks = { ...prev, [id]: text };
-      localStorage.setItem(`feedback_${id}`, text);  // Save feedback to localStorage
+      localStorage.setItem(`feedback_${id}`, text);
       return newFeedbacks;
     });
   };
 
   const handleSaveFeedback = (id) => {
-    // Show notification
     setNotification('Feedback has been saved!');
-
-    // Hide notification after 3 seconds
     setTimeout(() => setNotification(''), 3000);
   };
 
   const downloadCertificate = (workshop) => {
     const doc = new jsPDF();
-
     doc.setFontSize(20);
     doc.text('Certificate of Attendance', 20, 30);
-
     doc.setFontSize(14);
-    doc.text("This is to certify that John Doe has attended the workshop:", 20, 50);
+    doc.text(`This is to certify that John Doe has attended the workshop:`, 20, 50);
     doc.setFontSize(16);
-    doc.text("${workshop.title}", 20, 60);
+    doc.text(`"${workshop.title}"`, 20, 60);
     doc.setFontSize(12);
-    doc.text("Date: ${workshop.date}", 20, 70);
+    doc.text(`Date: ${workshop.date}`, 20, 70);
     doc.save(`${workshop.title.replace(/\s+/g, '_')}_Certificate.pdf`);
   };
 
@@ -81,7 +75,6 @@ export default function CompletedWorkshopsPage() {
           <h4 className="card-header">{workshop.title}</h4>
           <p>Date: {workshop.date}</p>
 
-          {/* Button to download certificate as PDF */}
           <div>
             <button 
               onClick={() => downloadCertificate(workshop)} 
@@ -90,34 +83,39 @@ export default function CompletedWorkshopsPage() {
               Download Certificate
             </button>
           </div>
+<div className="rating-container">
+  <p>Rate this Workshop:</p>
+  {[1, 2, 3, 4, 5].map((star) => {
+    const currentRating = hoveredRatings[workshop.id] || ratings[workshop.id] || 0;
+    return (
+      <span
+        key={star}
+        style={{
+          cursor: 'pointer',
+          fontSize: '24px',
+          color: currentRating >= star ? 'gold' : 'gray',
+          marginRight: '5px',
+        }}
+        onClick={() => handleRate(workshop.id, star)}
+        onMouseEnter={() =>
+          setHoveredRatings((prev) => ({ ...prev, [workshop.id]: star }))
+        }
+        onMouseLeave={() =>
+          setHoveredRatings((prev) => {
+            const newHovered = { ...prev };
+            delete newHovered[workshop.id];
+            return newHovered;
+          })
+        }
+      >
+        ★
+      </span>
+    );
+  })}
+</div>
 
-          {/* Rating system */}
-          <div className="rating-container">
-            <p>Rate this Workshop:</p>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <span
-                key={star}
-                className={`star ${
-                  (hoveredRatings[workshop.id] || ratings[workshop.id]) >= star ? 'rated' : ''
-                }`}
-                onClick={() => handleRate(workshop.id, star)}
-                onMouseEnter={() =>
-                  setHoveredRatings((prev) => ({ ...prev, [workshop.id]: star }))
-                }
-                onMouseLeave={() =>
-                  setHoveredRatings((prev) => {
-                    const newHovered = { ...prev };
-                    delete newHovered[workshop.id];
-                    return newHovered;
-                  })
-                }
-              >
-                ★
-              </span>
-            ))}
-          </div>
 
-          {/* Feedback section */}
+
           <textarea
             className="input feedback-textarea"
             placeholder="Leave feedback..."
@@ -132,7 +130,6 @@ export default function CompletedWorkshopsPage() {
             Save Feedback
           </button>
 
-          {/* Display notification */}
           {notification && (
             <div className="notification">
               {notification}

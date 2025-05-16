@@ -147,3 +147,40 @@
     }
   }
   
+
+
+.popup-container {
+  position: fixed;
+  top: 120px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;           /* space between popups */
+  z-index: 9999;
+  max-width: 320px;    /* optional max width */
+}
+
+.popup-notification {
+  background-color: #28a745;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup-notification .close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
