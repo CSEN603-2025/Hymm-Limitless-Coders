@@ -59,6 +59,7 @@ const InternshipDetails = () => {
         <p><strong>Location:</strong> {internship.location}</p>
         <p><strong>Duration:</strong> {internship.duration}</p>
         <p><strong>Posted Date:</strong> {internship.postedDate}</p>
+         <p><strong>Start Date:</strong> {internship.startDate}</p>
         <p><strong>Industry:</strong> {internship.industry}</p>
         <p><strong>Type:</strong> {internship.type.charAt(0).toUpperCase() + internship.type.slice(1)}</p>
         <p><strong>Paid:</strong> {internship.paid ? 'Yes' : 'No'}</p>
