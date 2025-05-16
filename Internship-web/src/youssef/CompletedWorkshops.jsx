@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import jsPDF from 'jspdf';
 
 export default function CompletedWorkshopsPage() {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ export default function CompletedWorkshopsPage() {
   ];
 
   const [ratings, setRatings] = useState({});
+  const [hoveredRatings, setHoveredRatings] = useState({});
   const [feedbacks, setFeedbacks] = useState({});
-  const [shownCertificates, setShownCertificates] = useState({});
   const [notification, setNotification] = useState('');
 
   // Load saved ratings and feedbacks from localStorage
@@ -57,11 +57,20 @@ export default function CompletedWorkshopsPage() {
     setTimeout(() => setNotification(''), 3000);
   };
 
-  const toggleCertificate = (id) => {
-    setShownCertificates((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  const downloadCertificate = (workshop) => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(20);
+    doc.text('Certificate of Attendance', 20, 30);
+
+    doc.setFontSize(14);
+    doc.text(`This is to certify that John Doe has attended the workshop:`, 20, 50);
+    doc.setFontSize(16);
+    doc.text(`"${workshop.title}"`, 20, 60);
+    doc.setFontSize(12);
+    doc.text(`Date: ${workshop.date}`, 20, 70);
+
+    doc.save(`${workshop.title.replace(/\s+/g, '_')}_Certificate.pdf`);
   };
 
   return (
@@ -73,25 +82,15 @@ export default function CompletedWorkshopsPage() {
           <h4 className="card-header">{workshop.title}</h4>
           <p>Date: {workshop.date}</p>
 
-          {/* Button to toggle visibility of certificate */}
+          {/* Button to download certificate as PDF */}
           <div>
             <button 
-              onClick={() => toggleCertificate(workshop.id)} 
+              onClick={() => downloadCertificate(workshop)} 
               className="btn-primary"
             >
-              {shownCertificates[workshop.id] ? 'Hide Certificate' : 'View Certificate'}
+              Download Certificate
             </button>
           </div>
-
-          {/* Display certificate if it's toggled */}
-          {shownCertificates[workshop.id] && (
-            <div className="certificate-section">
-              <h2>Certificate of Attendance</h2>
-              <p>This is to certify that <strong>John Doe</strong> has attended the workshop:</p>
-              <h3>“{workshop.title}”</h3>
-              <p>Date: {workshop.date}</p>
-            </div>
-          )}
 
           {/* Rating system */}
           <div className="rating-container">
@@ -99,10 +98,20 @@ export default function CompletedWorkshopsPage() {
             {[1, 2, 3, 4, 5].map((star) => (
               <span
                 key={star}
-                className={`star ${ratings[workshop.id] >= star ? 'rated' : ''}`}
+                className={`star ${
+                  (hoveredRatings[workshop.id] || ratings[workshop.id]) >= star ? 'rated' : ''
+                }`}
                 onClick={() => handleRate(workshop.id, star)}
-                onMouseEnter={() => setRatings((prev) => ({ ...prev, [workshop.id]: star }))}
-                onMouseLeave={() => setRatings((prev) => ({ ...prev, [workshop.id]: ratings[workshop.id] }))}
+                onMouseEnter={() =>
+                  setHoveredRatings((prev) => ({ ...prev, [workshop.id]: star }))
+                }
+                onMouseLeave={() =>
+                  setHoveredRatings((prev) => {
+                    const newHovered = { ...prev };
+                    delete newHovered[workshop.id];
+                    return newHovered;
+                  })
+                }
               >
                 ★
               </span>

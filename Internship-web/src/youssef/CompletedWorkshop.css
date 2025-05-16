@@ -7,194 +7,195 @@
 
 :root {
   --primary-color: #1E3A8A;
+  --primary-dark: #1E40AF;
+  --secondary-color: #10B981;
+  --secondary-dark: #059669;
   --text-color: #1F2937;
   --bg-color: #F9FAFB;
   --card-bg: #FFFFFF;
   --border-radius: 8px;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --input-border: #D1D5DB;
+  --notification-bg: #D1F5D3;
+  --notification-text: #047857;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
-  margin: 0;
-  padding: 0;
 }
 
-/* Dashboard Container */
+/* Layout */
 .dashboard-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 32px 16px;
 }
 
-/* Title */
+/* Header */
 .dashboard-title {
   font-size: 32px;
   font-weight: 700;
   color: var(--primary-color);
-  margin-bottom: 24px;
-  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 32px;
   padding-bottom: 12px;
+  border-bottom: 2px solid var(--primary-color);
   text-align: center;
 }
 
-/* Card for each Workshop */
+/* Card */
 .dashboard-section {
   background-color: var(--card-bg);
   border-radius: var(--border-radius);
   padding: 24px;
   box-shadow: var(--shadow);
-  margin-bottom: 24px;
-  transition: transform 0.2s ease;
+  margin-bottom: 28px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .dashboard-section:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .card-header {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
-  color: var(--text-color);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 /* Buttons */
-.btn-primary {
-  background: var(--primary-color);
-  color: #FFFFFF;
-  padding: 8px 16px;
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.back-button {
+  display: inline-block;
+  padding: 10px 18px;
   border-radius: 6px;
-  border: none;
-  cursor: pointer;
   font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
 }
 
 .btn-primary:hover {
-  background: #1E40AF;
+  background-color: var(--primary-dark);
 }
 
 .btn-secondary {
-  background: #10B981;
-  color: #FFFFFF;
-  padding: 8px 16px;
-  border-radius: 6px;
+  background-color: var(--secondary-color);
+  color: #fff;
   border: none;
-  cursor: pointer;
-  font-weight: 500;
 }
 
 .btn-secondary:hover {
-  background: #059669;
+  background-color: var(--secondary-dark);
 }
 
-.btn-outline {
+.btn-outline,
+.back-button {
   border: 1px solid var(--primary-color);
-  color: var(--primary-color);
   background: transparent;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: 500;
-  display: inline-block;
+  color: var(--primary-color);
 }
 
-.btn-outline:hover {
-  background: rgba(30, 58, 138, 0.05);
+.btn-outline:hover,
+.back-button:hover {
+  background-color: var(--primary-color);
+  color: #fff;
 }
 
-/* Feedback Section */
+/* Inputs */
 .input {
-  border: 1px solid #D1D5DB;
-  border-radius: 6px;
-  padding: 8px 12px;
   width: 100%;
-  box-sizing: border-box;
+  padding: 10px 14px;
+  margin-top: 12px;
+  font-size: 14px;
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .input:focus {
-  outline: none;
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+  outline: none;
 }
 
-/* Stars Rating */
+/* Rating Stars */
+.rating-container {
+  margin: 14px 0;
+}
+
 .star {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 22px;
   color: #D1D5DB;
+  margin-right: 5px;
+  transition: color 0.2s ease;
 }
 
 .star.rated {
   color: var(--primary-color);
 }
 
-/* Notifications */
+/* Feedback Notification */
 .notification {
-  background-color: #D1F5D3;
-  color: #047857;
-  padding: 10px;
-  margin-top: 10px;
+  margin-top: 14px;
+  padding: 12px;
+  background-color: var(--notification-bg);
+  color: var(--notification-text);
   border-radius: 6px;
-  font-size: 14px;
   text-align: center;
-  display: inline-block;
-  width: 100%;
+  font-size: 15px;
   font-weight: 600;
+  width: 100%;
 }
 
 /* Certificate Section */
 .certificate-section {
   margin-top: 20px;
-  padding: 16px;
-  background: #F0F4FF;
+  padding: 20px;
+  background-color: #F0F4FF;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .certificate-section h2 {
-  color: var(--primary-color);
   margin-bottom: 10px;
-}
-
-/* Back Button */
-.back-button {
-  background: transparent;
-  border: 1px solid var(--primary-color);
   color: var(--primary-color);
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  text-decoration: none;
 }
 
-.back-button:hover {
-  background: var(--primary-color);
-  color: #FFFFFF;
-}
-
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
   .dashboard-title {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .card-header {
     font-size: 18px;
   }
 
-  .btn-primary, .btn-secondary, .btn-outline {
-    padding: 6px 12px;
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline,
+  .back-button {
     font-size: 14px;
+    padding: 8px 14px;
   }
 
   .dashboard-container {
-    padding: 16px;
+    padding: 20px 12px;
   }
-  
 
+  .star {
+    font-size: 20px;
+  }
 }
