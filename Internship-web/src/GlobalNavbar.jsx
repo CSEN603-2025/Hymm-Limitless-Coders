@@ -239,7 +239,7 @@ function GlobalNavbar() {
           ))}
         </ul>
         
-        {showRightArrow && (
+        {/* {showRightArrow && (
           <button 
             className="navbar-scroll-arrow navbar-scroll-right" 
             onClick={() => {
@@ -253,7 +253,19 @@ function GlobalNavbar() {
           >
             ▶
           </button>
-        )}
+        )} */}
+
+{showRightArrow && (
+  <button 
+    className="navbar-scroll-arrow navbar-scroll-right" 
+    onClick={() => scrollMenu('right')}
+    aria-label="Scroll menu right"
+  >
+    ▶
+  </button>
+)}
+
+
       </div>
       
       <div className="navbar-actions">
