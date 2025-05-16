@@ -62,6 +62,12 @@ const Login = () => {
         navigate('/SCAD/Dashboard'); // Admin dashboard
       } else if (role === 'faculty') {
         localStorage.setItem('role', 'faculty');
+        if(email === 'faculty2@test.com'){
+          localStorage.setItem('facultyType', 'f1');
+        }
+        else{
+          localStorage.setItem('facultyType', 'f2');
+        }
         navigate('/faculty/internship-reports'); // Faculty dashboard
       }
 

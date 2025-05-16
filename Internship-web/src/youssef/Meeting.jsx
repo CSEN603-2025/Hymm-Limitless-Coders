@@ -55,7 +55,13 @@ export default function Meeting() {
 
   const leaveCall = () => {
     setNotification('You have left the call.');
-    navigate('/prostudentextras');
+    const role = localStorage.getItem('role');
+    if(role === 'prostudent'){
+      navigate('/prostudentextras');
+    }
+    else{
+      navigate('/SCAD/Dashboard');
+    }
   };
 
   return (

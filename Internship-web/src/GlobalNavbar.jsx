@@ -42,18 +42,21 @@ const StudentPages = [
   { path: '/past-present-internships', label: 'Past & Present Internships' },
   { path: '/applications', label: 'Applications' },
   { path: '/course-list', label: 'Courses' },
-  { path: '/submit-final-report', label: 'Submit Final Report' }
+  { path: '/submit-final-report', label: 'Submit Final Report' },
+  { path: '/flaggedreports', label: 'Flagged Reports' },
+  { path: '/SCAD/notifications', label: 'Notifications' }
+  
 ];
 
 const facultyPages = [
   { path: '/faculty/internship-reports', label: 'Internship Reports' },
-  { path: '/faculty/statistics', label: 'Statistics' },
+  { path: '/faculty/statistics', label: 'Statistics' }
 ];
 
 const ProStudentPages = [
   ...StudentPages,
   { path: '/prostudentextras', label: 'Pro Student Dashboard' },
-  { path: '/SCAD/notifications', label: 'Notifications' }
+  
 ];
 
 function GlobalNavbar() {

@@ -1,54 +1,85 @@
 // src/pages/company/PostList.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-const mockPosts = [
-  {
-    id: 1,
-    title: 'Frontend Developer Intern',
-    field: 'Tech',
-    appCount: 1,
-    isPaid: true,
-    expectedSalary: '500 USD/month',
-    skills: 'React, JavaScript, CSS',
-    description: 'Work on the company website UI.'
-  },
-  {
-    id: 2,
-    title: 'Pharma Research Intern',
-    field: 'Pharma',
-    appCount: 1,
-    isPaid: false,
-    expectedSalary: '',
-    skills: 'Lab work, Data analysis',
-    description: 'Assist in lab experiments and data collection.'
-  },
-  {
-    id: 3,
-    title: 'Marketing Intern',
-    field: 'Business',
-    appCount: 1,
-    isPaid: true,
-    expectedSalary: '300 USD/month',
-    skills: 'Content creation, SEO',
-    description: 'Help create marketing materials and SEO strategy.'
-  },
-  {
-    id: 4,
-    title: 'Backend Intern',
-    field: 'Tech',
-    appCount: 0,
-    isPaid: false,
-    expectedSalary: '',
-    skills: 'Node.js, Databases',
-    description: 'Develop API endpoints and database schemas.'
-  },
-];
+// 1. All dummy posts grouped by company email
+const mockPostsByCompany = {
+  'company1@test.com': [
+    {
+      id: 1,
+      title: 'Frontend Developer Intern',
+      field: 'Tech',
+      appCount: 1,
+      isPaid: true,
+      expectedSalary: '500 USD/month',
+      skills: 'React, JavaScript, CSS',
+      description: 'Work on the company website UI.'
+    },
+    {
+      id: 2,
+      title: 'Pharma Research Intern',
+      field: 'Pharma',
+      appCount: 1,
+      isPaid: false,
+      expectedSalary: '',
+      skills: 'Lab work, Data analysis',
+      description: 'Assist in lab experiments and data collection.'
+    },
+    {
+      id: 3,
+      title: 'Marketing Intern',
+      field: 'Business',
+      appCount: 1,
+      isPaid: true,
+      expectedSalary: '300 USD/month',
+      skills: 'Content creation, SEO',
+      description: 'Help create marketing materials and SEO strategy.'
+    },
+    {
+      id: 4,
+      title: 'Backend Intern',
+      field: 'Tech',
+      appCount: 0,
+      isPaid: false,
+      expectedSalary: '',
+      skills: 'Node.js, Databases',
+      description: 'Develop API endpoints and database schemas.'
+    },
+  ],
+  'company2@test.com': [
+    {
+      id: 5,
+      title: 'Data Analyst Intern',
+      field: 'Data Analysis',
+      appCount: 1,                // e.g. Hassan Ali applied
+      isPaid: true,
+      expectedSalary: '400 USD/month',
+      skills: 'Data modeling, Visualization',
+      description: 'Analyze datasets and build dashboards.'
+    },
+    {
+      id: 6,
+      title: 'Marketing Intern',
+      field: 'Business',
+      appCount: 1,                // e.g. Lina Nasser applied
+      isPaid: true,
+      expectedSalary: '300 USD/month',
+      skills: 'Content creation, SEO',
+      description: 'Assist in crafting marketing campaigns.'
+    }
+  ]
+};
 
 const PostList = () => {
-  // --- STATE ---
-  const [posts, setPosts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  // 2. Read logged-in company email from localStorage
+  const stored = localStorage.getItem('userProfile') || '{}';
+  const { email } = JSON.parse(stored);
+
+  // 3. Initialize state to the correct dummy array
+  const [posts, setPosts] = useState(mockPostsByCompany[email] || []);
+
+  const [searchTerm, setSearchTerm]   = useState('');
   const [filterField, setFilterField] = useState('');
+
   const [formData, setFormData] = useState({
     title: '',
     field: '',
@@ -60,26 +91,22 @@ const PostList = () => {
   });
   const [editingId, setEditingId] = useState(null);
 
-  // --- LOAD MOCK DATA ---
-  useEffect(() => {
-    setPosts(mockPosts);
-  }, []);
-
-  // --- FILTERED VIEW ---
+  // FILTER + SEARCH
   const filteredPosts = posts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesField = filterField ? post.field === filterField : true;
+    const matchesField  = filterField ? post.field === filterField : true;
     return matchesSearch && matchesField;
   });
 
-  // --- FORM HELPERS ---
+  // FORM HANDLERS
   const handleChange = e => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked
-               : name === 'appCount' ? parseInt(value, 10) || 0
-               : value
+      [name]:
+        type === 'checkbox'       ? checked
+      : name === 'appCount'      ? parseInt(value, 10) || 0
+      :                             value
     }));
   };
 
@@ -88,7 +115,7 @@ const PostList = () => {
     if (editingId != null) {
       // UPDATE
       setPosts(prev =>
-        prev.map(p => (p.id === editingId ? { ...p, ...formData } : p))
+        prev.map(p => p.id === editingId ? { ...p, ...formData } : p)
       );
       alert('Post updated!');
     } else {
@@ -130,10 +157,15 @@ const PostList = () => {
   };
 
   return (
-    <main className="form-container" style={{ paddingTop: 200, display: 'flex', flexDirection: 'column', gap: 32 }}>
+    <main
+      className="form-container"
+      style={{ paddingTop: 200, display: 'flex', flexDirection: 'column', gap: 32 }}
+    >
       {/* SEARCH & FILTER */}
       <section className="card">
-        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Your Internship Posts</h2>
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>
+          Your Internship Posts
+        </h2>
         <div className="filter-container" style={{ display: 'flex', gap: 12, marginTop: 12 }}>
           <input
             type="text"
@@ -151,6 +183,7 @@ const PostList = () => {
             <option value="Tech">Tech</option>
             <option value="Pharma">Pharma</option>
             <option value="Business">Business</option>
+            <option value="Data Analysis">Data Analysis</option>
           </select>
         </div>
       </section>
@@ -162,7 +195,11 @@ const PostList = () => {
         ) : (
           <ul style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {filteredPosts.map(post => (
-              <li key={post.id} className="card" style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <li
+                key={post.id}
+                className="card"
+                style={{ padding: 16, display: 'flex', flexDirection: 'column', gap: 8 }}
+              >
                 <p><strong>{post.title}</strong></p>
                 <p>{post.field} | Applications: {post.appCount}</p>
                 <p>Type: {post.isPaid ? 'Paid' : 'Unpaid'}</p>
@@ -170,11 +207,27 @@ const PostList = () => {
                 <p>Skills Required: {post.skills}</p>
                 <p>Description: {post.description}</p>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 12, width: '100%' }}>
-                  <button className="btn-outline" style={{ width: '100%' }} onClick={() => handleEdit(post)}>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 8,
+                    marginTop: 12,
+                    width: '100%'
+                  }}
+                >
+                  <button
+                    className="btn-outline"
+                    style={{ width: '100%' }}
+                    onClick={() => handleEdit(post)}
+                  >
                     Edit
                   </button>
-                  <button className="btn-outline" style={{ width: '100%' }} onClick={() => handleDelete(post.id)}>
+                  <button
+                    className="btn-outline"
+                    style={{ width: '100%' }}
+                    onClick={() => handleDelete(post.id)}
+                  >
                     Delete
                   </button>
                 </div>
@@ -206,6 +259,7 @@ const PostList = () => {
             <option value="Tech">Tech</option>
             <option value="Pharma">Pharma</option>
             <option value="Business">Business</option>
+            <option value="Data Analysis">Data Analysis</option>
           </select>
 
           <label className="label">Application Count</label>
@@ -225,7 +279,8 @@ const PostList = () => {
               name="isPaid"
               checked={formData.isPaid}
               onChange={handleChange}
-            /> Paid
+            />{' '}
+            Paid
           </label>
 
           {formData.isPaid && (

@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import internships from '../data/internships';
@@ -16,8 +20,9 @@ const InternshipList = () => {
   const selectedInternships = role === 'prostudent' ? internships.pro : internships.regular;
 
   // Retrieve major from local storage
-  const selectedMajorSemester = JSON.parse(localStorage.getItem("selectedMajorSemester") || "{}");
-  const selectedMajor = selectedMajorSemester.major || "";
+ const selectedMajorSemester = JSON.parse(localStorage.getItem("selectedMajorSemester") || "{}");
+const selectedMajor = selectedMajorSemester.major || "";
+
 
   // Popup state for multiple messages
   const [popupMessages, setPopupMessages] = useState([]);
@@ -44,11 +49,30 @@ const InternshipList = () => {
       return diffDays >= 0 && diffDays <= 2;
     });
 
-    if (upcomingInternships.length > 0) {
-      const messages = ["Internship cycle about to begin !"]
+    // if (upcomingInternships.length > 0) {
+    //   const messages = upcomingInternships.map(
+    //     i => `Upcoming internship: ${i.title} at ${i.company} starts soon!`
+    //   );
+
+      
+
+    //   setPopupMessages(messages);
+
+    //   setTimeout(() => setPopupMessages([]), 5000);
+    // }
+ if (upcomingInternships.length > 0) {
+      const messages =["Internship cycle about to begin !"]
+    
+      
+
+    
       setPopupMessages(messages);
+
       setTimeout(() => setPopupMessages([]), 7000);
     }
+
+
+
   }, [selectedInternships]);
 
   const filteredInternships = selectedInternships.filter(i => {
@@ -95,10 +119,11 @@ const InternshipList = () => {
 
   return (
     <div className="internship-list-container" style={{ paddingTop: '30px' }}>
-      {/* Video section - only shown if role is not SCAD */}
-      {role !== 'scad' && selectedMajor && videoLinks[selectedMajor] && (
+      {/* === Embedded YouTube Video Section === */}
+      {selectedMajor && videoLinks[selectedMajor] && (
         <div style={{ marginBottom: '40px', textAlign: 'center' }}>
           <h3>
+             {/* internships count towards my internship requirement */}
             <br />
             <small>({selectedMajor})</small>
           </h3>

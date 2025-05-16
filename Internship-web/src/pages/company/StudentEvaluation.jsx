@@ -1,35 +1,51 @@
+// src/pages/company/StudentEvaluation.jsx
 import React, { useState } from 'react';
 
-const StudentEvaluation = () => {
-  const [evaluations, setEvaluations] = useState([
+const mockEvaluationsByCompany = {
+  'company1@test.com': [
     {
       id: 1,
       studentName: 'Sara Ali',
       performance: 4,
       comment: 'Sara showed great commitment and teamwork during the internship.'
     }
-  ]);
+  ],
+  'company2@test.com': [
+    {
+      id: 2,
+      studentName: 'Hassan Ali',
+      performance: 5,
+      comment: 'Hassan delivered excellent data models and clear visualizations.'
+    }
+  ]
+};
+
+const StudentEvaluation = () => {
+  // 1) pick the right initial set based on who’s logged in
+  const stored = localStorage.getItem('userProfile') || '{}';
+  const { email } = JSON.parse(stored);
+  const initialEvals = mockEvaluationsByCompany[email] || [];
+
+  const [evaluations, setEvaluations] = useState(initialEvals);
 
   const [formData, setFormData] = useState({
     studentName: '',
     performance: '',
     comment: ''
   });
-
   const [editingId, setEditingId] = useState(null);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-
     if (editingId !== null) {
-      setEvaluations((prev) =>
-        prev.map((evalEntry) =>
-          evalEntry.id === editingId ? { ...evalEntry, ...formData } : evalEntry
+      setEvaluations(prev =>
+        prev.map(entry =>
+          entry.id === editingId ? { ...entry, ...formData } : entry
         )
       );
       alert('Evaluation updated!');
@@ -38,43 +54,41 @@ const StudentEvaluation = () => {
         id: Date.now(),
         ...formData
       };
-      setEvaluations((prev) => [newEntry, ...prev]); // Put newest on top
+      setEvaluations(prev => [newEntry, ...prev]); // newest on top
       alert('Evaluation submitted!');
     }
-
     setFormData({ studentName: '', performance: '', comment: '' });
     setEditingId(null);
   };
 
-  const handleEdit = (entry) => {
+  const handleEdit = entry => {
     setFormData({
       studentName: entry.studentName,
       performance: entry.performance,
       comment: entry.comment
     });
     setEditingId(entry.id);
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll up to form when editing
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleDelete = (id) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this evaluation?');
-    if (confirmDelete) {
-      setEvaluations((prev) => prev.filter((entry) => entry.id !== id));
+  const handleDelete = id => {
+    if (window.confirm('Are you sure you want to delete this evaluation?')) {
+      setEvaluations(prev => prev.filter(entry => entry.id !== id));
     }
   };
 
   return (
-<main className="form-container" style={{ paddingTop: '200px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
-      
-      {/* Evaluation List at the Top */}
+    <main className="form-container" style={{ paddingTop: '200px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+      {/* Evaluation List */}
       <section className="card" style={{ marginBottom: '40px' }}>
-        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>Submitted Evaluations</h2>
-
+        <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>
+          Submitted Evaluations
+        </h2>
         {evaluations.length === 0 ? (
           <p>No evaluations submitted yet.</p>
         ) : (
           <ul className="evaluation-list">
-            {evaluations.map((entry) => (
+            {evaluations.map(entry => (
               <li key={entry.id} className="card" style={{ marginTop: '10px' }}>
                 <p><strong>{entry.studentName}</strong> — Rated {entry.performance}/5</p>
                 <p style={{ fontStyle: 'italic' }}>{entry.comment}</p>
@@ -92,7 +106,7 @@ const StudentEvaluation = () => {
         )}
       </section>
 
-      {/* Form for Add / Edit */}
+      {/* Form */}
       <form className="form card" onSubmit={handleSubmit}>
         <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>
           {editingId ? 'Edit Evaluation' : 'Evaluate a Student'}

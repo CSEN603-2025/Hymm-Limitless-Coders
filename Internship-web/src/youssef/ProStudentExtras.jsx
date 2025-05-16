@@ -19,10 +19,7 @@ export default function ProStudentExtras() {
       </p>
 
       <div className="pro-feature-list">
-        <div className="pro-feature">
-          <p className="pro-label">Flagged Reports</p>
-          <button onClick={() => navigate('/flaggedreports')} className="pro-button">View</button>
-        </div>
+       
 
       
 

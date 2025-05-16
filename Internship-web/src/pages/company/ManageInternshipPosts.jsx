@@ -1,70 +1,89 @@
 // src/pages/company/ManageInternshipPosts.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const mockPosts = [
-  {
-    id: 1,
-    companyName: 'OpenAI',
-    title: 'Frontend Developer Intern',
-    industry: 'Tech',
-    duration: '3 months',
-    isPaid: true,
-    expectedSalary: '500 USD/month',
-    skills: 'React, JavaScript, CSS',
-    description: 'Build and maintain UI components.'
-  },
-  {
-    id: 2,
-    companyName: 'PharmaCorp',
-    title: 'Pharma Research Intern',
-    industry: 'Pharma',
-    duration: '6 months',
-    isPaid: false,
-    expectedSalary: '',
-    skills: 'Lab techniques, Data analysis',
-    description: 'Assist research team with experiments.'
-  },
-  {
-    id: 3,
-    companyName: 'MarketGuru',
-    title: 'Marketing Intern',
-    industry: 'Business',
-    duration: '3 months',
-    isPaid: true,
-    expectedSalary: '300 USD/month',
-    skills: 'Content creation, SEO',
-    description: 'Develop marketing content and SEO strategies.'
-  },
-  {
-    id: 4,
-    companyName: 'DataSys',
-    title: 'Backend Intern',
-    industry: 'Tech',
-    duration: '6 months',
-    isPaid: false,
-    expectedSalary: '',
-    skills: 'Node.js, SQL',
-    description: 'Implement backend APIs and database schemas.'
-  },
-];
+// 1) Two separate dummy datasets keyed by company email
+const mockPostsByCompany = {
+  'company1@test.com': [
+    {
+      id: 1,
+      companyName: 'OpenAI',
+      title: 'Frontend Developer Intern',
+      industry: 'Tech',
+      duration: '3 months',
+      isPaid: true,
+      expectedSalary: '500 USD/month',
+      skills: 'React, JavaScript, CSS',
+      description: 'Build and maintain UI components.'
+    },
+    {
+      id: 2,
+      companyName: 'PharmaCorp',
+      title: 'Pharma Research Intern',
+      industry: 'Pharma',
+      duration: '6 months',
+      isPaid: false,
+      expectedSalary: '',
+      skills: 'Lab techniques, Data analysis',
+      description: 'Assist research team with experiments.'
+    },
+    {
+      id: 3,
+      companyName: 'MarketGuru',
+      title: 'Marketing Intern',
+      industry: 'Business',
+      duration: '3 months',
+      isPaid: true,
+      expectedSalary: '300 USD/month',
+      skills: 'Content creation, SEO',
+      description: 'Develop marketing content and SEO strategies.'
+    }
+  ],
+  'company2@test.com': [
+    {
+      id: 4,
+      companyName: 'FinTechX',
+      title: 'Blockchain Intern',
+      industry: 'Finance',
+      duration: '4 months',
+      isPaid: true,
+      expectedSalary: '400 USD/month',
+      skills: 'Solidity, Ethereum, Smart Contracts',
+      description: 'Help build and test smart contracts.'
+    },
+    {
+      id: 5,
+      companyName: 'GreenEnergy Co.',
+      title: 'Sustainability Intern',
+      industry: 'Energy',
+      duration: '5 months',
+      isPaid: false,
+      expectedSalary: '',
+      skills: 'Data analysis, Reporting',
+      description: 'Collect and analyze clean energy data.'
+    }
+  ]
+};
 
 const ManageInternshipPosts = () => {
   const navigate = useNavigate();
-  const { id } = useParams();               // ← read the :id param
-  const [posts, setPosts] = useState([]);
+  const { id } = useParams();               // for detail view
 
-  // filter/search state only used in list view
+  // 2) Read the logged-in company email
+  const storedProfile = localStorage.getItem('userProfile') || '{}';
+  const { email } = JSON.parse(storedProfile);
+
+  // 3) Pick the right posts array for that email
+  const initialPosts = mockPostsByCompany[email] || [];
+  const [posts, setPosts] = useState(initialPosts);
+
+  // list-only state:
   const [searchTerm,    setSearchTerm]    = useState('');
   const [filterIndustry,setFilterIndustry]= useState('');
   const [filterDuration,setFilterDuration]= useState('');
   const [filterPaid,    setFilterPaid]    = useState('all');
 
-  useEffect(() => {
-    setPosts(mockPosts);
-  }, []);
-
-  // If there's an :id, render the **detail** view:
+  // ——— DETAIL VIEW ———
   if (id) {
     const post = posts.find(p => p.id === Number(id));
     return (
@@ -79,7 +98,9 @@ const ManageInternshipPosts = () => {
               <p><strong>Industry:</strong> {post.industry}</p>
               <p><strong>Duration:</strong> {post.duration}</p>
               <p><strong>Type:</strong> {post.isPaid ? 'Paid' : 'Unpaid'}</p>
-              {post.isPaid && <p><strong>Expected Salary:</strong> {post.expectedSalary}</p>}
+              {post.isPaid && (
+                <p><strong>Expected Salary:</strong> {post.expectedSalary}</p>
+              )}
               <p><strong>Skills Required:</strong> {post.skills}</p>
               <p><strong>Description:</strong> {post.description}</p>
               <button
@@ -110,7 +131,7 @@ const ManageInternshipPosts = () => {
     );
   }
 
-  // --- Otherwise render the LIST ---
+  // ——— LIST VIEW ———
   const filtered = posts.filter(post => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -134,7 +155,7 @@ const ManageInternshipPosts = () => {
       {/* SEARCH & FILTER */}
       <section className="card">
         <h2 className="card-header" style={{ fontWeight: 'bold', color: '#000' }}>
-          SCAD Available Internships
+          Available Internships
         </h2>
         <div
           className="filter-container"
@@ -158,6 +179,8 @@ const ManageInternshipPosts = () => {
             <option value="Tech">Tech</option>
             <option value="Pharma">Pharma</option>
             <option value="Business">Business</option>
+            <option value="Finance">Finance</option>
+            <option value="Energy">Energy</option>
           </select>
           <select
             className="input"
@@ -167,6 +190,8 @@ const ManageInternshipPosts = () => {
           >
             <option value="">All Durations</option>
             <option value="3 months">3 months</option>
+            <option value="4 months">4 months</option>
+            <option value="5 months">5 months</option>
             <option value="6 months">6 months</option>
           </select>
           <select
